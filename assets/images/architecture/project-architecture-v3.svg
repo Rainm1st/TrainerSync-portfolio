@@ -1,0 +1,105 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1150" role="img" aria-labelledby="title desc">
+  <title id="title">TrainerSync Project Architecture v3</title>
+  <desc id="desc">TrainerSync architecture with non-overlapping labels and separated feature modules.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#0f224d"/>
+      <stop offset="0.58" stop-color="#2354c9"/>
+      <stop offset="1" stop-color="#18a493"/>
+    </linearGradient>
+    <filter id="shadow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="16" stdDeviation="15" flood-color="#06122e" flood-opacity="0.24"/>
+    </filter>
+    <marker id="arrow" markerWidth="14" markerHeight="14" refX="10" refY="7" orient="auto" markerUnits="strokeWidth">
+      <path d="M2,2 L12,7 L2,12 Z" fill="#16b6a4"/>
+    </marker>
+    <style>
+      .title{font-family:Segoe UI,Arial,sans-serif;font-size:56px;font-weight:800;fill:#fff;letter-spacing:-1.4px}
+      .subtitle{font-family:Segoe UI,Arial,sans-serif;font-size:24px;font-weight:500;fill:#e5edff}
+      .tag{font-family:Segoe UI,Arial,sans-serif;font-size:17px;font-weight:800;fill:#2354c9;letter-spacing:1.1px}
+      .head{font-family:Segoe UI,Arial,sans-serif;font-size:28px;font-weight:800;fill:#10213f}
+      .body{font-family:Segoe UI,Arial,sans-serif;font-size:19px;font-weight:500;fill:#4d5c79}
+      .featureHead{font-family:Segoe UI,Arial,sans-serif;font-size:22px;font-weight:800;fill:#10213f}
+      .featureBody{font-family:Segoe UI,Arial,sans-serif;font-size:18px;font-weight:500;fill:#52627d}
+      .line{stroke:#16b6a4;stroke-width:7;stroke-linecap:round;fill:none;marker-end:url(#arrow)}
+      .lineSoft{stroke:#ef7b3f;stroke-width:6;stroke-linecap:round;fill:none;stroke-dasharray:14 12;marker-end:url(#arrow)}
+    </style>
+  </defs>
+
+  <rect width="1800" height="1150" rx="48" fill="url(#bg)"/>
+  <circle cx="1545" cy="145" r="260" fill="#fff" opacity="0.08"/>
+  <circle cx="150" cy="1010" r="300" fill="#fff" opacity="0.055"/>
+
+  <text x="90" y="112" class="title">TrainerSync Project Architecture</text>
+  <text x="92" y="158" class="subtitle">Exercise discovery, live intervention, location interaction, and remote coach oversight in one web app.</text>
+
+  <g filter="url(#shadow)">
+    <rect x="85" y="230" width="440" height="280" rx="34" fill="#ffffff"/>
+    <text x="130" y="282" class="tag">TRAINEE SIDE</text>
+    <text x="130" y="330" class="head">Mobile Training App</text>
+    <text x="130" y="376" class="body">Search exercises by muscle group.</text>
+    <text x="130" y="411" class="body">Filter by equipment type.</text>
+    <text x="130" y="446" class="body">View static images and GIF demos.</text>
+    <text x="130" y="481" class="body">Receive live breathing prompts.</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="680" y="205" width="440" height="330" rx="34" fill="#ffffff"/>
+    <text x="725" y="257" class="tag">HOSTED SYSTEM</text>
+    <text x="725" y="305" class="head">GitHub Pages Web App</text>
+    <text x="725" y="353" class="body">Client-side pages and app state.</text>
+    <text x="725" y="388" class="body">Exercise filtering and demo assets.</text>
+    <text x="725" y="423" class="body">Heart-rate, set, and progress panel.</text>
+    <text x="725" y="458" class="body">Map, emoji, and coach binding flow.</text>
+    <text x="725" y="493" class="body">Shared trainee-coach session view.</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="1275" y="230" width="440" height="280" rx="34" fill="#ffffff"/>
+    <text x="1320" y="282" class="tag">COACH SIDE</text>
+    <text x="1320" y="330" class="head">Remote Dashboard</text>
+    <text x="1320" y="376" class="body">Read bound trainee status.</text>
+    <text x="1320" y="411" class="body">Monitor heart rate and progress.</text>
+    <text x="1320" y="446" class="body">Identify who needs guidance.</text>
+    <text x="1320" y="481" class="body">Support beyond physical distance.</text>
+  </g>
+
+  <path d="M530 370 C590 330, 620 325, 672 345" class="line"/>
+  <path d="M1128 345 C1180 325, 1210 330, 1270 370" class="line"/>
+  <path d="M1270 470 C1110 650, 690 650, 530 470" class="lineSoft"/>
+
+  <g filter="url(#shadow)">
+    <rect x="95" y="655" width="500" height="250" rx="34" fill="#f2f6ff"/>
+    <text x="140" y="708" class="tag">FEATURE 1</text>
+    <text x="140" y="752" class="featureHead">Smart Exercise Filtering</text>
+    <text x="140" y="795" class="featureBody">Trainees combine conditions such as</text>
+    <text x="140" y="827" class="featureBody">chest muscles and cable equipment.</text>
+    <text x="140" y="859" class="featureBody">The result is a targeted exercise list</text>
+    <text x="140" y="891" class="featureBody">with image or GIF movement demos.</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="650" y="655" width="500" height="250" rx="34" fill="#ecfaf7"/>
+    <text x="695" y="708" class="tag">FEATURE 2</text>
+    <text x="695" y="752" class="featureHead">Real-Time Monitoring</text>
+    <text x="695" y="795" class="featureBody">The live panel tracks heart rate,</text>
+    <text x="695" y="827" class="featureBody">current sets, and overall progress.</text>
+    <text x="695" y="859" class="featureBody">At key exertion stages, it displays</text>
+    <text x="695" y="891" class="featureBody">specific breathing guidance.</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="1205" y="655" width="500" height="250" rx="34" fill="#fff3eb"/>
+    <text x="1250" y="708" class="tag">FEATURE 3</text>
+    <text x="1250" y="752" class="featureHead">Location and Coach Oversight</text>
+    <text x="1250" y="795" class="featureBody">The map shows nearby coaches</text>
+    <text x="1250" y="827" class="featureBody">and workout buddies.</text>
+    <text x="1250" y="859" class="featureBody">After binding, coaches can remotely</text>
+    <text x="1250" y="891" class="featureBody">monitor trainee status and progress.</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="420" y="970" width="960" height="76" rx="38" fill="#ffffff" opacity="0.96"/>
+    <text x="475" y="1018" class="featureBody">Feedback loop: trainee activity data supports timely coach guidance and safer training rhythm.</text>
+  </g>
+</svg>
