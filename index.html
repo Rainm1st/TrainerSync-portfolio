@@ -55,7 +55,7 @@
       <div class="kicker">Project Overview</div>
       <h2>Project Architecture</h2>
       <p class="lead">
-        TrainerSync is structured as a shared service loop: trainees receive real-time guidance, the web app translates session state into visible progress and alerts, and coaches use a dashboard to decide who needs intervention first.
+        TrainerSync is structured as a shared web application: trainees discover exercises through smart filters and motion demos, live sessions convert heart-rate and progress data into timely interventions, and coaches can remotely monitor bound trainees through a dashboard.
       </p>
       <figure class="architecture-figure">
         <img src="./assets/images/architecture/project-architecture.svg" alt="TrainerSync project architecture diagram" />
@@ -64,7 +64,7 @@
         <article class="card soft-blue">
           <h3>Why this architecture matters</h3>
           <p>
-            The system is not only a workout library. It creates synchronized awareness between trainee and coach, which directly addresses delayed feedback, fragmented guidance, and weak post-session reflection.
+            The system is not only a workout library. It connects exercise discovery, live physiological feedback, location-based social interaction, and coach oversight into one continuous training flow.
           </p>
         </article>
         <article class="card soft-mint">
@@ -210,12 +210,27 @@
         </article>
       </div>
 
-      <h3>Requirements List: 3 Must-Haves for a Playful System</h3>
-      <ul class="req-list">
-        <li><strong>Live telemetry gamification:</strong> convert session state into visible progress, intensity zones, and immediate feedback cues.</li>
-        <li><strong>Coach boost interventions:</strong> allow the coach to send short, targeted prompts without leaving the dashboard context.</li>
-        <li><strong>Session-aware social support:</strong> make training feel shared through companion visibility, nearby momentum, and post-session recognition.</li>
-      </ul>
+      <h3>Functional Requirements</h3>
+      <div class="grid-3">
+        <article class="card soft-blue">
+          <h3>1. Smart Exercise Filtering and Motion Demo</h3>
+          <p>
+            Trainees can combine multiple conditions to find suitable exercises. For example, selecting "chest muscles" and "cable equipment" filters the library to matching movements. Each exercise includes a static image or animated GIF so users can quickly understand the correct movement path and force direction.
+          </p>
+        </article>
+        <article class="card soft-mint">
+          <h3>2. Real-Time Data Monitoring and Status Intervention</h3>
+          <p>
+            During training, the software works as a digital monitoring panel. It tracks heart-rate changes, current sets, and overall progress in real time. When a specific exertion stage or heart-rate threshold is detected, the system displays concrete breathing suggestions, such as when to exhale while pushing a heavy barbell, helping the trainee maintain rhythm and core stability.
+          </p>
+        </article>
+        <article class="card soft-peach">
+          <h3>3. City-Based Location Interaction and Remote Coach Oversight</h3>
+          <p>
+            With location enabled, the system shows nearby coaches or workout buddies on a map. Users can send lightweight emoji interactions such as fire or muscle icons. More importantly, after a binding relationship is established, the coach can remotely read the trainee's heart rate and progress panel on a phone, enabling guidance beyond physical distance.
+          </p>
+        </article>
+      </div>
     </section>
 
     <section class="section" id="ideation">
