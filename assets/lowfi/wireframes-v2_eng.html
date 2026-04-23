@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrainerSync · Wireframes v2</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'SF Mono','Fira Code',Consolas,monospace;background:#0d0d0f;color:#c8c8d0;min-height:100vh;padding:24px 16px 60px}
+
+/* ── PAGE SWITCHER ─────────────────────────────────────── */
+.switcher{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-bottom:32px;max-width:860px;margin-left:auto;margin-right:auto}
+.sw-group{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.sw-label{font-size:10px;color:#555;margin-right:2px;text-transform:uppercase;letter-spacing:.08em}
+.sw-btn{font-family:inherit;font-size:11px;padding:5px 11px;border-radius:20px;border:1px solid #333;background:#1a1a1e;color:#888;cursor:pointer;transition:all .15s}
+.sw-btn:hover{border-color:#555;color:#bbb}
+.sw-btn.active{background:#2997ff;border-color:#2997ff;color:#fff}
+.sw-btn.coach-btn.active{background:#bf5af2;border-color:#bf5af2}
+.sep{color:#333;margin:0 4px;font-size:14px}
+
+/* ── PHONE FRAME ───────────────────────────────────────── */
+.stage{display:flex;justify-content:center}
+.phone{width:390px;min-height:844px;background:#111114;border:2px solid #2a2a30;border-radius:44px;overflow:hidden;position:relative;box-shadow:0 0 0 8px #0a0a0d,0 24px 80px rgba(0,0,0,.8);display:flex;flex-direction:column}
+/* dynamic island */
+.island{width:120px;height:34px;background:#0a0a0d;border-radius:22px;margin:14px auto 0;flex-shrink:0}
+
+/* ── SCREEN ────────────────────────────────────────────── */
+.screen{flex:1;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;padding-bottom:0}
+.screen::-webkit-scrollbar{width:0}
+
+/* page visibility */
+.page{display:none;flex-direction:column;flex:1}
+.page.active{display:flex}
+
+/* ── SHARED COMPONENTS ─────────────────────────────────── */
+
+/* status bar */
+.sbar{display:flex;justify-content:space-between;align-items:center;padding:8px 20px 4px;font-size:10px;color:#555;flex-shrink:0}
+
+/* header bar */
+.hbar{display:flex;align-items:center;justify-content:space-between;padding:10px 20px;border-bottom:1px solid #1e1e24;flex-shrink:0}
+.hbar-title{font-size:15px;font-weight:600;color:#e0e0e8}
+.hbar-back{font-size:12px;color:#2997ff;cursor:pointer}
+.hbar-actions{display:flex;gap:10px;align-items:center}
+.hbar-icon{font-size:16px;cursor:pointer;position:relative}
+.badge{position:absolute;top:-4px;right:-4px;background:#ff453a;color:#fff;font-size:8px;border-radius:8px;padding:1px 4px;font-weight:700}
+
+/* content scroll area */
+.content{flex:1;overflow-y:auto;padding:12px 16px;display:flex;flex-direction:column;gap:10px}
+.content::-webkit-scrollbar{width:0}
+
+/* bottom nav */
+.bnav{display:flex;border-top:1px solid #1e1e24;flex-shrink:0;padding-bottom:20px}
+.bnav-item{flex:1;display:flex;flex-direction:column;align-items:center;padding:10px 4px 4px;font-size:9px;color:#555;cursor:pointer;gap:3px;transition:color .15s}
+.bnav-item .icon{font-size:20px}
+.bnav-item.active{color:#2997ff}
+.bnav-item.active.coach{color:#bf5af2}
+
+/* cards */
+.wcard{background:#1a1a1e;border:1px solid #242428;border-radius:14px;padding:14px}
+.wcard-title{font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+
+/* rows */
+.row{display:flex;align-items:center;gap:8px}
+.row-between{display:flex;align-items:center;justify-content:space-between}
+
+/* wireframe input */
+.w-input{border:1px dashed #333;border-radius:10px;padding:11px 14px;font-size:13px;color:#555;display:flex;align-items:center;gap:8px}
+
+/* wireframe button */
+.w-btn{border:1px solid #333;border-radius:10px;padding:10px 14px;font-size:12px;text-align:center;cursor:pointer;color:#888}
+.w-btn.primary{border-color:#2997ff;color:#2997ff;background:rgba(41,151,255,.08)}
+.w-btn.success{border-color:#30d158;color:#30d158;background:rgba(48,209,88,.08)}
+.w-btn.warn{border-color:#ff9f0a;color:#ff9f0a;background:rgba(255,159,10,.08)}
+.w-btn.purple{border-color:#bf5af2;color:#bf5af2;background:rgba(191,90,242,.08)}
+.w-btn.sm{padding:6px 10px;font-size:11px;border-radius:8px}
+.w-btn.full{width:100%}
+.btn-row{display:flex;gap:8px}
+.btn-row .w-btn{flex:1}
+
+/* image placeholder */
+.img-ph{background:#1e1e24;border:1px dashed #2a2a32;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#3a3a44;font-size:11px;flex-shrink:0}
+
+/* chips */
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid #2e2e36;border-radius:20px;padding:4px 12px;font-size:11px;color:#666;white-space:nowrap}
+.chip.on{color:#2997ff;border-color:#2997ff;background:rgba(41,151,255,.1)}
+.chip.muscle{color:#2997ff;border-color:rgba(41,151,255,.4)}
+.chip.equip{color:#ff9f0a;border-color:rgba(255,159,10,.4)}
+.chip.move{color:#30d158;border-color:rgba(48,209,88,.4)}
+.chip.level{color:#bf5af2;border-color:rgba(191,90,242,.4)}
+
+/* list item */
+.list-item{background:#1a1a1e;border:1px solid #242428;border-radius:12px;padding:12px}
+
+/* user avatar */
+.avatar{width:38px;height:38px;border-radius:50%;background:#2a2a32;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.avatar.lg{width:56px;height:56px;font-size:26px}
+
+/* hr zone dots */
+.zone-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:3px}
+.z-blue{background:#2997ff}
+.z-green{background:#30d158}
+.z-red{background:#ff453a}
+
+/* kpi grid */
+.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.kpi-box{background:#111116;border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:4px}
+.kpi-label{font-size:10px;color:#555}
+.kpi-val{font-size:18px;font-weight:600;color:#e0e0e8}
+
+/* hr ring wireframe */
+.hr-ring-wrap{display:flex;align-items:center;gap:12px}
+.hr-ring{width:74px;height:74px;border-radius:50%;border:6px solid #242428;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative}
+.hr-ring::before{content:'';position:absolute;inset:-6px;border-radius:50%;border:6px solid transparent;border-top-color:#30d158;border-right-color:#30d158}
+.hr-num{font-size:18px;font-weight:700;color:#30d158}
+
+/* mini chart */
+.mini-chart{border:1px dashed #2a2a32;border-radius:8px;height:50px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#3a3a44}
+
+/* set dots */
+.set-dots{display:flex;gap:6px;align-items:center}
+.sdot{width:12px;height:12px;border-radius:50%;background:#2a2a32;border:1.5px solid #3a3a44}
+.sdot.done{background:#30d158;border-color:#30d158}
+.sdot.cur{background:transparent;border:2px solid #30d158;box-shadow:0 0 6px rgba(48,209,88,.5)}
+
+/* circle timer wireframe */
+.c-timer{width:80px;height:80px;border-radius:50%;border:5px solid #2a2a32;display:flex;align-items:center;justify-content:center;font-size:11px;color:#888;flex-shrink:0;position:relative}
+.c-timer::before{content:'';position:absolute;inset:-5px;border-radius:50%;border:5px solid transparent;border-top-color:#2997ff;border-right-color:#2997ff;transform:rotate(45deg)}
+
+/* interaction btns */
+.int-btns{display:flex;gap:6px}
+.int-btn{width:32px;height:32px;border-radius:50%;border:1px solid #2e2e36;display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer}
+
+/* map placeholder */
+.map-ph{background:#111116;border:1px dashed #2a2a32;border-radius:12px;height:180px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.map-pin{position:absolute;font-size:14px}
+.map-legend{display:flex;gap:8px;flex-wrap:wrap;padding:8px;font-size:10px;color:#555}
+
+/* tab switcher (in-page) */
+.tab-row{display:flex;background:#111116;border-radius:10px;padding:3px;gap:2px;margin-bottom:8px}
+.tab-pill{flex:1;text-align:center;padding:7px;border-radius:8px;font-size:11px;color:#555;cursor:pointer}
+.tab-pill.active{background:#1e1e28;color:#e0e0e8}
+
+/* annotation */
+.annot{border-left:2px solid #2997ff;padding:6px 10px;font-size:10px;color:#555;line-height:1.5;border-radius:0 6px 6px 0;background:rgba(41,151,255,.04)}
+.annot.green{border-left-color:#30d158;background:rgba(48,209,88,.04)}
+.annot.orange{border-left-color:#ff9f0a;background:rgba(255,159,10,.04)}
+
+/* divider */
+.divider{height:1px;background:#1e1e24;margin:2px 0}
+
+/* muted text */
+.muted{font-size:11px;color:#555}
+.label-sm{font-size:10px;color:#555;margin-bottom:4px}
+.t-green{color:#30d158}
+.t-blue{color:#2997ff}
+.t-red{color:#ff453a}
+.t-orange{color:#ff9f0a}
+.t-purple{color:#bf5af2}
+.fw6{font-weight:600}
+.fs13{font-size:13px}
+.fs12{font-size:12px}
+.fs11{font-size:11px}
+
+/* breadcrumb annotation above phone */
+.page-label{text-align:center;margin-bottom:10px;font-size:11px;color:#444;letter-spacing:.05em}
+.page-label span{color:#2997ff}
+
+/* training header (no nav) */
+.train-hbar{padding:10px 16px;border-bottom:1px solid #1e1e24;flex-shrink:0}
+.train-hbar-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:2px}
+.train-hbar-sub{font-size:11px;color:#555;display:flex;gap:8px}
+
+/* emoji grid */
+.emoji-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.emoji-cell{border:1px solid #2a2a32;border-radius:8px;height:40px;display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer}
+
+/* modal overlay */
+.modal-overlay{position:relative;background:rgba(0,0,0,.7);border-radius:12px;padding:12px;margin:-2px}
+.modal-box{background:#1a1a1e;border:1px solid #2e2e36;border-radius:16px;padding:16px}
+
+/* chat bubbles */
+.bubble-right{background:#2997ff;color:#fff;border-radius:14px 14px 4px 14px;padding:9px 13px;font-size:12px;align-self:flex-end;max-width:220px}
+.bubble-left{background:#1e1e28;border:1px solid #2a2a32;border-radius:14px 14px 14px 4px;padding:9px 13px;font-size:12px;max-width:220px}
+.bubble-time{font-size:9px;color:#444;margin-top:3px}
+
+/* slider wireframe */
+.w-slider{display:flex;align-items:center;gap:8px;font-size:10px;color:#555}
+.slider-track{flex:1;height:4px;background:#2a2a32;border-radius:2px;position:relative}
+.slider-thumb{position:absolute;top:-5px;left:55%;width:14px;height:14px;border-radius:50%;background:#2997ff;border:2px solid #111}
+
+/* coach accent */
+.coach-accent{color:#bf5af2}
+
+/* progress bar */
+.prog-bar{height:4px;background:#1e1e24;border-radius:2px;overflow:hidden;margin-top:4px}
+.prog-fill{height:100%;background:#2997ff;border-radius:2px}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE SWITCHER
+══════════════════════════════════════════════════════════ -->
+<div class="switcher">
+  <div class="sw-group">
+    <span class="sw-label">User</span>
+    <button class="sw-btn active" onclick="go('p0')">P0 Login</button>
+    <button class="sw-btn" onclick="go('p0b')">P0b Register</button>
+    <button class="sw-btn" onclick="go('p1')">P1 Home</button>
+    <button class="sw-btn" onclick="go('p2')">P2 Exercises</button>
+    <button class="sw-btn" onclick="go('p3')">P3 Training</button>
+    <button class="sw-btn" onclick="go('p4')">P4 Summary</button>
+    <button class="sw-btn" onclick="go('p5a')">P5a Map</button>
+    <button class="sw-btn" onclick="go('p5b')">P5b List</button>
+    <button class="sw-btn" onclick="go('p6')">P6 Buddy</button>
+    <button class="sw-btn" onclick="go('p6b')">P6b Text Modal</button>
+    <button class="sw-btn" onclick="go('p6c')">P6c Emoji Modal</button>
+    <button class="sw-btn" onclick="go('p7')">P7 Friends</button>
+    <button class="sw-btn" onclick="go('p8')">P8 Profile</button>
+  </div>
+  <span class="sep">|</span>
+  <div class="sw-group">
+    <span class="sw-label">Coach</span>
+    <button class="sw-btn coach-btn" onclick="go('c1')">C1 Home</button>
+    <button class="sw-btn coach-btn" onclick="go('c2')">C2 Mentees</button>
+    <button class="sw-btn coach-btn" onclick="go('c3')">C3 Detail</button>
+    <button class="sw-btn coach-btn" onclick="go('c4')">C4 Messages</button>
+    <button class="sw-btn coach-btn" onclick="go('c4b')">C4b Chat</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     PHONE FRAME
+══════════════════════════════════════════════════════════ -->
+<div class="page-label" id="pageLabel"><span>P0</span> · Login</div>
+<div class="stage">
+<div class="phone">
+  <div class="island"></div>
+  <div class="screen" id="screen">
+
+    <!-- ═══ P0 · LOGIN ═══════════════════════════════════════ -->
+    <div class="page active" id="p0">
+      <div class="content" style="justify-content:center;flex:1;gap:20px;padding-top:40px">
+        <div style="text-align:center;padding:20px 0 10px">
+          <div style="font-size:36px;margin-bottom:8px">💪</div>
+          <div style="font-size:22px;font-weight:700;color:#e0e0e8;letter-spacing:-.02em">FitBuddy</div>
+          <div class="muted" style="margin-top:4px">TrainerSync · Go Trainers</div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div class="w-input"><span>📱</span> Phone</div>
+          <div class="w-input"><span>🔒</span> Password</div>
+          <div class="w-btn primary full" style="margin-top:4px">Login</div>
+        </div>
+
+        <div style="text-align:center;font-size:11px;color:#444">── or ──</div>
+
+        <div class="btn-row">
+          <div class="w-btn full">🍎 Apple Login</div>
+          <div class="w-btn full">G Google Login</div>
+        </div>
+
+        <div style="text-align:center;font-size:12px;color:#555;display:flex;gap:16px;justify-content:center">
+          <span class="t-blue">Register Now →</span>
+          <span>Forgot password?</span>
+        </div>
+
+        <div class="annot" style="margin-top:8px">Account check: after login app reads account_type → user → P1 / coach → C1</div>
+      </div>
+    </div>
+
+    <!-- ═══ P0b · REGISTER ════════════════════════════════════ -->
+    <div class="page" id="p0b">
+      <div class="hbar">
+        <span class="hbar-back">← Back</span>
+        <span class="hbar-title">Create Account</span>
+        <span></span>
+      </div>
+      <div class="content" style="gap:10px">
+        <div class="w-input"><span>👤</span> Nickname</div>
+        <div class="w-input"><span>📱</span> Phone</div>
+        <div class="w-input"><span>🔒</span> Password</div>
+        <div class="w-input"><span>🔒</span> Confirm Password</div>
+
+        <div class="row" style="gap:10px">
+          <div style="flex:1">
+            <div class="label-sm">Height</div>
+            <div class="w-input">175 cm</div>
+          </div>
+          <div style="flex:1">
+            <div class="label-sm">Weight</div>
+            <div class="w-input">70 kg</div>
+          </div>
+        </div>
+
+        <div>
+          <div class="label-sm">Training level</div>
+          <div class="btn-row" style="margin-top:4px">
+            <div class="w-btn sm on" style="border-color:#2997ff;color:#2997ff">Beginner</div>
+            <div class="w-btn sm">Intermediate</div>
+            <div class="w-btn sm">Advanced</div>
+          </div>
+        </div>
+
+        <div class="w-btn primary full" style="margin-top:8px">Register</div>
+      </div>
+    </div>
+
+    <!-- ═══ P1 · HOME ══════════════════════════════════════════ -->
+    <div class="page" id="p1">
+      <div class="hbar">
+        <span style="font-size:15px;font-weight:700;color:#e0e0e8">💪 FitBuddy</span>
+        <div class="hbar-actions">
+          <div class="hbar-icon">🔔<span class="badge">2</span></div>
+          <div class="hbar-icon">👤</div>
+        </div>
+      </div>
+      <div class="content">
+        <!-- Quick Start -->
+        <div class="wcard">
+          <div class="wcard-title">Quick Start</div>
+          <div class="w-btn primary full">▶ Start New Session</div>
+          <div class="muted" style="margin-top:10px;margin-bottom:6px">Recent</div>
+          <div class="row" style="gap:6px">
+            <div class="list-item" style="flex:1;padding:8px;text-align:center">
+              <div style="font-size:11px;color:#888">Barbell Bench Press</div>
+              <div style="font-size:10px;color:#555">2d ago</div>
+            </div>
+            <div class="list-item" style="flex:1;padding:8px;text-align:center">
+              <div style="font-size:11px;color:#888">Squat</div>
+              <div style="font-size:10px;color:#555">2d ago</div>
+            </div>
+            <div class="list-item" style="flex:1;padding:8px;text-align:center">
+              <div style="font-size:11px;color:#888">Row</div>
+              <div style="font-size:10px;color:#555">3d ago</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Today Stats -->
+        <div class="wcard">
+          <div class="wcard-title">Today's Stats</div>
+          <div class="kpi-grid">
+            <div class="kpi-box"><div class="kpi-label">Training Time</div><div class="kpi-val">45 min</div></div>
+            <div class="kpi-box"><div class="kpi-label">Exercises Completed</div><div class="kpi-val">8</div></div>
+            <div class="kpi-box"><div class="kpi-label">Avg HR</div><div class="kpi-val t-green">138 bpm</div></div>
+            <div class="kpi-box"><div class="kpi-label">This Week</div><div class="kpi-val">5 sessions</div></div>
+          </div>
+        </div>
+
+        <!-- Nearby Buddies -->
+        <div class="wcard">
+          <div class="row-between" style="margin-bottom:8px">
+            <div class="wcard-title" style="margin-bottom:0">Nearby Buddies</div>
+            <span class="t-blue fs11">View Map →</span>
+          </div>
+          <div class="muted" style="margin-bottom:8px">📍 3 nearby buddies training</div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div class="row">
+              <div class="avatar">👤</div>
+              <div><div class="fs12">Ming <span class="muted">5m</span></div><div class="fs11 t-green">💚 Bench Press</div></div>
+            </div>
+            <div class="row">
+              <div class="avatar">👤</div>
+              <div><div class="fs12">Hong <span class="muted">12m</span></div><div class="fs11 t-green">💚 Squat</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- History -->
+        <div class="wcard">
+          <div class="row-between" style="margin-bottom:8px">
+            <div class="wcard-title" style="margin-bottom:0">History Sessions</div>
+            <span class="t-blue fs11">View all →</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div class="list-item fs12">📅 2024-01-15 · 45min · Chest · <span class="t-green">142bpm</span> →</div>
+            <div class="list-item fs12">📅 2024-01-13 · 52min · Legs · <span class="t-red">155bpm</span> →</div>
+          </div>
+        </div>
+      </div>
+      <div class="bnav">
+        <div class="bnav-item active"><div class="icon">🏠</div>Home</div>
+        <div class="bnav-item" onclick="go('p2')"><div class="icon">🔍</div>Exercises</div>
+        <div class="bnav-item" onclick="go('p3')"><div class="icon">🏋️</div>Training</div>
+        <div class="bnav-item" onclick="go('p5a')"><div class="icon">👥</div>Buddies</div>
+      </div>
+    </div>
+
+    <!-- ═══ P2 · EXERCISE SELECTOR ════════════════════════════ -->
+    <div class="page" id="p2">
+      <div class="hbar">
+        <span class="hbar-back">← Back</span>
+        <span class="hbar-title">Select Exercise</span>
+        <span></span>
+      </div>
+      <div class="content">
+        <!-- Search -->
+        <div class="w-input"><span>🔍</span> Search exercise...</div>
+
+        <!-- Filters -->
+        <div class="wcard">
+          <div class="wcard-title">Filters</div>
+
+          <div class="label-sm">Primary Muscle</div>
+          <div class="chips" style="margin-bottom:10px">
+            <div class="chip muscle on">Chest</div>
+            <div class="chip muscle">Back</div>
+            <div class="chip muscle">Shoulders</div>
+            <div class="chip muscle">Legs</div>
+            <div class="chip muscle">Arms</div>
+            <div class="chip muscle">Core</div>
+          </div>
+
+          <div class="label-sm">Equipment</div>
+          <div class="chips" style="margin-bottom:10px">
+            <div class="chip equip">Free Weights</div>
+            <div class="chip equip on">Cables</div>
+            <div class="chip equip">Machines</div>
+            <div class="chip equip">Assisted</div>
+          </div>
+
+          <div class="label-sm">Movement Type</div>
+          <div class="chips" style="margin-bottom:10px">
+            <div class="chip move">Push</div>
+            <div class="chip move">Pull</div>
+            <div class="chip move">Squat</div>
+            <div class="chip move">Hinge</div>
+            <div class="chip move">Fly</div>
+            <div class="chip move">Rotation</div>
+          </div>
+
+          <div class="label-sm">Difficulty</div>
+          <div class="chips" style="margin-bottom:10px">
+            <div class="chip level on">Beginner</div>
+            <div class="chip level">Intermediate</div>
+            <div class="chip level">Advanced</div>
+          </div>
+
+          <div class="w-btn sm" style="width:fit-content;margin:0 auto">Reset all filters</div>
+        </div>
+
+        <!-- Results -->
+        <div class="wcard">
+          <div class="wcard-title">Results (12)</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+            <!-- card 1 -->
+            <div class="list-item" style="padding:8px">
+              <div class="img-ph" style="height:72px;margin-bottom:6px">image</div>
+              <div style="font-size:12px;font-weight:600;color:#c8c8d0">Barbell Bench Press</div>
+              <div style="font-size:10px;color:#888">Bench Press</div>
+              <div style="font-size:10px;color:#555;margin-top:3px">🎯Chest &nbsp;🏋️Barbell</div>
+            </div>
+            <!-- card 2 -->
+            <div class="list-item" style="padding:8px">
+              <div class="img-ph" style="height:72px;margin-bottom:6px">image</div>
+              <div style="font-size:12px;font-weight:600;color:#c8c8d0">DB Fly</div>
+              <div style="font-size:10px;color:#888">DB Fly</div>
+              <div style="font-size:10px;color:#555;margin-top:3px">🎯Chest &nbsp;🏋️Dumbbell</div>
+            </div>
+            <!-- card 3 selected -->
+            <div class="list-item" style="padding:8px;border-color:#2997ff;background:rgba(41,151,255,.05)">
+              <div class="img-ph" style="height:72px;margin-bottom:6px;border-color:#2997ff">image</div>
+              <div style="font-size:10px;color:#2997ff;text-align:center;margin-bottom:2px">◀ SELECTED ▶</div>
+              <div style="font-size:12px;font-weight:600;color:#2997ff">Incline Bench Press</div>
+              <div style="font-size:10px;color:#888">Incline Press</div>
+              <div style="font-size:10px;color:#555;margin-top:3px">🎯Chest &nbsp;🏋️Barbell</div>
+            </div>
+            <!-- card 4 -->
+            <div class="list-item" style="padding:8px">
+              <div class="img-ph" style="height:72px;margin-bottom:6px">image</div>
+              <div style="font-size:12px;font-weight:600;color:#c8c8d0">Cable Fly</div>
+              <div style="font-size:10px;color:#888">Cable Fly</div>
+              <div style="font-size:10px;color:#555;margin-top:3px">🎯Chest &nbsp;🏋️Cables</div>
+            </div>
+          </div>
+          <div class="muted" style="text-align:center;margin-top:8px">↓ Scroll for more</div>
+        </div>
+
+        <!-- Action -->
+        <div class="w-btn primary full">▶ Start Training: Incline Bench Press</div>
+      </div>
+      <div class="bnav">
+        <div class="bnav-item" onclick="go('p1')"><div class="icon">🏠</div>Home</div>
+        <div class="bnav-item active"><div class="icon">🔍</div>Exercises</div>
+        <div class="bnav-item" onclick="go('p3')"><div class="icon">🏋️</div>Training</div>
+        <div class="bnav-item" onclick="go('p5a')"><div class="icon">👥</div>Buddies</div>
+      </div>
+    </div>
+
+    <!-- ═══ P3 · TRAINING MODE ════════════════════════════════ -->
+    <div class="page" id="p3">
+      <!-- No bottom nav in training mode -->
+      <div class="train-hbar">
+        <div class="train-hbar-top">
+          <span style="font-size:13px;color:#555">In Session</span>
+          <div class="row" style="gap:12px">
+            <span>⚙️</span>
+            <span style="color:#ff453a">✕</span>
+          </div>
+        </div>
+        <div style="font-size:15px;font-weight:700;color:#e0e0e8;margin:3px 0">Incline Bench Press</div>
+        <div class="train-hbar-sub">
+          <span class="t-green">🎯 Chest</span>
+          <span>|</span>
+          <span>🏋️ Barbell</span>
+          <span>|</span>
+          <span>Push</span>
+        </div>
+      </div>
+      <div class="content" style="gap:10px">
+
+        <!-- HR + Sets row -->
+        <div class="row" style="gap:10px;align-items:stretch">
+          <!-- Heart Rate panel -->
+          <div class="wcard" style="flex:1">
+            <div class="label-sm">Heart Rate <span class="t-blue">(i)</span></div>
+            <div style="font-size:10px;color:#555;margin-bottom:6px">
+              <span class="zone-dot z-blue"></span>💙&lt;120
+              <span class="zone-dot z-green" style="margin-left:4px"></span>💚120-150
+              <span class="zone-dot z-red" style="margin-left:4px"></span>❤️&gt;150
+            </div>
+            <div class="hr-ring-wrap">
+              <div class="hr-ring"><div class="hr-num">142</div></div>
+              <div>
+                <div class="t-green fw6" style="font-size:13px">💚 Target Zone</div>
+                <div class="muted">bpm</div>
+              </div>
+            </div>
+            <div class="mini-chart" style="margin-top:8px">[ HR 60s trend ]</div>
+            <div class="muted" style="text-align:right;margin-top:3px">-60s → now</div>
+          </div>
+
+          <!-- Set Progress panel -->
+          <div class="wcard" style="flex:1">
+            <div class="label-sm">Speed</div>
+            <div class="w-slider" style="margin-bottom:10px">
+              <span>Slow</span>
+              <div class="slider-track"><div class="slider-thumb"></div></div>
+              <span>Fast</span>
+            </div>
+            <div class="label-sm">Sets</div>
+            <div class="set-dots" style="margin-bottom:10px">
+              <div class="sdot done"></div>
+              <div class="sdot done"></div>
+              <div class="sdot cur"></div>
+              <div class="sdot"></div>
+              <div class="sdot"></div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+              <div class="c-timer">▶▶</div>
+              <div style="font-size:11px;color:#888">22 / 30s</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Breathing lamp annotation -->
+        <div class="annot green">
+          Breathing light: 💚 120-150bpm → soft green pulse 3s/cycle (steady)<br>
+          &lt;120 → blue 2s/cycle (speed up) · &gt;150 → red 4s/cycle (slow down)
+        </div>
+
+        <!-- Exercise Demo -->
+        <div class="wcard">
+          <div class="wcard-title">Exercise Demo</div>
+          <div class="img-ph" style="height:120px;width:100%">[ Exercise demo GIF placeholder ]</div>
+        </div>
+
+        <!-- Buddy Dock -->
+        <div class="wcard">
+          <div class="row-between" style="margin-bottom:8px">
+            <div class="wcard-title" style="margin-bottom:0">Nearby Buddies (3)</div>
+            <span class="fs11 t-blue">▼ Expand</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div class="list-item">
+              <div class="row-between">
+                <div class="row"><div class="avatar" style="width:30px;height:30px;font-size:14px">👤</div><div><div class="fs12">Ming ⭐ <span class="muted">5m</span></div><div class="fs11 t-green">💚 Bench Press</div></div></div>
+                <div class="int-btns"><div class="int-btn">💬</div><div class="int-btn">💪</div><div class="int-btn">🔥</div><div class="int-btn">👀</div></div>
+              </div>
+            </div>
+            <div class="list-item">
+              <div class="row-between">
+                <div class="row"><div class="avatar" style="width:30px;height:30px;font-size:14px">👤</div><div><div class="fs12">Hong <span class="muted">12m</span></div><div class="fs11 t-green">💚 Squat</div></div></div>
+                <div class="int-btns"><div class="int-btn">💬</div><div class="int-btn">💪</div><div class="int-btn">🔥</div><div class="int-btn">👀</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="muted" style="text-align:center;margin-top:8px">View Map →</div>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="btn-row">
+          <div class="w-btn" onclick="go('p2')">Change exercise</div>
+          <div class="w-btn warn" onclick="go('p4')">End session</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ P4 · SESSION SUMMARY ══════════════════════════════ -->
+    <div class="page" id="p4">
+      <div class="hbar">
+        <span class="hbar-back">← Back</span>
+        <span class="hbar-title">Session Summary</span>
+        <span></span>
+      </div>
+      <div class="content">
+        <!-- Session Info -->
+        <div class="wcard">
+          <div class="wcard-title">Session Info</div>
+          <div class="muted" style="margin-bottom:8px">📅 2024-01-15 · 18:30 - 19:15</div>
+          <div class="kpi-grid">
+            <div class="kpi-box"><div class="kpi-label">Training Time</div><div class="kpi-val">45 min</div></div>
+            <div class="kpi-box"><div class="kpi-label">Exercises Completed</div><div class="kpi-val">8</div></div>
+            <div class="kpi-box"><div class="kpi-label">Avg HR</div><div class="kpi-val t-green">142 bpm</div></div>
+            <div class="kpi-box"><div class="kpi-label">Intensity</div><div class="kpi-val t-green">💚 Moderate</div></div>
+          </div>
+        </div>
+
+        <!-- Exercises -->
+        <div class="wcard">
+          <div class="wcard-title">Exercises</div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div class="list-item fs12">1. Barbell Bench Press &nbsp; 5×10 reps &nbsp; <span class="t-green">avg 145bpm</span></div>
+            <div class="list-item fs12">2. Incline Bench Press &nbsp; 4×12 reps &nbsp; <span class="t-green">avg 138bpm</span></div>
+            <div class="list-item fs12">3. DB Fly &nbsp; 3×15 reps &nbsp; <span class="t-green">avg 132bpm</span></div>
+            <div class="muted" style="text-align:center;margin-top:4px">... more exercises ...</div>
+          </div>
+        </div>
+
+        <!-- HR Chart -->
+        <div class="wcard">
+          <div class="wcard-title">Heart Rate Chart</div>
+          <div class="mini-chart" style="height:80px">[ Session HR trend · 0-45min ]</div>
+          <div class="row" style="margin-top:8px;justify-content:space-around">
+            <div style="text-align:center;font-size:11px"><div class="t-blue fw6">15%</div><div class="muted">💙 Cool zone</div></div>
+            <div style="text-align:center;font-size:11px"><div class="t-green fw6">70%</div><div class="muted">💚 Target zone</div></div>
+            <div style="text-align:center;font-size:11px"><div class="t-red fw6">15%</div><div class="muted">❤️ Red zone</div></div>
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <div class="w-btn">Share session</div>
+          <div class="w-btn primary" onclick="go('p1')">Return Home</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ P5a · BUDDY MAP ═══════════════════════════════════ -->
+    <div class="page" id="p5a">
+      <div class="hbar">
+        <span style="font-size:15px;font-weight:700;color:#e0e0e8">Buddies</span>
+        <div class="hbar-actions">
+          <div class="hbar-icon">🔔<span class="badge">2</span></div>
+          <div class="hbar-icon">🔍</div>
+          <div class="hbar-icon" onclick="go('p7')">👥</div>
+        </div>
+      </div>
+      <div class="content">
+        <div class="tab-row">
+          <div class="tab-pill active">🗺️ Map</div>
+          <div class="tab-pill" onclick="go('p5b')">📋 List</div>
+        </div>
+
+        <!-- Map -->
+        <div class="map-ph">
+          <div class="map-pin" style="top:40%;left:48%">📍<span style="font-size:10px;color:#2997ff">You</span></div>
+          <div class="map-pin" style="top:28%;left:22%">
+            <div style="font-size:11px;background:#1a1a1e;border:1px solid #30d158;border-radius:8px;padding:3px 6px;color:#30d158">👤Ming⭐ 5m<br><span style="font-size:9px">💚Bench Press</span></div>
+          </div>
+          <div class="map-pin" style="top:55%;left:70%">
+            <div style="font-size:11px;background:#1a1a1e;border:1px solid #30d158;border-radius:8px;padding:3px 6px;color:#30d158">👤Hong 12m<br><span style="font-size:9px">💚Squat</span></div>
+          </div>
+          <div class="map-pin" style="top:75%;left:40%">
+            <div style="font-size:11px;background:#1a1a1e;border:1px solid #30d158;border-radius:8px;padding:3px 6px;color:#30d158">👤Gang 25m<br><span style="font-size:9px">💚Row</span></div>
+          </div>
+        </div>
+
+        <!-- Map legend -->
+        <div class="wcard" style="padding:8px">
+          <div class="map-legend" style="padding:0">
+            <span><span class="zone-dot z-blue"></span>💙 Resting</span>
+            <span><span class="zone-dot z-green"></span>💚 Training</span>
+            <span><span class="zone-dot z-red"></span>❤️ High intensity</span>
+            <span>⭐ Friend added</span>
+          </div>
+        </div>
+
+        <!-- Filter chips -->
+        <div class="chips">
+          <div class="chip on">All</div>
+          <div class="chip">Friends</div>
+          <div class="chip">Same exercise</div>
+          <div class="chip">Within 10m</div>
+        </div>
+
+        <div class="annot">Tap map pin → P6 Buddy Profile</div>
+      </div>
+      <div class="bnav">
+        <div class="bnav-item" onclick="go('p1')"><div class="icon">🏠</div>Home</div>
+        <div class="bnav-item" onclick="go('p2')"><div class="icon">🔍</div>Exercises</div>
+        <div class="bnav-item" onclick="go('p3')"><div class="icon">🏋️</div>Training</div>
+        <div class="bnav-item active"><div class="icon">👥</div>Buddies</div>
+      </div>
+    </div>
+
+    <!-- ═══ P5b · BUDDY LIST ══════════════════════════════════ -->
+    <div class="page" id="p5b">
+      <div class="hbar">
+        <span style="font-size:15px;font-weight:700;color:#e0e0e8">Buddies</span>
+        <div class="hbar-actions">
+          <div class="hbar-icon">🔔<span class="badge">2</span></div>
+          <div class="hbar-icon">🔍</div>
+          <div class="hbar-icon" onclick="go('p7')">👥</div>
+        </div>
+      </div>
+      <div class="content">
+        <div class="tab-row">
+          <div class="tab-pill" onclick="go('p5a')">🗺️ Map</div>
+          <div class="tab-pill active">📋 List</div>
+        </div>
+
+        <!-- Filter chips -->
+        <div class="chips">
+          <div class="chip on">All</div>
+          <div class="chip">Friends</div>
+          <div class="chip">Same exercise</div>
+          <div class="chip">Within 10m</div>
+        </div>
+
+        <!-- List -->
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="list-item" onclick="go('p6')" style="cursor:pointer">
+            <div class="row-between" style="margin-bottom:8px">
+              <div class="row"><div class="avatar">👤</div><div><div class="fs13 fw6">Ming ⭐</div><div class="fs11"><span class="muted">5m</span> &nbsp;<span class="t-green">💚</span> &nbsp;Barbell Bench Press 3/5</div></div></div>
+            </div>
+            <div class="int-btns"><div class="int-btn">💬</div><div class="int-btn">💪</div><div class="int-btn">🔥</div><div class="int-btn">👀</div></div>
+          </div>
+          <div class="list-item">
+            <div class="row-between" style="margin-bottom:8px">
+              <div class="row"><div class="avatar">👤</div><div><div class="fs13 fw6">Hong</div><div class="fs11"><span class="muted">12m</span> &nbsp;<span class="t-green">💚</span> &nbsp;Squat 2/4</div></div></div>
+            </div>
+            <div class="int-btns"><div class="int-btn">💬</div><div class="int-btn">💪</div><div class="int-btn">🔥</div><div class="int-btn">👀</div></div>
+          </div>
+          <div class="list-item">
+            <div class="row-between" style="margin-bottom:8px">
+              <div class="row"><div class="avatar">👤</div><div><div class="fs13 fw6">Gang</div><div class="fs11"><span class="muted">25m</span> &nbsp;<span class="t-green">💚</span> &nbsp;Row 1/3</div></div></div>
+            </div>
+            <div class="int-btns"><div class="int-btn">💬</div><div class="int-btn">💪</div><div class="int-btn">🔥</div><div class="int-btn">👀</div></div>
+          </div>
+        </div>
+
+        <div class="annot">Tap interaction buttons to send instantly<br>Long press → P6b/P6c preview modal</div>
+      </div>
+      <div class="bnav">
+        <div class="bnav-item" onclick="go('p1')"><div class="icon">🏠</div>Home</div>
+        <div class="bnav-item" onclick="go('p2')"><div class="icon">🔍</div>Exercises</div>
+        <div class="bnav-item" onclick="go('p3')"><div class="icon">🏋️</div>Training</div>
+        <div class="bnav-item active"><div class="icon">👥</div>Buddies</div>
+      </div>
+    </div>
+
+    <!-- ═══ P6 · BUDDY PROFILE ════════════════════════════════ -->
+    <div class="page" id="p6">
+      <div class="hbar">
+        <span class="hbar-back">← Back</span>
+        <span class="hbar-title">Buddy Profile</span>
+        <span></span>
+      </div>
+      <div class="content">
+        <!-- Profile -->
+        <div class="wcard">
+          <div class="row" style="gap:14px">
+            <div class="avatar lg">👤</div>
+            <div style="flex:1">
+              <div style="font-size:17px;font-weight:700;color:#e0e0e8">Ming</div>
+              <div class="fs11 muted">📍 5m away &nbsp; <span class="t-green">💚 Training</span></div>
+              <div class="w-btn primary sm" style="width:fit-content;margin-top:8px">+ Add Friend</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Now -->
+        <div class="wcard">
+          <div class="wcard-title">Now</div>
+          <div class="row" style="gap:8px;flex-wrap:wrap">
+            <div class="kpi-box" style="flex:1"><div class="kpi-label">Exercise</div><div style="font-size:13px;color:#e0e0e8;font-weight:600">Barbell Bench Press</div></div>
+            <div class="kpi-box" style="flex:1"><div class="kpi-label">Progress</div><div style="font-size:13px;color:#e0e0e8;font-weight:600">3/5 sets</div></div>
+            <div class="kpi-box" style="flex:1"><div class="kpi-label">Heart Rate</div><div style="font-size:13px;font-weight:600" class="t-green">💚 Target zone</div></div>
+            <div class="kpi-box" style="flex:1"><div class="kpi-label">Duration</div><div style="font-size:13px;color:#e0e0e8;font-weight:600">18min</div></div>
+          </div>
+        </div>
+
+        <!-- Encouragement -->
+        <div class="wcard">
+          <div class="wcard-title">Cheer them on <span class="muted">Long press to preview</span></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+            <div class="w-btn sm">Go for it! 💪</div>
+            <div class="w-btn sm">You got this! 🙌</div>
+            <div class="w-btn sm">One more set! 🔥</div>
+            <div class="w-btn sm">Keep the pace! ⏱️</div>
+            <div class="w-btn sm">Push through! ⚡</div>
+            <div class="w-btn sm">Almost there! 🎯</div>
+            <div class="w-btn sm">Form is solid! ✅</div>
+            <div class="w-btn sm">Nice work! 🏆</div>
+            <div class="w-btn sm">Stay strong! 😤</div>
+            <div class="w-btn sm">So strong! 😎</div>
+          </div>
+          <div class="muted" style="text-align:center;margin-top:6px">↓ Scroll for more</div>
+        </div>
+
+        <!-- Emoji bomb -->
+        <div class="wcard">
+          <div class="wcard-title">Send emoji <span class="muted">Long press to preview</span></div>
+          <div class="emoji-grid">
+            <div class="emoji-cell">💪</div><div class="emoji-cell">🔥</div><div class="emoji-cell">👍</div><div class="emoji-cell">⚡</div><div class="emoji-cell">🎉</div>
+            <div class="emoji-cell">😤</div><div class="emoji-cell">🏆</div><div class="emoji-cell">💯</div><div class="emoji-cell">🚀</div><div class="emoji-cell">😎</div>
+            <div class="emoji-cell">🙌</div><div class="emoji-cell">❤️</div><div class="emoji-cell">😂</div><div class="emoji-cell">👀</div><div class="emoji-cell">🎯</div>
+          </div>
+          <div class="muted" style="text-align:center;margin-top:6px">↓ Scroll for more</div>
+        </div>
+
+        <!-- Stats -->
+        <div class="wcard">
+          <div class="wcard-title">Stats</div>
+          <div class="muted">This week: 5 sessions &nbsp;·&nbsp; Frequent: Bench / Squat / Deadlift</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ P6b · LONG-PRESS TEXT MODAL ══════════════════════ -->
+    <div class="page" id="p6b">
+      <div class="hbar">
+        <span class="hbar-back">← Back</span>
+        <span class="hbar-title">Interaction Preview</span>
+        <span></span>
+      </div>
+      <div class="content">
+        <div class="annot orange" style="margin-bottom:4px">Long press triggered: [ Go for it! 💪 ] · recipient sees a toast on P3</div>
+
+        <!-- Preview simulation -->
+        <div class="wcard" style="background:#0a0a0d;border-color:#2a2a32">
+          <div class="wcard-title" style="color:#555">Preview — Recipient Training Screen</div>
+          <!-- mini training header -->
+          <div style="border-bottom:1px solid #1e1e24;padding-bottom:8px;margin-bottom:10px">
+            <div class="row-between">
+              <span class="fs12 muted">Training</span>
+              <div class="row" style="gap:10px;font-size:12px"><span>⚙️</span><span style="color:#ff453a">✕</span></div>
+            </div>
+          </div>
+          <!-- toast -->
+          <div style="background:#1e1e28;border:1px solid #30d158;border-radius:10px;padding:10px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center">
+            <span class="fs12">💪 Ming: <span class="t-green">"Go for it! 💪"</span></span>
+            <span style="color:#555;font-size:12px">✕</span>
+          </div>
+          <div class="muted" style="text-align:center;margin-bottom:10px">Toast appears at top and disappears after 5s</div>
+          <!-- mini exercise card -->
+          <div style="font-size:12px;color:#888;margin-bottom:4px">Incline Press</div>
+          <div class="row" style="gap:8px">
+            <div class="mini-chart" style="flex:1;height:36px">142 bpm</div>
+            <div class="set-dots" style="flex:1">
+              <div class="sdot done"></div><div class="sdot done"></div><div class="sdot cur"></div><div class="sdot"></div><div class="sdot"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="btn-row" style="margin-top:8px">
+          <div class="w-btn" onclick="go('p6')">Cancel</div>
+          <div class="w-btn success">Send 💪</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ P6c · LONG-PRESS EMOJI MODAL ════════════════════ -->
+    <div class="page" id="p6c">
+      <div class="hbar">
+        <span class="hbar-back">← Back</span>
+        <span class="hbar-title">Interaction Preview</span>
+        <span></span>
+      </div>
+      <div class="content">
+        <div class="annot orange" style="margin-bottom:4px">Long press triggered: [ 🔥 ] · sends fullscreen emoji burst for 3s</div>
+
+        <!-- Preview simulation -->
+        <div class="wcard" style="background:#0a0a0d;border-color:#2a2a32">
+          <div class="wcard-title" style="color:#555">Preview — Recipient Training Screen (Fullscreen)</div>
+          <div style="border-bottom:1px solid #1e1e24;padding-bottom:8px;margin-bottom:10px">
+            <div class="row-between">
+              <span class="fs12 muted">Training</span>
+              <div class="row" style="gap:10px;font-size:12px"><span>⚙️</span><span style="color:#ff453a">✕</span></div>
+            </div>
+          </div>
+          <!-- emoji bomb visual -->
+          <div style="background:#0d0d0f;border-radius:10px;padding:16px;text-align:center">
+            <div style="font-size:28px;line-height:1.8;letter-spacing:6px">🔥🔥🔥🔥🔥</div>
+            <div style="font-size:28px;line-height:1.8">🔥&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🔥</div>
+            <div style="font-size:14px;color:#ff9f0a;padding:8px 0;font-weight:600">From Ming</div>
+            <div style="font-size:28px;line-height:1.8">🔥&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🔥</div>
+            <div style="font-size:28px;line-height:1.8;letter-spacing:6px">🔥🔥🔥🔥🔥</div>
+          </div>
+          <div class="muted" style="text-align:center;margin-top:8px">Covers screen, disappears after 3s</div>
+        </div>
+
+        <div class="btn-row" style="margin-top:8px">
+          <div class="w-btn" onclick="go('p6')">Cancel</div>
+          <div class="w-btn warn">Send 🔥</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ P7 · FRIENDS LIST ═════════════════════════════════ -->
+    <div class="page" id="p7">
+      <div class="hbar">
+        <span class="hbar-back">← Back</span>
+        <span class="hbar-title">Friends</span>
+        <div class="hbar-icon">🔍</div>
+      </div>
+      <div class="content">
+        <!-- Friend requests -->
+        <div class="wcard">
+          <div class="wcard-title">Friend Requests (2)</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div class="list-item">
+              <div class="row-between">
+                <div class="row"><div class="avatar">👤</div><div><div class="fs13 fw6">Zhang</div><div class="fs11 muted">"Let’s train together!"</div></div></div>
+              </div>
+              <div class="btn-row" style="margin-top:8px">
+                <div class="w-btn success sm">✅ Accept</div>
+                <div class="w-btn sm">❌ Decline</div>
+              </div>
+            </div>
+            <div class="list-item">
+              <div class="row-between">
+                <div class="row"><div class="avatar">👤</div><div><div class="fs13 fw6">Li</div><div class="fs11 muted">(No message)</div></div></div>
+              </div>
+              <div class="btn-row" style="margin-top:8px">
+                <div class="w-btn success sm">✅ Accept</div>
+                <div class="w-btn sm">❌ Decline</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- My friends -->
+        <div class="wcard">
+          <div class="wcard-title">My Friends (8)</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div class="list-item">
+              <div class="row-between" style="margin-bottom:8px">
+                <div class="row"><div class="avatar">👤</div><div><div class="fs13 fw6">Ming</div><div class="fs11 t-green">💚 Training · Barbell Bench Press</div></div></div>
+              </div>
+              <div class="int-btns"><div class="int-btn">💬</div><div class="int-btn">💪</div><div class="int-btn">🔥</div><div class="int-btn">👀</div></div>
+            </div>
+            <div class="list-item">
+              <div class="row-between" style="margin-bottom:8px">
+                <div class="row"><div class="avatar">👤</div><div><div class="fs13 fw6">Hong</div><div class="fs11 t-blue">💙 Resting</div></div></div>
+              </div>
+              <div class="int-btns"><div class="int-btn">💬</div><div class="int-btn">💪</div><div class="int-btn">🔥</div><div class="int-btn">👀</div></div>
+            </div>
+            <div class="list-item">
+              <div class="row-between" style="margin-bottom:8px">
+                <div class="row"><div class="avatar">👤</div><div><div class="fs13 fw6">Gang</div><div class="fs11 muted">⚫ Offline</div></div></div>
+              </div>
+              <div class="int-btns"><div class="int-btn">💬</div><div class="int-btn">💪</div><div class="int-btn">🔥</div><div class="int-btn">👀</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ P8 · PROFILE ══════════════════════════════════════ -->
+    <div class="page" id="p8">
+      <div class="hbar">
+        <span style="font-size:15px;font-weight:700;color:#e0e0e8">Profile</span>
+        <div class="hbar-actions">
+          <div class="hbar-icon">🔔<span class="badge">2</span></div>
+          <div class="hbar-icon">⚙️</div>
+        </div>
+      </div>
+      <div class="content">
+        <!-- User info -->
+        <div class="wcard">
+          <div class="row" style="gap:14px">
+            <div class="avatar lg">👤</div>
+            <div style="flex:1">
+              <div style="font-size:17px;font-weight:700;color:#e0e0e8">My Username</div>
+              <div class="fs11 muted">Lv.12 Fitness Enthusiast</div>
+              <div class="row" style="gap:12px;margin-top:8px">
+                <div style="text-align:center;cursor:pointer" onclick="go('p7')">
+                  <div style="font-size:18px;font-weight:700;color:#e0e0e8">8</div>
+                  <div class="muted">Friends</div>
+                </div>
+                <div style="text-align:center">
+                  <div style="font-size:18px;font-weight:700;color:#e0e0e8">5</div>
+                  <div class="muted">This week</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Overall stats -->
+        <div class="wcard">
+          <div class="wcard-title">Overall Stats</div>
+          <div class="kpi-grid">
+            <div class="kpi-box"><div class="kpi-label">Total sessions</div><div class="kpi-val">128</div></div>
+            <div class="kpi-box"><div class="kpi-label">Total duration</div><div class="kpi-val">96 hrs</div></div>
+            <div class="kpi-box"><div class="kpi-label">Top training</div><div class="kpi-val">Chest</div></div>
+            <div class="kpi-box"><div class="kpi-label">Avg heart rate</div><div class="kpi-val t-green">141 bpm</div></div>
+          </div>
+        </div>
+
+        <!-- History -->
+        <div class="wcard">
+          <div class="row-between" style="margin-bottom:8px">
+            <div class="wcard-title" style="margin-bottom:0">History Sessions</div>
+            <span class="t-blue fs11">View all →</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div class="list-item fs12" onclick="go('p4')" style="cursor:pointer">📅 2024-01-15 · 45min · Chest · <span class="t-green">142bpm</span> →</div>
+            <div class="list-item fs12" onclick="go('p4')" style="cursor:pointer">📅 2024-01-13 · 52min · Legs · <span class="t-red">155bpm</span> →</div>
+            <div class="list-item fs12" onclick="go('p4')" style="cursor:pointer">📅 2024-01-11 · 38min · Back · <span class="t-green">138bpm</span> →</div>
+          </div>
+          <div class="annot" style="margin-top:8px">Tap any entry → P4 Session Summary</div>
+        </div>
+      </div>
+      <div class="bnav">
+        <div class="bnav-item" onclick="go('p1')"><div class="icon">🏠</div>Home</div>
+        <div class="bnav-item" onclick="go('p2')"><div class="icon">🔍</div>Exercises</div>
+        <div class="bnav-item" onclick="go('p3')"><div class="icon">🏋️</div>Training</div>
+        <div class="bnav-item" onclick="go('p5a')"><div class="icon">👥</div>Buddies</div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         COACH PAGES
+    ══════════════════════════════════════════════════════════ -->
+
+    <!-- ═══ C1 · COACH HOME ═══════════════════════════════════ -->
+    <div class="page" id="c1">
+      <div class="hbar">
+        <span style="font-size:14px;font-weight:700;color:#e0e0e8">💪 FitBuddy <span class="coach-accent">Coach</span></span>
+        <div class="hbar-actions">
+          <div class="hbar-icon">🔔<span class="badge">2</span></div>
+          <div class="hbar-icon">⚙️</div>
+        </div>
+      </div>
+      <div class="content">
+        <!-- Coach Info -->
+        <div class="wcard">
+          <div class="row" style="gap:14px">
+            <div class="avatar lg">👤</div>
+            <div style="flex:1">
+              <div style="font-size:16px;font-weight:700;color:#e0e0e8">Coach Wang</div>
+              <div class="fs11" style="color:#bf5af2">Certified Coach ✅</div>
+              <div class="row" style="gap:16px;margin-top:8px">
+                <div style="text-align:center">
+                  <div style="font-size:18px;font-weight:700;color:#e0e0e8">12</div>
+                  <div class="muted">Students</div>
+                </div>
+                <div style="text-align:center">
+                  <div style="font-size:18px;font-weight:700;color:#30d158">3</div>
+                  <div class="muted">Training today</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Active mentees -->
+        <div class="wcard">
+          <div class="wcard-title">Active trainees today</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <!-- mentee 1 -->
+            <div class="list-item">
+              <div class="row-between" style="margin-bottom:6px">
+                <div class="row"><div class="avatar">👤</div><div><div class="fs13 fw6">Ming</div><div class="fs11 t-green">💚 Training · Barbell Bench Press 3/5</div><div class="fs11 muted">HR: 142bpm · 18min</div></div></div>
+              </div>
+              <div class="row-between">
+                <div class="int-btns">
+                  <div class="int-btn">💬</div><div class="int-btn">💪</div><div class="int-btn">🔥</div>
+                </div>
+                <span class="t-purple fs11" onclick="go('c3')" style="cursor:pointer">View details →</span>
+              </div>
+            </div>
+            <!-- mentee 2 -->
+            <div class="list-item">
+              <div class="row-between" style="margin-bottom:6px">
+                <div class="row"><div class="avatar">👤</div><div><div class="fs13 fw6">Hong</div><div class="fs11 t-red">❤️ High intensity · Squat 4/5</div><div class="fs11 muted">HR: 162bpm · 35min</div></div></div>
+              </div>
+              <div class="row-between">
+                <div class="int-btns"><div class="int-btn">💬</div><div class="int-btn">💪</div><div class="int-btn">🔥</div></div>
+                <span class="t-purple fs11" onclick="go('c3')" style="cursor:pointer">View details →</span>
+              </div>
+            </div>
+            <!-- mentee 3 -->
+            <div class="list-item">
+              <div class="row-between" style="margin-bottom:6px">
+                <div class="row"><div class="avatar">👤</div><div><div class="fs13 fw6">Gang</div><div class="fs11 t-blue">💙 Resting · Between sets</div><div class="fs11 muted">HR: 98bpm · 22min</div></div></div>
+              </div>
+              <div class="row-between">
+                <div class="int-btns"><div class="int-btn">💬</div><div class="int-btn">💪</div><div class="int-btn">🔥</div></div>
+                <span class="t-purple fs11" onclick="go('c3')" style="cursor:pointer">View details →</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bnav">
+        <div class="bnav-item active coach"><div class="icon">🏠</div>Home</div>
+        <div class="bnav-item coach" onclick="go('c2')"><div class="icon">👥</div>Trainees</div>
+        <div class="bnav-item coach" onclick="go('c4')"><div class="icon">💬</div>Messages</div>
+        <div class="bnav-item coach"><div class="icon">⚙️</div>Settings</div>
+      </div>
+    </div>
+
+    <!-- ═══ C2 · MENTEE LIST ═══════════════════════════════════ -->
+    <div class="page" id="c2">
+      <div class="hbar">
+        <span class="hbar-back">← Back</span>
+        <span class="hbar-title">Trainee List</span>
+        <div class="hbar-icon">🔍</div>
+      </div>
+      <div class="content">
+        <!-- filter tabs -->
+        <div class="chips">
+          <div class="chip on">All (12)</div>
+          <div class="chip">Training (3)</div>
+          <div class="chip">Offline (9)</div>
+        </div>
+
+        <!-- Active section -->
+        <div class="wcard">
+          <div class="wcard-title">Active trainees</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div class="list-item" onclick="go('c3')" style="cursor:pointer">
+              <div class="row-between" style="margin-bottom:6px">
+                <div class="row"><div class="avatar">👤</div><div><div class="fs13 fw6">Ming</div><div class="fs11 t-green">💚 Training · Barbell Bench Press</div><div class="fs11 muted">3/5 · 142bpm · 18min</div></div></div>
+              </div>
+              <div class="int-btns"><div class="int-btn">💬</div><div class="int-btn">💪</div><div class="int-btn">🔥</div><span class="t-purple fs11" style="margin-left:auto">View details →</span></div>
+            </div>
+            <div class="list-item">
+              <div class="row-between" style="margin-bottom:6px">
+                <div class="row"><div class="avatar">👤</div><div><div class="fs13 fw6">Hong</div><div class="fs11 t-red">❤️ High intensity · Squat</div><div class="fs11 muted">4/5 · 162bpm · 35min</div></div></div>
+              </div>
+              <div class="int-btns"><div class="int-btn">💬</div><div class="int-btn">💪</div><div class="int-btn">🔥</div><span class="t-purple fs11" style="margin-left:auto">View details →</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- All mentees -->
+        <div class="wcard">
+          <div class="wcard-title">All trainees</div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div class="list-item" style="display:flex;align-items:center;justify-content:space-between" onclick="go('c3')" style="cursor:pointer">
+              <div class="row"><div class="avatar">👤</div><div class="fs13 fw6">Ming <span class="t-green fs11">💚 Training</span></div></div>
+              <span class="t-purple fs11">View →</span>
+            </div>
+            <div class="list-item" style="display:flex;align-items:center;justify-content:space-between">
+              <div class="row"><div class="avatar">👤</div><div class="fs13 fw6">Hong <span class="t-red fs11">❤️ High intensity</span></div></div>
+              <span class="t-purple fs11">View →</span>
+            </div>
+            <div class="list-item" style="display:flex;align-items:center;justify-content:space-between">
+              <div class="row"><div class="avatar">👤</div><div class="fs13 fw6">Gang <span class="muted fs11">⚫ Offline</span></div></div>
+              <span class="t-purple fs11">View →</span>
+            </div>
+            <div class="list-item" style="display:flex;align-items:center;justify-content:space-between">
+              <div class="row"><div class="avatar">👤</div><div class="fs13 fw6">Li <span class="muted fs11">⚫ Offline</span></div></div>
+              <span class="t-purple fs11">View →</span>
+            </div>
+            <div class="muted" style="text-align:center;margin-top:4px">... more trainees ...</div>
+          </div>
+        </div>
+      </div>
+      <div class="bnav">
+        <div class="bnav-item coach" onclick="go('c1')"><div class="icon">🏠</div>Home</div>
+        <div class="bnav-item active coach"><div class="icon">👥</div>Trainees</div>
+        <div class="bnav-item coach" onclick="go('c4')"><div class="icon">💬</div>Messages</div>
+        <div class="bnav-item coach"><div class="icon">⚙️</div>Settings</div>
+      </div>
+    </div>
+
+    <!-- ═══ C3 · MENTEE DETAIL ════════════════════════════════ -->
+    <div class="page" id="c3">
+      <div class="hbar">
+        <span class="hbar-back">← Back</span>
+        <span class="hbar-title">Ming’s Training</span>
+        <span></span>
+      </div>
+      <div class="content">
+        <!-- Live Status -->
+        <div class="wcard">
+          <div class="wcard-title">Live Status</div>
+          <div class="row" style="gap:14px;margin-bottom:10px">
+            <div class="avatar lg">👤</div>
+            <div><div style="font-size:15px;font-weight:700;color:#e0e0e8">Ming</div><div class="fs11 t-green">💚 Training · 18 min</div></div>
+          </div>
+          <div class="kpi-grid" style="margin-bottom:10px">
+            <div class="kpi-box"><div class="kpi-label">Current exercise</div><div style="font-size:13px;color:#e0e0e8;font-weight:600">Barbell Bench Press</div></div>
+            <div class="kpi-box"><div class="kpi-label">Heart rate</div><div style="font-size:13px;font-weight:600" class="t-green">142 bpm 💚</div></div>
+            <div class="kpi-box"><div class="kpi-label">Current set</div><div style="font-size:13px;color:#e0e0e8;font-weight:600">3/5</div></div>
+            <div class="kpi-box"><div class="kpi-label">Target zone</div><div style="font-size:12px;color:#e0e0e8;font-weight:600">120-150 bpm</div></div>
+          </div>
+          <div class="label-sm">Heart rate monitor (60s)</div>
+          <div class="mini-chart" style="height:60px">[ HR chart -60s → now ]</div>
+        </div>
+
+        <!-- Interaction (coach exclusive) -->
+        <div class="wcard">
+          <div class="wcard-title">Send interaction</div>
+
+          <!-- Text message — coach exclusive -->
+          <div style="border:1px solid #2a2a32;border-radius:10px;padding:10px;margin-bottom:10px">
+            <div class="label-sm" style="color:#bf5af2;margin-bottom:6px">✉️ Text message (coach only)</div>
+            <div class="row" style="gap:8px">
+              <div class="w-input" style="flex:1;padding:8px">Type a message...</div>
+              <div class="w-btn purple sm">Send</div>
+            </div>
+          </div>
+
+          <!-- Quick encouragement -->
+          <div class="label-sm" style="margin-bottom:6px">Quick cheers</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:10px">
+            <div class="w-btn sm">Go for it! 💪</div>
+            <div class="w-btn sm">You got this! 🙌</div>
+            <div class="w-btn sm">One more set! 🔥</div>
+            <div class="w-btn sm">Keep the pace! ⏱️</div>
+            <div class="w-btn sm">Form is solid! ✅</div>
+            <div class="w-btn sm">Breathe steady! 🌬️</div>
+          </div>
+          <div class="muted" style="text-align:center;margin-bottom:10px">↓ Scroll for more</div>
+
+          <!-- Emoji -->
+          <div class="label-sm" style="margin-bottom:6px">Send emoji</div>
+          <div class="emoji-grid" style="grid-template-columns:repeat(6,1fr)">
+            <div class="emoji-cell">💪</div><div class="emoji-cell">🔥</div><div class="emoji-cell">👍</div>
+            <div class="emoji-cell">⚡</div><div class="emoji-cell">🎉</div><div class="emoji-cell">😤</div>
+            <div class="emoji-cell">🏆</div><div class="emoji-cell">💯</div><div class="emoji-cell">🚀</div>
+            <div class="emoji-cell">😎</div><div class="emoji-cell">🙌</div><div class="emoji-cell">❤️</div>
+          </div>
+          <div class="muted" style="text-align:center;margin-top:6px">↓ Scroll for more</div>
+        </div>
+
+        <!-- Session History -->
+        <div class="wcard">
+          <div class="row-between" style="margin-bottom:8px">
+            <div class="wcard-title" style="margin-bottom:0">Session History</div>
+            <span class="t-purple fs11">View all →</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div class="list-item fs12" onclick="go('p4')" style="cursor:pointer">📅 2024-01-15 · 45min · Chest · <span class="t-green">142bpm</span> →</div>
+            <div class="list-item fs12" onclick="go('p4')" style="cursor:pointer">📅 2024-01-13 · 52min · Legs · <span class="t-red">155bpm</span> →</div>
+          </div>
+          <div class="annot" style="margin-top:8px">Tap any entry → P4 Session Summary (shared page)</div>
+        </div>
+      </div>
+      <div class="bnav">
+        <div class="bnav-item coach" onclick="go('c1')"><div class="icon">🏠</div>Home</div>
+        <div class="bnav-item active coach"><div class="icon">👥</div>Trainees</div>
+        <div class="bnav-item coach" onclick="go('c4')"><div class="icon">💬</div>Messages</div>
+        <div class="bnav-item coach"><div class="icon">⚙️</div>Settings</div>
+      </div>
+    </div>
+
+    <!-- ═══ C4 · MESSAGE CENTER ════════════════════════════════ -->
+    <div class="page" id="c4">
+      <div class="hbar">
+        <span class="hbar-back">← Back</span>
+        <span class="hbar-title">Messages</span>
+        <span></span>
+      </div>
+      <div class="content">
+        <div class="wcard">
+          <div class="wcard-title">Messages</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div class="list-item" onclick="go('c4b')" style="cursor:pointer">
+              <div class="row-between" style="margin-bottom:4px">
+                <div class="row"><div class="avatar">👤</div><div class="fs13 fw6">Ming</div></div>
+                <span class="muted" style="font-size:10px">14:32</span>
+              </div>
+              <div class="muted" style="padding-left:46px">"Coach, I feel great today!"</div>
+              <div style="padding-left:46px;margin-top:6px"><span class="t-purple fs11">Reply →</span></div>
+            </div>
+            <div class="list-item" onclick="go('c4b')" style="cursor:pointer">
+              <div class="row-between" style="margin-bottom:4px">
+                <div class="row"><div class="avatar">👤</div><div class="fs13 fw6">Hong</div></div>
+                <span class="muted" style="font-size:10px">13:15</span>
+              </div>
+              <div class="muted" style="padding-left:46px">"My knees hurt a bit during squats, is that normal?"</div>
+              <div style="padding-left:46px;margin-top:6px"><span class="t-purple fs11">Reply →</span></div>
+            </div>
+            <div class="list-item">
+              <div class="row-between" style="margin-bottom:4px">
+                <div class="row"><div class="avatar">👤</div><div class="fs13 fw6">Gang</div></div>
+                <span class="muted" style="font-size:10px">Yesterday</span>
+              </div>
+              <div class="muted" style="padding-left:46px">"Can you help me plan a leg workout tomorrow?"</div>
+              <div style="padding-left:46px;margin-top:6px"><span class="t-purple fs11">Reply →</span></div>
+            </div>
+            <div class="muted" style="text-align:center;margin-top:4px">... more messages ...</div>
+          </div>
+        </div>
+      </div>
+      <div class="bnav">
+        <div class="bnav-item coach" onclick="go('c1')"><div class="icon">🏠</div>Home</div>
+        <div class="bnav-item coach" onclick="go('c2')"><div class="icon">👥</div>Trainees</div>
+        <div class="bnav-item active coach"><div class="icon">💬</div>Messages</div>
+        <div class="bnav-item coach"><div class="icon">⚙️</div>Settings</div>
+      </div>
+    </div>
+
+    <!-- ═══ C4b · CHAT ═════════════════════════════════════════ -->
+    <div class="page" id="c4b">
+      <div class="hbar">
+        <span class="hbar-back">← Back</span>
+        <span class="hbar-title">Chat with Ming</span>
+        <span></span>
+      </div>
+      <div class="content" style="justify-content:space-between">
+        <!-- Chat bubbles -->
+        <div style="display:flex;flex-direction:column;gap:10px;flex:1">
+          <div style="align-self:flex-end">
+            <div class="bubble-right">How’s your condition today, coach?</div>
+            <div class="bubble-time" style="text-align:right">14:20 · Ming</div>
+          </div>
+          <div>
+            <div class="bubble-left">Feeling good, keep it up!</div>
+            <div class="bubble-time">14:25 · Coach Wang</div>
+          </div>
+          <div style="align-self:flex-end">
+            <div class="bubble-right">I feel great today!</div>
+            <div class="bubble-time" style="text-align:right">14:32 · Ming</div>
+          </div>
+        </div>
+
+        <!-- Input area -->
+        <div style="flex-shrink:0;padding-top:10px;border-top:1px solid #1e1e24">
+          <div class="row" style="gap:8px;margin-bottom:10px">
+            <div class="w-input" style="flex:1;padding:8px">Type a message...</div>
+            <div class="w-btn purple sm">Send</div>
+          </div>
+          <div class="label-sm" style="margin-bottom:5px">Quick cheers</div>
+          <div class="chips" style="margin-bottom:8px">
+            <div class="chip">Go for it! 💪</div>
+            <div class="chip">Form is solid! ✅</div>
+            <div class="chip">Breathe easy</div>
+          </div>
+          <div class="label-sm" style="margin-bottom:5px">Emoji</div>
+          <div class="chips">
+            <div class="chip" style="padding:4px 8px">💪</div>
+            <div class="chip" style="padding:4px 8px">🔥</div>
+            <div class="chip" style="padding:4px 8px">👍</div>
+            <div class="chip" style="padding:4px 8px">⚡</div>
+            <div class="chip" style="padding:4px 8px">🎉</div>
+            <div class="chip" style="padding:4px 8px;color:#555">More...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /screen -->
+</div><!-- /phone -->
+</div><!-- /stage -->
+
+<script>
+const pages = {
+  p0:  { label: 'P0 · Login' },
+  p0b: { label: 'P0b · Register' },
+  p1:  { label: 'P1 · Home' },
+  p2:  { label: 'P2 · Exercise Selector' },
+  p3:  { label: 'P3 · Training Mode' },
+  p4:  { label: 'P4 · Session Summary' },
+  p5a: { label: 'P5a · Buddy Map' },
+  p5b: { label: 'P5b · Buddy List' },
+  p6:  { label: 'P6 · Buddy Profile' },
+  p6b: { label: 'P6b · Long-press Text Modal' },
+  p6c: { label: 'P6c · Long-press Emoji Modal' },
+  p7:  { label: 'P7 · Friends List' },
+  p8:  { label: 'P8 · Profile' },
+  c1:  { label: 'C1 · Coach Home', coach: true },
+  c2:  { label: 'C2 · Mentee List', coach: true },
+  c3:  { label: 'C3 · Mentee Detail', coach: true },
+  c4:  { label: 'C4 · Message Center', coach: true },
+  c4b: { label: 'C4b · Chat', coach: true },
+};
+
+function go(id) {
+  // hide all
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.sw-btn').forEach(b => b.classList.remove('active'));
+
+  // show target
+  const el = document.getElementById(id);
+  if (el) {
+    el.classList.add('active');
+    document.getElementById('screen').scrollTop = 0;
+  }
+
+  // update switcher
+  const btns = document.querySelectorAll('.sw-btn');
+  btns.forEach(b => {
+    if (b.getAttribute('onclick') === `go('${id}')`) b.classList.add('active');
+  });
+
+  // update label
+  const meta = pages[id] || {};
+  const label = meta.label || id;
+  const parts = label.split(' · ');
+  document.getElementById('pageLabel').innerHTML =
+    `<span>${parts[0]}</span> · ${parts.slice(1).join(' · ')}`;
+
+  // tint phone border for coach
+  const phone = document.querySelector('.phone');
+  if (meta.coach) {
+    phone.style.borderColor = '#3a2a4a';
+    phone.style.boxShadow = '0 0 0 8px #0a0a0d, 0 24px 80px rgba(191,90,242,0.15)';
+  } else {
+    phone.style.borderColor = '#2a2a30';
+    phone.style.boxShadow = '0 0 0 8px #0a0a0d, 0 24px 80px rgba(0,0,0,0.8)';
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,441 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TrainerSync Process Portfolio</title>
+  <link rel="stylesheet" href="./assets/styles.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="kicker">CPT208 Process Portfolio</div>
+          <h1>TrainerSync</h1>
+          <p>
+            A formal process portfolio for an Active Lifestyles web application that connects trainee-facing workout guidance
+            with coach-facing monitoring, intervention, and reflection tools.
+          </p>
+          <p><strong>Module:</strong> CPT208 Human-Centric Computing | <strong>Track:</strong> Active Lifestyles | <strong>Project Theme:</strong> C3 Go Trainers</p>
+          <div class="hero-links">
+            <a href="#architecture">Project Architecture</a>
+            <a href="#motivation">Motivation &amp; Research</a>
+            <a href="#requirements">User Requirements</a>
+            <a href="#ideation">Ideation &amp; Alternatives</a>
+            <a href="#implementation">Technical Implementation</a>
+            <a href="#evaluation">Evaluation &amp; Reflection</a>
+            <a href="#references">References</a>
+          </div>
+        </div>
+        <aside class="meta-card">
+          <h3>Project Snapshot</h3>
+          <div class="meta-list">
+            <div><strong>Group:</strong> C3-6</div>
+            <div><strong>Live System:</strong> <a href="https://rainm1st.github.io/CPT208-TrainerSync/" target="_blank" rel="noreferrer">TrainerSync Demo</a></div>
+            <div><strong>Low-Fi Artifact:</strong> <a href="./assets/lowfi/wireframes-v2_eng.html" target="_blank" rel="noreferrer">HTML Wireframes v2</a></div>
+            <div><strong>Primary User:</strong> Beginner gym trainee</div>
+            <div><strong>Secondary User:</strong> Professional fitness coach</div>
+          </div>
+        </aside>
+      </div>
+    </header>
+
+    <nav class="jump" aria-label="Portfolio section navigation">
+      <a href="#architecture">Architecture</a>
+      <a href="#motivation">1. Research</a>
+      <a href="#requirements">2. Requirements</a>
+      <a href="#ideation">3. Ideation</a>
+      <a href="#implementation">4. Implementation</a>
+      <a href="#evaluation">5. Evaluation</a>
+      <a href="#references">References</a>
+    </nav>
+
+    <section class="section" id="architecture">
+      <div class="kicker">Project Overview</div>
+      <h2>Project Architecture</h2>
+      <p class="lead">
+        TrainerSync is structured as a shared service loop: trainees receive real-time guidance, the web app translates session state into visible progress and alerts, and coaches use a dashboard to decide who needs intervention first.
+      </p>
+      <figure class="architecture-figure">
+        <img src="./assets/images/architecture/project-architecture.svg" alt="TrainerSync project architecture diagram" />
+      </figure>
+      <div class="summary-grid" style="margin-top:16px;">
+        <article class="card soft-blue">
+          <h3>Why this architecture matters</h3>
+          <p>
+            The system is not only a workout library. It creates synchronized awareness between trainee and coach, which directly addresses delayed feedback, fragmented guidance, and weak post-session reflection.
+          </p>
+        </article>
+        <article class="card soft-mint">
+          <h3>Hosted system link</h3>
+          <p>
+            The high-fidelity web prototype is available at
+            <a href="https://rainm1st.github.io/CPT208-TrainerSync/" target="_blank" rel="noreferrer">https://rainm1st.github.io/CPT208-TrainerSync/</a>.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="motivation">
+      <div class="kicker">1. Motivation &amp; Research</div>
+      <h2>The Why</h2>
+      <p>
+        Our group chose the Active Lifestyles track because gym training is a highly social, physically demanding, and feedback-sensitive activity, yet many existing digital tools only support the workout before it starts or after it ends. In real gym sessions, coaches often need to supervise multiple trainees at once, while trainees need quick reassurance that they are using the right equipment, moving at the right pace, and staying within a safe and effective training state. We saw a clear opportunity to design something more human-centered than a static fitness log or video library. TrainerSync was therefore conceived as a connected training experience that links the coach dashboard and trainee interface through real-time status cues, lightweight telemetry logic, and shared session feedback. We were also interested in the playful dimension of active systems: rather than only recording what happened, the system should shape motivation in the moment. This track fits our strengths because it allowed us to combine interface design, interaction flow, fitness-domain content, and service thinking into one coherent project. In short, we selected Active Lifestyles because it offers a meaningful design challenge where better interaction design can directly improve confidence, safety, coordination, and sustained engagement.
+      </p>
+
+      <h3>The Gap: Academic Papers</h3>
+      <div class="table-wrap">
+        <table class="matrix">
+          <thead>
+            <tr>
+              <th>Source</th>
+              <th>3 Things Done Well</th>
+              <th>3 Things Missed</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Consolvo, McDonald, and Landay (2009)</td>
+              <td>Strong behavior-change framing; clear links between feedback and action; useful persuasive design strategies.</td>
+              <td>Limited coach-trainee coordination; little gym-floor operational detail; weak support for live intervention.</td>
+            </tr>
+            <tr>
+              <td>Hamari, Koivisto, and Sarsa (2014)</td>
+              <td>Broad gamification review; identifies engagement mechanisms; useful evidence-focused comparison.</td>
+              <td>Not specific to physical coaching; limited context sensitivity; few concrete interface patterns.</td>
+            </tr>
+            <tr>
+              <td>Sardi, Idri, and Fernandez-Aleman (2017)</td>
+              <td>Health-focused gamification synthesis; broad evidence base; useful motivational patterns.</td>
+              <td>Few real-time coaching models; limited spatial gym context; weak analysis of multi-user supervision.</td>
+            </tr>
+            <tr>
+              <td>Brooke (1996)</td>
+              <td>Simple usability benchmark; quick to run across iterations; produces comparable scores.</td>
+              <td>Does not explain root causes; limited emotional insight; not specific to embodied training experiences.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>The Gap: Commercial Products</h3>
+      <div class="table-wrap">
+        <table class="matrix">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>3 Things Done Well</th>
+              <th>3 Things Missed</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Keep</td>
+              <td>Large exercise library; accessible training plans; beginner-friendly mobile guidance.</td>
+              <td>Weak live coach linkage; limited onsite adaptation; feedback is mostly individual and post-hoc.</td>
+            </tr>
+            <tr>
+              <td>Apple Fitness+</td>
+              <td>High production quality; strong device ecosystem; clear guided workout flow.</td>
+              <td>No coach dashboard; not built for gym-floor supervision; weak multi-trainee coordination.</td>
+            </tr>
+            <tr>
+              <td>Strava</td>
+              <td>Strong tracking; social visibility; excellent long-term performance history.</td>
+              <td>Not instruction-centered; limited indoor gym support; no live correction workflow.</td>
+            </tr>
+            <tr>
+              <td>Nike Training Club</td>
+              <td>Structured workouts; polished content; approachable for different ability levels.</td>
+              <td>No real-time coach intervention; little adaptive group support; recap is not coach-centered.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>The Stakeholders</h3>
+      <div class="grid-2">
+        <article class="card persona">
+          <img src="./assets/images/personas/persona-trainee.png" alt="Trainee persona snapshot" />
+          <div class="body">
+            <h3>Primary User: Li Chen</h3>
+            <p class="small">Age 20 | Undergraduate student | Beginner gym trainee | Mobile-first</p>
+            <ul>
+              <li><strong>Goals:</strong> Understand workout intensity, complete tasks clearly, and stay motivated.</li>
+              <li><strong>Pain Points:</strong> Delayed correction, fragmented instructions, and weak post-session review.</li>
+              <li><strong>Needs:</strong> Real-time cues, actionable prompts, and a recap showing training quality.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="card persona">
+          <img src="./assets/images/personas/persona-coach.png" alt="Coach persona snapshot" />
+          <div class="body">
+            <h3>Secondary User: Yi Wang</h3>
+            <p class="small">Age 30 | Professional fitness coach | Manages 3 to 5 trainees in parallel | Tablet or PC first</p>
+            <ul>
+              <li><strong>Goals:</strong> Monitor trainee status, send targeted strategies, and review training logs.</li>
+              <li><strong>Pain Points:</strong> Split attention, fragmented signals, and repetitive instruction overhead.</li>
+              <li><strong>Needs:</strong> Dashboard overview, priority alerts, and centralized trainee history.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="requirements">
+      <div class="kicker">2. User Requirements</div>
+      <h2>User Journey Map</h2>
+      <p class="lead">
+        The journey maps below capture the current pain points around session preparation, live guidance, coach intervention, and post-session reflection.
+      </p>
+      <div class="media-pair">
+        <article class="figure-card">
+          <div class="fig-head">
+            <h3>Trainee Journey Map</h3>
+            <p class="small">Pain points around uncertainty, delayed correction, and weak training reflection.</p>
+          </div>
+          <div class="figure-frame">
+            <img src="./assets/images/journey_map/1.png" alt="Trainee journey map" />
+          </div>
+        </article>
+        <article class="figure-card">
+          <div class="fig-head">
+            <h3>Coach Journey Map</h3>
+            <p class="small">Pain points around monitoring multiple trainees, deciding priority, and recording guidance.</p>
+          </div>
+          <div class="figure-frame">
+            <img src="./assets/images/journey_map/2.png" alt="Coach journey map" />
+          </div>
+        </article>
+      </div>
+
+      <h3>Requirements List: 3 Must-Haves for a Playful System</h3>
+      <ul class="req-list">
+        <li><strong>Live telemetry gamification:</strong> convert session state into visible progress, intensity zones, and immediate feedback cues.</li>
+        <li><strong>Coach boost interventions:</strong> allow the coach to send short, targeted prompts without leaving the dashboard context.</li>
+        <li><strong>Session-aware social support:</strong> make training feel shared through companion visibility, nearby momentum, and post-session recognition.</li>
+      </ul>
+    </section>
+
+    <section class="section" id="ideation">
+      <div class="kicker">3. Ideation &amp; Alternatives</div>
+      <h2>Design Alternatives and Low-Fi Prototype</h2>
+      <div class="grid-3">
+        <article class="card soft-peach">
+          <h3>Alternative A: AR Pose Estimation</h3>
+          <p>High novelty and potentially rich correction, but intrusive in a gym setting and dependent on camera framing, lighting, and privacy consent.</p>
+        </article>
+        <article class="card soft-mint">
+          <h3>Alternative B: Telemetry-Driven Dashboard</h3>
+          <p>Chosen direction. It supports low-friction coach visibility, clear trainee feedback, and fast intervention during a real session.</p>
+        </article>
+        <article class="card soft-blue">
+          <h3>Alternative C: Summary-Only Tracker</h3>
+          <p>Useful for records, but too passive because it only explains performance after the moment when support was needed.</p>
+        </article>
+      </div>
+      <div class="note">
+        <strong>Design decision:</strong> We chose Alternative B because it best fits busy gym constraints. It reduces attention switching for coaches and gives trainees immediate, readable feedback without requiring cameras or complex wearable setup.
+      </div>
+
+      <h3>Low-Fi Prototype</h3>
+      <div class="prototype-card">
+        <p>
+          A low-fi artifact does not have to be a Figma file. For this portfolio, the updated HTML wireframe is used as an interactive wireframe prototype. It documents early navigation, screen hierarchy, coach-trainee roles, and the intended flow before visual polish.
+        </p>
+        <div class="inline-actions">
+          <a class="cta-link primary" href="./assets/lowfi/wireframes-v2_eng.html" target="_blank" rel="noreferrer">Open Updated Wireframe</a>
+          <a class="cta-link" href="https://rainm1st.github.io/CPT208-TrainerSync/" target="_blank" rel="noreferrer">Open High-Fi System</a>
+        </div>
+        <div class="prototype-preview">
+          <iframe src="./assets/lowfi/wireframes-v2_eng.html" title="Updated low-fidelity TrainerSync wireframe preview"></iframe>
+        </div>
+      </div>
+
+      <h3>Prototype Evolution: Wireframe to Alpha to Current High-Fi</h3>
+      <div class="evolution-grid">
+        <article class="stage-card">
+          <div class="stage-title">
+            <strong>Stage 1: Wireframe</strong>
+            <span>Interaction structure and screen flow.</span>
+          </div>
+          <div class="stage-media">
+            <iframe src="./assets/lowfi/wireframes-v2_eng.html" title="Wireframe stage"></iframe>
+          </div>
+        </article>
+        <article class="stage-card">
+          <div class="stage-title">
+            <strong>Stage 2: Before / Alpha</strong>
+            <span>Earlier product screenshots used to identify layout and clarity issues.</span>
+          </div>
+          <div class="stage-media three">
+            <img src="./assets/images/before/figure1.png" alt="Before alpha screen 1" />
+            <img src="./assets/images/before/figure2.png" alt="Before alpha screen 2" />
+            <img src="./assets/images/before/figure3.png" alt="Before alpha screen 3" />
+          </div>
+        </article>
+        <article class="stage-card">
+          <div class="stage-title">
+            <strong>Stage 3: After / Current High-Fi</strong>
+            <span>Revised screens with clearer task entry, live feedback, and coach monitoring.</span>
+          </div>
+          <div class="stage-media three">
+            <img src="./assets/images/app/f1.png" alt="After high-fidelity home screen" />
+            <img src="./assets/images/app/f4.png" alt="After high-fidelity live training screen" />
+            <img src="./assets/images/app/f8.png" alt="After high-fidelity coach dashboard" />
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="implementation">
+      <div class="kicker">4. Technical Implementation</div>
+      <h2>High-Fi Prototype and System Coverage</h2>
+      <p>
+        Current hosted demo:
+        <a href="https://rainm1st.github.io/CPT208-TrainerSync/" target="_blank" rel="noreferrer">https://rainm1st.github.io/CPT208-TrainerSync/</a>
+      </p>
+
+      <h3>High-Fi Screens</h3>
+      <div class="app-gallery">
+        <figure class="app-shot"><img src="./assets/images/app/f1.png" alt="Home screen" /><figcaption>Home</figcaption></figure>
+        <figure class="app-shot"><img src="./assets/images/app/f2.png" alt="Library screen" /><figcaption>Library</figcaption></figure>
+        <figure class="app-shot"><img src="./assets/images/app/f3.png" alt="Exercise detail screen" /><figcaption>Exercise Detail</figcaption></figure>
+        <figure class="app-shot"><img src="./assets/images/app/f4.png" alt="Live training screen" /><figcaption>Live Training</figcaption></figure>
+        <figure class="app-shot"><img src="./assets/images/app/f5.png" alt="Map screen" /><figcaption>Map</figcaption></figure>
+        <figure class="app-shot"><img src="./assets/images/app/f6.png" alt="Companion screen" /><figcaption>Companion</figcaption></figure>
+        <figure class="app-shot"><img src="./assets/images/app/f7.png" alt="Profile screen" /><figcaption>Profile</figcaption></figure>
+        <figure class="app-shot"><img src="./assets/images/app/f8.png" alt="Coach dashboard" /><figcaption>Coach Dashboard</figcaption></figure>
+        <figure class="app-shot"><img src="./assets/images/app/f9.png" alt="Trainee management screen" /><figcaption>Trainee List</figcaption></figure>
+        <figure class="app-shot"><img src="./assets/images/app/f10.png" alt="Coach live detail screen" /><figcaption>Live Detail</figcaption></figure>
+        <figure class="app-shot"><img src="./assets/images/app/f11.png" alt="Coach messages screen" /><figcaption>Messages</figcaption></figure>
+      </div>
+
+      <h3>Individual Contributions</h3>
+      <div class="contribution-grid">
+        <article class="contribution-card soft-blue">
+          <h3>Na Li | 2361132</h3>
+          <p>Led trainee persona research, user story writing, poster and portfolio content structure, active-lifestyle motivation framing, and final English copy review. Supported screenshot selection and user journey interpretation.</p>
+        </article>
+        <article class="contribution-card soft-mint">
+          <h3>Zifan Wang | 2362457</h3>
+          <p>Led high-fidelity interface implementation, route structure, responsive web layout, GitHub Pages deployment, and screenshot export. Supported integration between trainee pages and coach-facing flows.</p>
+        </article>
+        <article class="contribution-card soft-peach">
+          <h3>Kan Liu | 2362244</h3>
+          <p>Led coach workflow design, dashboard information architecture, monitoring logic, intervention scenarios, and comparison of design alternatives. Supported evaluation task design and data table preparation.</p>
+        </article>
+        <article class="contribution-card soft-blue">
+          <h3>Jintong Zhang | 2360862</h3>
+          <p>Led low-fi wireframe exploration, product iteration documentation, visual asset organization, reference collection, and usability testing materials. Supported final reflection and AI disclosure wording.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="evaluation">
+      <div class="kicker">5. Evaluation &amp; Reflection</div>
+      <h2>Usability Testing and Iterative Refinement</h2>
+      <p class="lead">
+        The Alpha testing summary below is written as a draft reporting structure. Replace the participant labels and results with real collected evidence before final submission if your course requires verified user data.
+      </p>
+      <div class="testing-grid">
+        <article class="test-card soft-blue">
+          <h3>Participant A: Beginner Trainee</h3>
+          <p class="small">Profile: undergraduate student, occasional gym user, mobile-first.</p>
+          <div class="metric-row"><span class="metric">Task success: 4/5</span><span class="metric">SUS draft: 76</span></div>
+          <p><strong>Observed issue:</strong> The participant understood the workout library but hesitated before starting a live session because the CTA hierarchy was not strong enough.</p>
+          <p><strong>Design implication:</strong> Make the session start action more prominent and use clearer intensity preview cues.</p>
+        </article>
+        <article class="test-card soft-mint">
+          <h3>Participant B: Intermediate Trainee</h3>
+          <p class="small">Profile: regular gym user, familiar with workout apps, values progress tracking.</p>
+          <div class="metric-row"><span class="metric">Task success: 5/5</span><span class="metric">SUS draft: 82</span></div>
+          <p><strong>Observed issue:</strong> The live screen was engaging, but the participant wanted a clearer explanation of what heart-rate colors meant.</p>
+          <p><strong>Design implication:</strong> Add microcopy for target zones and make warnings more explainable.</p>
+        </article>
+        <article class="test-card soft-peach">
+          <h3>Participant C: Coach Role Proxy</h3>
+          <p class="small">Profile: experienced gym user asked to complete coach monitoring tasks.</p>
+          <div class="metric-row"><span class="metric">Task success: 4/5</span><span class="metric">SUS draft: 74</span></div>
+          <p><strong>Observed issue:</strong> The coach dashboard was useful, but priority ordering needed to be more obvious when several trainees required attention.</p>
+          <p><strong>Design implication:</strong> Add clearer alert ranking, status labels, and one-click strategy dispatch.</p>
+        </article>
+      </div>
+
+      <h3>Before and After Refinement</h3>
+      <div class="grid-2">
+        <article class="figure-card">
+          <div class="fig-head">
+            <h3>Before: Alpha Screens</h3>
+            <p class="small">Earlier interface screens showed the core idea but had weaker visual hierarchy and less explicit feedback logic.</p>
+          </div>
+          <div class="stage-media three">
+            <img src="./assets/images/before/figure1.png" alt="Before alpha screenshot 1" />
+            <img src="./assets/images/before/figure2.png" alt="Before alpha screenshot 2" />
+            <img src="./assets/images/before/figure3.png" alt="Before alpha screenshot 3" />
+          </div>
+        </article>
+        <article class="figure-card">
+          <div class="fig-head">
+            <h3>After: Current Screens</h3>
+            <p class="small">The current version strengthens task entry, feedback visibility, coach monitoring, and session reflection.</p>
+          </div>
+          <div class="stage-media three">
+            <img src="./assets/images/app/f1.png" alt="After home screenshot" />
+            <img src="./assets/images/app/f4.png" alt="After live training screenshot" />
+            <img src="./assets/images/app/f8.png" alt="After coach dashboard screenshot" />
+          </div>
+        </article>
+      </div>
+
+      <h3>Final Reflection</h3>
+      <p>
+        TrainerSync matters because it treats fitness technology as a shared human-centered service rather than a private tracking tool. The design can improve confidence, safety, and coach efficiency, but it also creates ethical responsibilities. Heart-rate cues and training status should not be framed as medical judgement. Users need consent controls, clear explanations of what data is visible to coaches, and boundaries around session history. The playful layer should support motivation without creating pressure, shame, or over-monitoring.
+      </p>
+    </section>
+
+    <section class="section" id="references">
+      <div class="kicker">6. References &amp; Acknowledgments</div>
+      <h2>AI Disclosure and References</h2>
+      <div class="reference-grid">
+        <article class="card dark-card">
+          <h3>AI Disclosure</h3>
+          <p>
+            AI tools were used to support English drafting, portfolio layout refinement, and the creation of the project architecture SVG diagram. The project team remains responsible for checking accuracy, replacing draft evaluation content with verified evidence, and ensuring that all submitted claims are truthful. Persona images and any AI-assisted visual assets should be cited according to university policy if they were generated or edited with AI tools.
+          </p>
+          <p>
+            Suggested disclosure text: "This portfolio used OpenAI Codex/GPT assistance for language editing, layout structuring, and an AI-assisted architecture diagram. The team reviewed and edited the final submission."
+          </p>
+        </article>
+        <article class="card soft-blue">
+          <h3>Acknowledgments</h3>
+          <p>
+            We acknowledge CPT208 teaching staff for the project brief and assessment guidance. We also acknowledge pilot participants and classmates who provided feedback on the TrainerSync concept and interface flow.
+          </p>
+        </article>
+      </div>
+
+      <h3>Academic References</h3>
+      <ol class="reference-list">
+        <li>Brooke, J. (1996). SUS: A quick and dirty usability scale. In P. W. Jordan, B. Thomas, B. A. Weerdmeester, and I. L. McClelland (Eds.), Usability Evaluation in Industry. Taylor &amp; Francis.</li>
+        <li>Consolvo, S., McDonald, D. W., and Landay, J. A. (2009). Theory-driven design strategies for technologies that support behavior change in everyday life. Proceedings of CHI 2009.</li>
+        <li>Hamari, J., Koivisto, J., and Sarsa, H. (2014). Does gamification work? A literature review of empirical studies on gamification. Proceedings of the 47th Hawaii International Conference on System Sciences.</li>
+        <li>Sardi, L., Idri, A., and Fernandez-Aleman, J. L. (2017). A systematic review of gamification in e-Health. Journal of Biomedical Informatics, 71, 31-48.</li>
+      </ol>
+
+      <h3>Commercial References</h3>
+      <ol class="reference-list">
+        <li>Apple Fitness+. Official product website: https://www.apple.com/apple-fitness-plus/</li>
+        <li>Keep. Official product website: https://www.gotokeep.com/</li>
+        <li>Nike Training Club. Official product website: https://www.nike.com/ntc-app</li>
+        <li>Strava. Official product website: https://www.strava.com/</li>
+      </ol>
+    </section>
+
+    <footer class="footer">
+      TrainerSync Process Portfolio | English deliverable for CPT208 | Live system: https://rainm1st.github.io/CPT208-TrainerSync/
+    </footer>
+  </div>
+</body>
+</html>
