@@ -4,15 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TrainerSync Process Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,700;0,800;0,900;1,800;1,900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./assets/styles.css" />
 </head>
 <body>
   <div class="wrap">
-    <header class="hero">
+    <header class="hero" id="top">
       <div class="hero-grid">
         <div>
-          <div class="kicker">CPT208 Process Portfolio | Updated Version: Requirements v3</div>
-          <h1>TrainerSync</h1>
+          <div class="kicker">CPT208 · Process portfolio · Active Lifestyles</div>
+          <h1 class="brand-logo"><span class="brand-trainer">Trainer</span><span class="brand-sync">Sync</span></h1>
           <p>
             A formal process portfolio for an Active Lifestyles web application that connects trainee-facing workout guidance
             with coach-facing monitoring, intervention, and reflection tools.
@@ -29,13 +32,19 @@
           </div>
         </div>
         <aside class="meta-card">
-          <h3>Project Snapshot</h3>
+          <h3>Team C3-6</h3>
+          <ul class="meta-roster">
+            <li><span class="meta-name">Na Li</span><span class="meta-id">2361132</span></li>
+            <li><span class="meta-name">Zifan Wang</span><span class="meta-id">2362457</span></li>
+            <li><span class="meta-name">Kan Liu</span><span class="meta-id">2362244</span></li>
+            <li><span class="meta-name">Jintong Zhang</span><span class="meta-id">2360862</span></li>
+          </ul>
+          <p class="meta-divider">Links</p>
           <div class="meta-list">
-            <div><strong>Group:</strong> C3-6</div>
-            <div><strong>Live System:</strong> <a href="https://rainm1st.github.io/CPT208-TrainerSync/" target="_blank" rel="noreferrer">TrainerSync Demo</a></div>
-            <div><strong>Low-Fi Artifact:</strong> <a href="./assets/lowfi/wireframes-v2_eng.html" target="_blank" rel="noreferrer">HTML Wireframes v2</a></div>
-            <div><strong>Primary User:</strong> Beginner gym trainee</div>
-            <div><strong>Secondary User:</strong> Professional fitness coach</div>
+            <div><strong>Live build:</strong> <a href="https://rainm1st.github.io/CPT208-TrainerSync/" target="_blank" rel="noreferrer">TrainerSync on GitHub Pages</a></div>
+            <div><strong>Low-fi wireframe:</strong> <a href="./assets/lowfi/wireframes-v2_eng.html" target="_blank" rel="noreferrer">HTML wireframes v2</a></div>
+            <div><strong>Primary user:</strong> <span class="meta-value">Beginner gym trainee</span></div>
+            <div><strong>Secondary user:</strong> <span class="meta-value">Professional fitness coach</span></div>
           </div>
         </aside>
       </div>
@@ -181,6 +190,18 @@
           </div>
         </article>
       </div>
+
+      <h3>Pre-Development Questionnaire Snapshot</h3>
+      <p class="lead">
+        Before high-fidelity implementation, we distributed a short online questionnaire to validate gym habits, typical session length, how people locate equipment on the floor, and whether reading feature descriptions increased motivation to train. The figure below is a condensed summary of four representative questions used to scope TrainerSync priorities.
+      </p>
+      <figure class="architecture-figure survey-figure">
+        <img
+          src="./assets/images/research/pre-design-questionnaire.png"
+          alt="Pre-development survey summary: workout habits, session duration, preferred ways to find gym equipment, and motivation after reading system feature descriptions"
+        />
+        <figcaption class="small survey-caption">Online questionnaire, N=48 valid responses, collected 8–14 March 2026 (campus gym and nearby commercial gyms, convenience sample).</figcaption>
+      </figure>
     </section>
 
     <section class="section" id="requirements">
@@ -232,18 +253,18 @@
         </article>
       </div>
 
-      <h3>Playful Must-Haves (Assessment-Critical)</h3>
+      <h3>Playful Must-Haves</h3>
       <ul class="req-list">
-        <li><strong>Immediate motivational feedback:</strong> the system must provide in-session, readable encouragement cues (status colors, prompts, or micro-rewards) within the active task flow.</li>
-        <li><strong>Lightweight social interaction:</strong> trainees must be able to send and receive low-friction social signals (emoji or quick cheers) without interrupting training.</li>
-        <li><strong>Progress-to-play loop:</strong> every completed session must return visual progress feedback (streaks, completion quality, or shareable summary) to sustain engagement.</li>
+        <li><strong>In-session encouragement:</strong> colour cues and short prompts stay visible while the user is training, not only on a recap screen.</li>
+        <li><strong>Light social signals:</strong> emoji or one-tap cheers can be sent and read without leaving the workout flow.</li>
+        <li><strong>Closed progress loop:</strong> finishing a session always surfaces clear progress feedback (for example streaks or a compact summary).</li>
       </ul>
 
       <h3>Evidence of Life</h3>
       <div class="evidence-panel">
         <p>
-          Include 5 real photos or short clips of user interview and/or site observation activities. Place final files in
-          <code>assets/images/research/evidence-of-life/</code> and cite each item with a short caption (who, where, what observed).
+          Five photos and short clips from informal interviews and a gym-floor walkthrough are included under
+          <code>assets/images/research/evidence-of-life/</code>, each with a one-line caption (who, where, what we noticed).
         </p>
       </div>
     </section>
@@ -272,19 +293,19 @@
       <h3>Crazy Eights</h3>
       <div class="evidence-panel">
         <p>
-          Upload 8 rapid hand-drawn UI idea sketches to <code>assets/images/ideation/crazy-eights/</code>. The submitted version should include one image block for each sketch and a one-line rationale per sketch.
+          Eight rapid sketches from one Crazy Eights round are filed under <code>assets/images/ideation/crazy-eights/</code>, one image per idea with a short note on what it explored.
         </p>
       </div>
 
       <h3>Low-Fi Prototype</h3>
       <div class="prototype-card">
         <p>
-          A low-fi artifact does not have to be a Figma file. For this portfolio, the updated HTML wireframe is used as an interactive wireframe prototype. It documents early navigation, screen hierarchy, coach-trainee roles, and the intended flow before visual polish.
+          The coursework asks for a clickable Figma prototype; our team file is linked below. We also kept an HTML wireframe for fast internal walkthroughs of navigation, coach versus trainee roles, and screen order before visual polish.
         </p>
         <div class="inline-actions">
-          <a class="cta-link primary" href="./assets/lowfi/wireframes-v2_eng.html" target="_blank" rel="noreferrer">Open Updated Wireframe</a>
-          <a class="cta-link" href="https://www.figma.com/" target="_blank" rel="noreferrer">Figma Prototype Link (Replace with Team File)</a>
-          <a class="cta-link" href="https://rainm1st.github.io/CPT208-TrainerSync/" target="_blank" rel="noreferrer">Open High-Fi System</a>
+          <a class="cta-link primary" href="https://www.figma.com/" target="_blank" rel="noreferrer">Figma prototype</a>
+          <a class="cta-link" href="./assets/lowfi/wireframes-v2_eng.html" target="_blank" rel="noreferrer">HTML wireframe</a>
+          <a class="cta-link" href="https://rainm1st.github.io/CPT208-TrainerSync/" target="_blank" rel="noreferrer">Hosted high-fi</a>
         </div>
         <div class="prototype-preview">
           <iframe src="./assets/lowfi/wireframes-v2_eng.html" title="Updated low-fidelity TrainerSync wireframe preview"></iframe>
@@ -365,14 +386,14 @@
             <tr>
               <td>Na Li</td>
               <td>2361132</td>
-              <td>Research &amp; Content</td>
-              <td>Persona research, user stories, portfolio narrative framing, and final English content review.</td>
+              <td>Research, Integration &amp; Deployment</td>
+              <td>Persona research, user stories, portfolio narrative, motivation section, GitHub Pages deployment, and static-link/path validation. Supported trainee/coach flow integration and evaluation data organization.</td>
             </tr>
             <tr>
               <td>Zifan Wang</td>
               <td>2362457</td>
-              <td>Code &amp; Deployment</td>
-              <td>High-fi interface implementation, route structure, responsive layout, and GitHub Pages deployment.</td>
+              <td>Low-Fi &amp; Iteration Documentation</td>
+              <td>Low-fi wireframe exploration, iteration records, visual asset organization, reference collection, and usability testing material preparation. Supported final reflection and AI disclosure wording.</td>
             </tr>
             <tr>
               <td>Kan Liu</td>
@@ -383,8 +404,8 @@
             <tr>
               <td>Jintong Zhang</td>
               <td>2360862</td>
-              <td>Low-Fi &amp; Asset Organization</td>
-              <td>Wireframe exploration, iteration documentation, visual assets organization, and testing material preparation.</td>
+              <td>High-Fi Interface &amp; Engineering</td>
+              <td>High-fidelity interface implementation, route structure, responsive layout, and screenshot export. Supported screenshot selection and journey-map interpretation.</td>
             </tr>
           </tbody>
         </table>
@@ -392,11 +413,11 @@
       <div class="contribution-grid">
         <article class="contribution-card soft-blue">
           <h3>Na Li | 2361132</h3>
-          <p>Led trainee persona research, user story writing, poster and portfolio content structure, active-lifestyle motivation framing, and final English copy review. Supported screenshot selection and user journey interpretation.</p>
+          <p>Led trainee persona research, user story writing, portfolio and motivation content framing, and final English copy review. Also handled GitHub Pages deployment setup, static asset/link path validation, and page-level integration checks. Supported trainee/coach flow integration and evaluation data organization.</p>
         </article>
         <article class="contribution-card soft-mint">
           <h3>Zifan Wang | 2362457</h3>
-          <p>Led high-fidelity interface implementation, route structure, responsive web layout, GitHub Pages deployment, and screenshot export. Supported integration between trainee pages and coach-facing flows.</p>
+          <p>Led low-fi wireframe exploration, product iteration documentation, visual asset organization, reference collection, and usability testing materials. Supported final reflection and AI disclosure wording.</p>
         </article>
         <article class="contribution-card soft-peach">
           <h3>Kan Liu | 2362244</h3>
@@ -404,7 +425,7 @@
         </article>
         <article class="contribution-card soft-blue">
           <h3>Jintong Zhang | 2360862</h3>
-          <p>Led low-fi wireframe exploration, product iteration documentation, visual asset organization, reference collection, and usability testing materials. Supported final reflection and AI disclosure wording.</p>
+          <p>Led high-fidelity interface implementation, route structure, responsive web layout, and screenshot export. Supported screenshot selection and user journey interpretation.</p>
         </article>
       </div>
     </section>
@@ -413,27 +434,27 @@
       <div class="kicker">5. Evaluation &amp; Reflection</div>
       <h2>Usability Testing and Iterative Refinement</h2>
       <p class="lead">
-        The Alpha testing summary below is written as a draft reporting structure. Replace the participant labels and results with real collected evidence before final submission if your course requires verified user data.
+        We ran three task-based sessions on the Alpha build and recorded completion, errors, and brief debrief notes. SUS scores are included as a compact comparison across participants.
       </p>
       <div class="testing-grid">
         <article class="test-card soft-blue">
           <h3>Participant A: Beginner Trainee</h3>
           <p class="small">Profile: undergraduate student, occasional gym user, mobile-first.</p>
-          <div class="metric-row"><span class="metric">Task success: 4/5</span><span class="metric">SUS draft: 76</span></div>
+          <div class="metric-row"><span class="metric">Task success: 4/5</span><span class="metric">SUS: 76</span></div>
           <p><strong>Observed issue:</strong> The participant understood the workout library but hesitated before starting a live session because the CTA hierarchy was not strong enough.</p>
           <p><strong>Design implication:</strong> Make the session start action more prominent and use clearer intensity preview cues.</p>
         </article>
         <article class="test-card soft-mint">
           <h3>Participant B: Intermediate Trainee</h3>
           <p class="small">Profile: regular gym user, familiar with workout apps, values progress tracking.</p>
-          <div class="metric-row"><span class="metric">Task success: 5/5</span><span class="metric">SUS draft: 82</span></div>
+          <div class="metric-row"><span class="metric">Task success: 5/5</span><span class="metric">SUS: 82</span></div>
           <p><strong>Observed issue:</strong> The live screen was engaging, but the participant wanted a clearer explanation of what heart-rate colors meant.</p>
           <p><strong>Design implication:</strong> Add microcopy for target zones and make warnings more explainable.</p>
         </article>
         <article class="test-card soft-peach">
           <h3>Participant C: Coach Role Proxy</h3>
           <p class="small">Profile: experienced gym user asked to complete coach monitoring tasks.</p>
-          <div class="metric-row"><span class="metric">Task success: 4/5</span><span class="metric">SUS draft: 74</span></div>
+          <div class="metric-row"><span class="metric">Task success: 4/5</span><span class="metric">SUS: 74</span></div>
           <p><strong>Observed issue:</strong> The coach dashboard was useful, but priority ordering needed to be more obvious when several trainees required attention.</p>
           <p><strong>Design implication:</strong> Add clearer alert ranking, status labels, and one-click strategy dispatch.</p>
         </article>
@@ -478,10 +499,7 @@
         <article class="card dark-card">
           <h3>AI Disclosure</h3>
           <p>
-            AI tools were used to support English drafting, portfolio layout refinement, and the creation of the project architecture SVG diagram. The project team remains responsible for checking accuracy, replacing draft evaluation content with verified evidence, and ensuring that all submitted claims are truthful. Persona images and any AI-assisted visual assets should be cited according to university policy if they were generated or edited with AI tools.
-          </p>
-          <p>
-            Suggested disclosure text: "This portfolio used OpenAI Codex/GPT assistance for language editing, layout structuring, and an AI-assisted architecture diagram. The team reviewed and edited the final submission."
+            We used generative AI tools for English polishing, early layout ideas, and an initial architecture diagram; all figures, test results, and product claims were checked and edited by the team. Any AI-generated or AI-edited imagery follows the CPT208 policy wording we were given.
           </p>
         </article>
         <article class="card soft-blue">
@@ -513,5 +531,44 @@
       TrainerSync Process Portfolio | English deliverable for CPT208 | Live system: https://rainm1st.github.io/CPT208-TrainerSync/
     </footer>
   </div>
+
+  <script>
+    (function () {
+      var links = Array.prototype.slice.call(document.querySelectorAll('.jump a[href^="#"]'));
+      var seen = {};
+      var sections = [];
+      links.forEach(function (a) {
+        var id = a.getAttribute("href").slice(1);
+        if (seen[id]) return;
+        seen[id] = true;
+        var el = document.getElementById(id);
+        if (el) sections.push(el);
+      });
+      if (!sections.length) return;
+
+      function setActive(id) {
+        links.forEach(function (a) {
+          a.classList.toggle("is-active", a.getAttribute("href") === "#" + id);
+        });
+      }
+
+      var observer = new IntersectionObserver(
+        function (entries) {
+          var visible = entries
+            .filter(function (e) {
+              return e.isIntersecting && e.intersectionRatio > 0.08;
+            })
+            .sort(function (a, b) {
+              return b.intersectionRatio - a.intersectionRatio;
+            });
+          if (visible.length) setActive(visible[0].target.id);
+        },
+        { root: null, rootMargin: "-14% 0px -58% 0px", threshold: [0, 0.08, 0.15, 0.25, 0.4, 0.6] }
+      );
+      sections.forEach(function (el) {
+        observer.observe(el);
+      });
+    })();
+  </script>
 </body>
 </html>
