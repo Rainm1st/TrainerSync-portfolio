@@ -50,15 +50,17 @@
       </div>
     </header>
 
-    <nav class="jump" aria-label="Portfolio section navigation">
-      <a href="#architecture"><i data-lucide="layers"></i><span>Architecture</span></a>
-      <a href="#motivation"><i data-lucide="book-open"></i><span>1. Research</span></a>
-      <a href="#requirements"><i data-lucide="clipboard-list"></i><span>2. Requirements</span></a>
-      <a href="#ideation"><i data-lucide="lightbulb"></i><span>3. Ideation</span></a>
-      <a href="#implementation"><i data-lucide="monitor-smartphone"></i><span>4. Implementation</span></a>
-      <a href="#evaluation"><i data-lucide="clipboard-check"></i><span>5. Evaluation</span></a>
-      <a href="#references"><i data-lucide="library"></i><span>References</span></a>
-    </nav>
+    <div class="jump-sticky">
+      <nav class="jump" aria-label="Portfolio section navigation">
+        <a href="#architecture"><i data-lucide="layers"></i><span>Architecture</span></a>
+        <a href="#motivation"><i data-lucide="book-open"></i><span>1. Research</span></a>
+        <a href="#requirements"><i data-lucide="clipboard-list"></i><span>2. Requirements</span></a>
+        <a href="#ideation"><i data-lucide="lightbulb"></i><span>3. Ideation</span></a>
+        <a href="#implementation"><i data-lucide="monitor-smartphone"></i><span>4. Implementation</span></a>
+        <a href="#evaluation"><i data-lucide="clipboard-check"></i><span>5. Evaluation</span></a>
+        <a href="#references"><i data-lucide="library"></i><span>References</span></a>
+      </nav>
+    </div>
 
     <section class="section" id="architecture">
       <div class="kicker">Project Overview</div>
@@ -274,13 +276,12 @@
       </p>
       <div class="grid-3 grid-3--req">
         <article class="card soft-blue req-deep-card">
-          <h3>FR1 · Exercise discovery &amp; motion demos</h3>
+          <h3>FR1 · Smart exercise filtering &amp; motion demos</h3>
           <div class="req-objective-slot">
-            <p><strong>Objective:</strong> Before a working set, a trainee can narrow the exercise library with structured filters and open a detail view that explains form with a demo asset.</p>
-          </div>
-          <div class="req-thumbs req-thumbs--2">
-            <img src="./assets/images/app/f2.png" alt="Library screen illustrating FR1 filters" loading="lazy" />
-            <img src="./assets/images/app/f3.png" alt="Exercise detail with demo media for FR1" loading="lazy" />
+            <p>
+              <strong>Objective:</strong> Trainees narrow the library by combining structured filters—for example selecting <em>chest</em> and <em>cable station</em>—so the list surfaces only matching movements.
+              Each exercise ships with a still frame or looping GIF that shows the intended bar path and how force should feel, so correct execution is understandable at a glance before the working set.
+            </p>
           </div>
           <details class="req-fold">
             <summary class="req-fold-summary">
@@ -290,28 +291,27 @@
             <div class="req-fold-body">
               <h4 class="req-fold-h">Behaviours &amp; data rules</h4>
               <ul class="req-list tight">
-                <li>Combine at least two independent filter dimensions, e.g. muscle group plus equipment, with results updating without full page reload in the prototype.</li>
-                <li>Exercise detail presents movement intent, steps or coaching cues, and a still image or looping GIF mock.</li>
-                <li>Empty states explain how to widen filters; the UI never fails silently when no items match.</li>
-                <li>Demo media sits inside the detail surface so the trainee does not lose navigation context.</li>
+                <li>At least two independent filter dimensions (e.g. muscle group + equipment type) can be combined; results refresh in the same view without a full page reload in the HTML prototype.</li>
+                <li>Exercise detail pairs coaching cues with a still mock or looping GIF that illustrates trajectory and bracing—not generic stock imagery unrelated to the movement.</li>
+                <li>Empty states explain how to relax filters; the UI never fails silently when no exercises match the current combination.</li>
+                <li>Demo media stays inside the detail surface so navigation context (library → detail) is preserved.</li>
               </ul>
               <h4 class="req-fold-h">Acceptance checks</h4>
               <ul class="req-list tight">
-                <li>Task: “Find a cable chest movement and confirm you understand the bar path” completable without external search.</li>
-                <li>All library controls reachable by keyboard in the HTML build; focus order matches visual order.</li>
-                <li>Touch targets on filter chips meet min. 44px equivalent on mobile breakpoints.</li>
+                <li>Usability task: “Find a cable chest pattern and state the bar path you will use” completable without leaving TrainerSync.</li>
+                <li>Library chips and detail actions remain keyboard-operable with focus order matching visual order.</li>
+                <li>Touch targets for filter chips meet a ≥44px equivalent on the mobile breakpoint used in CPT208 demos.</li>
               </ul>
             </div>
           </details>
         </article>
         <article class="card soft-mint req-deep-card">
-          <h3>FR2 · Live session telemetry &amp; in-flow interventions</h3>
+          <h3>FR2 · Live telemetry &amp; in-session coaching cues</h3>
           <div class="req-objective-slot">
-            <p><strong>Objective:</strong> While training, the trainee sees a monitoring panel with mocked heart-rate trends, set/rep counters, and timely textual cues that support pacing—without claiming clinical diagnosis.</p>
-          </div>
-          <div class="req-thumbs req-thumbs--2">
-            <img src="./assets/images/app/f4.png" alt="Live training telemetry for FR2" loading="lazy" />
-            <img src="./assets/images/app/f3.png" alt="Exercise detail supporting pre-set cues for FR2" loading="lazy" />
+            <p>
+              <strong>Objective:</strong> During a workout the app behaves like a digital monitoring panel: it tracks heart-rate trends (mocked in the prototype), current set/rep counts, and overall session progress.
+              When the trainee enters a scripted exertion phase or crosses a configured heart-rate band, the UI surfaces short, concrete rhythm guidance—for example a breathing cue while locking out a heavy bench press—to help pacing and bracing. Copy remains motivational and <strong>non-diagnostic</strong>; it never implies clinical judgement.
+            </p>
           </div>
           <details class="req-fold">
             <summary class="req-fold-summary">
@@ -321,29 +321,27 @@
             <div class="req-fold-body">
               <h4 class="req-fold-h">Behaviours &amp; data rules</h4>
               <ul class="req-list tight">
-                <li>Live view polls or animates mock telemetry on a fixed cadence so reviewers can demo “moving state.”</li>
-                <li>Threshold crossings trigger contextual suggestions such as breathing rhythm or tempo reminders, written by the team, not auto-medical advice.</li>
-                <li>Pause / end-session controls remain persistent; critical feedback cannot obscure emergency exits.</li>
-                <li>Copy carries a non-diagnostic disclaimer string wherever numeric vitals appear.</li>
+                <li>The live view animates or polls mock telemetry on a fixed cadence so reviewers can demonstrate “moving state” during walkthroughs.</li>
+                <li>Threshold or phase crossings trigger team-authored suggestions (breathing, tempo, brace reminders); wording avoids medical claims or personalised diagnoses.</li>
+                <li>Pause and end-session controls stay visible; coaching overlays must not hide emergency exits.</li>
+                <li>A short non-diagnostic disclaimer appears wherever numeric vitals are shown, aligned with Active Lifestyles ethics review.</li>
               </ul>
               <h4 class="req-fold-h">Acceptance checks</h4>
               <ul class="req-list tight">
-                <li>Observers can tell green / amber / alert bands apart without relying on colour alone.</li>
-                <li>Participant testing tasks include starting and stopping a session within two tries.</li>
-                <li><code>prefers-reduced-motion</code> disables ornamental pulses while preserving numeric updates.</li>
+                <li>Observers can distinguish green / amber / alert bands using text or iconography, not colour alone.</li>
+                <li>Test scripts require starting, pausing, and ending a session within two attempts on first exposure.</li>
+                <li><code>prefers-reduced-motion</code> suppresses ornamental pulses while numeric readouts continue to update.</li>
               </ul>
             </div>
           </details>
         </article>
         <article class="card soft-peach req-deep-card">
-          <h3>FR3 · Location layer, social reactions &amp; coach oversight</h3>
+          <h3>FR3 · Local map presence, quick reactions &amp; coach remote oversight</h3>
           <div class="req-objective-slot">
-            <p><strong>Objective:</strong> Optional location surfaces show proximate trainers or peers; lightweight reactions foster camaraderie. Bound coaches gain read-only insight into a trainee’s live panel for remote guidance.</p>
-          </div>
-          <div class="req-thumbs req-thumbs--3">
-            <img src="./assets/images/app/f5.png" alt="Map surface for FR3" loading="lazy" />
-            <img src="./assets/images/app/f6.png" alt="Companion strip for FR3" loading="lazy" />
-            <img src="./assets/images/app/f8.png" alt="Coach dashboard for FR3 oversight" loading="lazy" />
+            <p>
+              <strong>Objective:</strong> With trainee-consented location enabled, the map highlights nearby coaches or gym partners so discovery stays local and opt-in.
+              Trainees can exchange ultra-light reactions (emoji such as 🔥 or 💪) without opening a full chat thread. After an <em>explicit bind</em>, the coach handset can mirror the trainee’s live heart-rate and progress panel across distance for remote monitoring—complementing, not replacing, in-person supervision.
+            </p>
           </div>
           <details class="req-fold">
             <summary class="req-fold-summary">
@@ -353,16 +351,16 @@
             <div class="req-fold-body">
               <h4 class="req-fold-h">Behaviours &amp; data rules</h4>
               <ul class="req-list tight">
-                <li>Map and companion screens degrade gracefully when GPS is unavailable; mock pins are acceptable.</li>
-                <li>Emoji / reaction gestures send in ≤2 taps and never force an always-on chat thread.</li>
-                <li>Coach binding is explicit in UI copy; unbinding clears remote telemetry previews.</li>
-                <li>Coach dashboard aggregates trainees with priority signals: alerts, stale heart-rate, stalled sets.</li>
+                <li>Map and companion strips degrade gracefully when GPS is denied; mocked pins remain demo-ready for reviewers.</li>
+                <li>Emoji reactions send in ≤2 taps, stay optional, and never spawn a mandatory always-on chat.</li>
+                <li>Binding language states what the coach may view; revoking binding clears mirrored telemetry immediately in the prototype state machine.</li>
+                <li>The coach dashboard ranks bound trainees using priority signals (alerts, stale vitals, stalled sets) so attention ordering is testable.</li>
               </ul>
               <h4 class="req-fold-h">Acceptance checks</h4>
               <ul class="req-list tight">
-                <li>Coach usability tasks cover monitoring three mocked trainees and identifying who needs attention first.</li>
-                <li>Trainee tasks confirm reactions do not block workout timers.</li>
-                <li>Privacy messaging states what the coach can see during binding.</li>
+                <li>Coach walkthrough: monitor three mocked trainees and justify who should be contacted first using only dashboard cues.</li>
+                <li>Trainee walkthrough: send a reaction mid-timer without blocking set completion controls.</li>
+                <li>Privacy copy lists every live field mirrored to the coach during an active bind, including heart-rate and progress widgets.</li>
               </ul>
             </div>
           </details>
@@ -379,10 +377,6 @@
           <h3>PH1 · In-session encouragement</h3>
           <div class="req-objective-slot req-objective-slot--playful">
             <p><strong>Design intent:</strong> Motivation is sustained <em>inside</em> the workout, not postponed to a recap. Colour, motion, or microcopy should acknowledge effort without sounding clinical.</p>
-          </div>
-          <div class="req-thumbs req-thumbs--2">
-            <img src="./assets/images/app/f4.png" alt="Live training for PH1" loading="lazy" />
-            <img src="./assets/images/app/f3.png" alt="Exercise detail for PH1 prep cues" loading="lazy" />
           </div>
           <details class="req-fold">
             <summary class="req-fold-summary">
@@ -404,10 +398,6 @@
           <div class="req-objective-slot req-objective-slot--playful">
             <p><strong>Design intent:</strong> Playfulness spreads through low-friction signals—emoji, cheers, or proximity context—that do not derail focus or expose unsafe oversharing.</p>
           </div>
-          <div class="req-thumbs req-thumbs--2">
-            <img src="./assets/images/app/f5.png" alt="Map for PH2" loading="lazy" />
-            <img src="./assets/images/app/f6.png" alt="Companion for PH2" loading="lazy" />
-          </div>
           <details class="req-fold">
             <summary class="req-fold-summary">
               <i data-lucide="chevron-right" class="req-fold-chevron"></i>
@@ -427,11 +417,6 @@
           <h3>PH3 · Closed progress loop</h3>
           <div class="req-objective-slot req-objective-slot--playful">
             <p><strong>Design intent:</strong> Every finished session produces an emotionally legible “what happened” moment—streaks, stats, or recap chips—so trainees feel closure and coaches get traceability.</p>
-          </div>
-          <div class="req-thumbs req-thumbs--3">
-            <img src="./assets/images/app/f1.png" alt="Home for PH3 loop entry" loading="lazy" />
-            <img src="./assets/images/app/f7.png" alt="Profile for PH3 closure" loading="lazy" />
-            <img src="./assets/images/app/f9.png" alt="Coach trainee list for PH3 oversight" loading="lazy" />
           </div>
           <details class="req-fold">
             <summary class="req-fold-summary">
