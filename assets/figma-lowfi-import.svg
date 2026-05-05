@@ -1,0 +1,222 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1500" viewBox="0 0 2400 1500">
+  <defs>
+    <style>
+      .title{font:700 34px Arial,sans-serif;fill:#172033}
+      .sub{font:400 15px Arial,sans-serif;fill:#667085}
+      .screen-title{font:700 17px Arial,sans-serif;fill:#172033}
+      .label{font:700 12px Arial,sans-serif;fill:#2f54c6}
+      .body{font:400 12px Arial,sans-serif;fill:#667085}
+      .btn{font:700 12px Arial,sans-serif;fill:#fff}
+      .btn2{font:700 12px Arial,sans-serif;fill:#172033}
+      .small{font:400 10px Arial,sans-serif;fill:#667085}
+      .frame{fill:#f8fbff;stroke:#d5dbe8;stroke-width:2}
+      .card{fill:#fff;stroke:#d5dbe8;stroke-width:1.5}
+      .soft{fill:#eef4ff;stroke:#d5dbe8;stroke-width:1.5}
+      .coach{fill:#f2f0ff;stroke:#d5dbe8;stroke-width:1.5}
+      .warm{fill:#fff4ea;stroke:#d5dbe8;stroke-width:1.5}
+      .button{fill:#2f54c6}
+      .button2{fill:#fff;stroke:#d5dbe8;stroke-width:1.5}
+      .arrow{stroke:#2f54c6;stroke-width:2;fill:none;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#2f54c6"/>
+    </marker>
+  </defs>
+
+  <rect width="2400" height="1500" fill="#f5f7fb"/>
+  <text x="60" y="60" class="title">TrainerSync Low-Fidelity Prototype</text>
+  <text x="60" y="88" class="sub">Formal English low-fi board for portfolio use. Import this SVG into Figma if MCP writing is rate-limited.</text>
+
+  <text x="60" y="135" class="label">TRAINEE FLOW</text>
+  <text x="60" y="890" class="label">COACH FLOW</text>
+
+  <!-- Row 1 -->
+  <g transform="translate(60 170)">
+    <rect class="frame" rx="18" width="260" height="600"/>
+    <text x="20" y="36" class="screen-title">01 Sign In</text>
+    <text x="20" y="60" class="body">Single access point for both roles.</text>
+    <rect x="20" y="92" width="220" height="38" rx="8" class="card"/>
+    <text x="34" y="116" class="body">Role: Trainee / Coach</text>
+    <rect x="20" y="146" width="220" height="42" rx="8" class="card"/>
+    <text x="34" y="172" class="body">Username</text>
+    <rect x="20" y="202" width="220" height="42" rx="8" class="card"/>
+    <text x="34" y="228" class="body">Password</text>
+    <rect x="20" y="270" width="220" height="96" rx="10" class="soft"/>
+    <text x="34" y="294" class="screen-title">Access Logic</text>
+    <text x="34" y="320" class="body">Routes users by role.</text>
+    <text x="34" y="342" class="body">Trainees may register.</text>
+    <rect x="20" y="404" width="220" height="42" rx="8" class="button"/>
+    <text x="54" y="430" class="btn">Continue as Trainee</text>
+    <rect x="20" y="458" width="220" height="42" rx="8" class="button2"/>
+    <text x="62" y="484" class="btn2">Continue as Coach</text>
+    <rect x="20" y="512" width="220" height="42" rx="8" class="button2"/>
+    <text x="62" y="538" class="btn2">Open Registration</text>
+  </g>
+
+  <g transform="translate(380 170)">
+    <rect class="frame" rx="18" width="260" height="600"/>
+    <text x="20" y="36" class="screen-title">02 Create Account</text>
+    <text x="20" y="60" class="body">Trainee registration flow.</text>
+    <rect x="20" y="92" width="220" height="42" rx="8" class="card"/>
+    <text x="34" y="118" class="body">Username</text>
+    <rect x="20" y="148" width="220" height="42" rx="8" class="card"/>
+    <text x="34" y="174" class="body">Password</text>
+    <rect x="20" y="204" width="220" height="42" rx="8" class="card"/>
+    <text x="34" y="230" class="body">Confirm Password</text>
+    <rect x="20" y="274" width="220" height="112" rx="10" class="warm"/>
+    <text x="34" y="298" class="screen-title">Registration Notes</text>
+    <text x="34" y="324" class="body">Validates empty input.</text>
+    <text x="34" y="346" class="body">Checks password mismatch.</text>
+    <rect x="20" y="426" width="220" height="42" rx="8" class="button"/>
+    <text x="78" y="452" class="btn">Create Account</text>
+    <rect x="20" y="480" width="220" height="42" rx="8" class="button2"/>
+    <text x="74" y="506" class="btn2">Return to Sign In</text>
+  </g>
+
+  <g transform="translate(700 170)">
+    <rect class="frame" rx="18" width="260" height="600"/>
+    <text x="20" y="36" class="screen-title">03 Trainee Dashboard</text>
+    <text x="20" y="60" class="body">Live status and linked coach support.</text>
+    <rect x="20" y="92" width="220" height="94" rx="10" class="soft"/>
+    <text x="34" y="116" class="screen-title">Live Status</text>
+    <text x="34" y="142" class="body">Heart rate, zone, energy.</text>
+    <rect x="20" y="204" width="220" height="94" rx="10" class="warm"/>
+    <text x="34" y="228" class="screen-title">Stage Controls</text>
+    <text x="34" y="254" class="body">Warm-up, workout, recovery.</text>
+    <rect x="20" y="316" width="220" height="94" rx="10" class="coach"/>
+    <text x="34" y="340" class="screen-title">Linked Coaches</text>
+    <text x="34" y="366" class="body">Remote supervision status.</text>
+    <rect x="20" y="442" width="220" height="34" rx="8" class="button"/>
+    <text x="62" y="464" class="btn">Browse Library</text>
+    <rect x="20" y="488" width="220" height="34" rx="8" class="button2"/>
+    <text x="62" y="510" class="btn2">Open Live Monitor</text>
+    <rect x="20" y="534" width="220" height="34" rx="8" class="button2"/>
+    <text x="72" y="556" class="btn2">Open Map</text>
+  </g>
+
+  <g transform="translate(1020 170)">
+    <rect class="frame" rx="18" width="260" height="600"/>
+    <text x="20" y="36" class="screen-title">04 Exercise Library</text>
+    <text x="20" y="60" class="body">Multi-condition filtering.</text>
+    <rect x="20" y="92" width="220" height="120" rx="10" class="card"/>
+    <text x="34" y="116" class="screen-title">Filters</text>
+    <text x="34" y="142" class="body">Muscle group</text>
+    <text x="34" y="164" class="body">Equipment type</text>
+    <text x="34" y="186" class="body">Movement target</text>
+    <rect x="20" y="238" width="220" height="58" rx="10" class="card"/>
+    <text x="34" y="264" class="body">Cable Chest Fly</text>
+    <rect x="20" y="312" width="220" height="58" rx="10" class="card"/>
+    <text x="34" y="338" class="body">Lat Pulldown</text>
+    <rect x="20" y="442" width="220" height="42" rx="8" class="button"/>
+    <text x="58" y="468" class="btn">Open Exercise Detail</text>
+    <rect x="20" y="496" width="220" height="42" rx="8" class="button2"/>
+    <text x="70" y="522" class="btn2">Return Dashboard</text>
+  </g>
+
+  <g transform="translate(1340 170)">
+    <rect class="frame" rx="18" width="260" height="600"/>
+    <text x="20" y="36" class="screen-title">05 Motion Guide</text>
+    <text x="20" y="60" class="body">Image or GIF demonstration.</text>
+    <rect x="20" y="92" width="220" height="172" rx="10" class="soft"/>
+    <text x="64" y="180" class="body">Media Placeholder</text>
+    <rect x="20" y="292" width="220" height="112" rx="10" class="coach"/>
+    <text x="34" y="316" class="screen-title">Instruction Summary</text>
+    <text x="34" y="342" class="body">Movement path</text>
+    <text x="34" y="364" class="body">Force direction</text>
+    <rect x="20" y="442" width="220" height="42" rx="8" class="button"/>
+    <text x="54" y="468" class="btn">Begin Live Session</text>
+    <rect x="20" y="496" width="220" height="42" rx="8" class="button2"/>
+    <text x="60" y="522" class="btn2">Return to Library</text>
+  </g>
+
+  <g transform="translate(1660 170)">
+    <rect class="frame" rx="18" width="260" height="600"/>
+    <text x="20" y="36" class="screen-title">06 Live Monitor</text>
+    <text x="20" y="60" class="body">Metrics and intervention prompts.</text>
+    <rect x="20" y="92" width="220" height="104" rx="10" class="soft"/>
+    <text x="34" y="116" class="screen-title">Live Metrics</text>
+    <text x="34" y="142" class="body">Heart rate, set, progress.</text>
+    <rect x="20" y="222" width="220" height="126" rx="10" class="warm"/>
+    <text x="34" y="246" class="screen-title">Breathing Intervention</text>
+    <text x="34" y="272" class="body">Exhale while pushing.</text>
+    <text x="34" y="294" class="body">Maintain rhythm and stability.</text>
+    <rect x="20" y="442" width="220" height="42" rx="8" class="button"/>
+    <text x="54" y="468" class="btn">Open Summary</text>
+    <rect x="20" y="496" width="220" height="42" rx="8" class="button2"/>
+    <text x="70" y="522" class="btn2">Return Dashboard</text>
+  </g>
+
+  <g transform="translate(1980 170)">
+    <rect class="frame" rx="18" width="260" height="600"/>
+    <text x="20" y="36" class="screen-title">07 Summary</text>
+    <text x="20" y="60" class="body">Rewards and reflection.</text>
+    <rect x="20" y="92" width="220" height="120" rx="10" class="soft"/>
+    <text x="34" y="116" class="screen-title">Reward Layer</text>
+    <text x="34" y="142" class="body">Badge wall</text>
+    <text x="34" y="164" class="body">Daily challenge progress</text>
+    <rect x="20" y="238" width="220" height="112" rx="10" class="coach"/>
+    <text x="34" y="262" class="screen-title">Reflection Prompt</text>
+    <text x="34" y="288" class="body">Review completion and quality.</text>
+    <rect x="20" y="442" width="220" height="42" rx="8" class="button"/>
+    <text x="60" y="468" class="btn">Open Social Layer</text>
+    <rect x="20" y="496" width="220" height="42" rx="8" class="button2"/>
+    <text x="70" y="522" class="btn2">Return Dashboard</text>
+  </g>
+
+  <g transform="translate(60 920)">
+    <rect class="frame" rx="18" width="540" height="360"/>
+    <text x="24" y="42" class="screen-title">10 Coach Monitoring Dashboard</text>
+    <text x="24" y="68" class="body">Remote supervision, trainee selection, and priority overview.</text>
+    <rect x="24" y="100" width="230" height="108" rx="10" class="coach"/>
+    <text x="42" y="128" class="screen-title">Selection and Binding</text>
+    <text x="42" y="154" class="body">Select, bind, refresh.</text>
+    <rect x="278" y="100" width="230" height="108" rx="10" class="warm"/>
+    <text x="296" y="128" class="screen-title">Priority View</text>
+    <text x="296" y="154" class="body">Who needs help first?</text>
+    <rect x="24" y="238" width="484" height="42" rx="8" class="button"/>
+    <text x="198" y="264" class="btn">Open Trainee Detail</text>
+    <rect x="24" y="292" width="484" height="42" rx="8" class="button2"/>
+    <text x="190" y="318" class="btn2">Open Strategy Panel</text>
+  </g>
+
+  <g transform="translate(660 920)">
+    <rect class="frame" rx="18" width="540" height="360"/>
+    <text x="24" y="42" class="screen-title">11 Trainee Detail Review</text>
+    <text x="24" y="68" class="body">Focused view of one trainee during an active session.</text>
+    <rect x="24" y="100" width="230" height="108" rx="10" class="soft"/>
+    <text x="42" y="128" class="screen-title">Live Snapshot</text>
+    <text x="42" y="154" class="body">HR, set count, progress.</text>
+    <rect x="278" y="100" width="230" height="108" rx="10" class="coach"/>
+    <text x="296" y="128" class="screen-title">Coaching Interpretation</text>
+    <text x="296" y="154" class="body">Pace or recovery decision.</text>
+    <rect x="24" y="238" width="484" height="42" rx="8" class="button"/>
+    <text x="194" y="264" class="btn">Open Strategy Dispatch</text>
+    <rect x="24" y="292" width="484" height="42" rx="8" class="button2"/>
+    <text x="172" y="318" class="btn2">Return to Monitoring Dashboard</text>
+  </g>
+
+  <g transform="translate(1260 920)">
+    <rect class="frame" rx="18" width="540" height="360"/>
+    <text x="24" y="42" class="screen-title">12 Strategy Dispatch and Log</text>
+    <text x="24" y="68" class="body">Send interventions and review communication history.</text>
+    <rect x="24" y="104" width="230" height="42" rx="8" class="button"/>
+    <text x="62" y="130" class="btn">Increase Pace</text>
+    <rect x="278" y="104" width="230" height="42" rx="8" class="button2"/>
+    <text x="334" y="130" class="btn2">Recovery Mode</text>
+    <rect x="24" y="180" width="484" height="88" rx="10" class="coach"/>
+    <text x="42" y="208" class="screen-title">Message Log</text>
+    <text x="42" y="234" class="body">Records strategies and system updates.</text>
+    <rect x="24" y="292" width="484" height="42" rx="8" class="button2"/>
+    <text x="188" y="318" class="btn2">Return to Dashboard</text>
+  </g>
+
+  <path class="arrow" d="M320 470 H375"/>
+  <path class="arrow" d="M640 470 H695"/>
+  <path class="arrow" d="M960 470 H1015"/>
+  <path class="arrow" d="M1280 470 H1335"/>
+  <path class="arrow" d="M1600 470 H1655"/>
+  <path class="arrow" d="M1920 470 H1975"/>
+  <path class="arrow" d="M320 512 C420 820 170 870 300 920"/>
+  <path class="arrow" d="M600 1100 H655"/>
+  <path class="arrow" d="M1200 1100 H1255"/>
+</svg>
