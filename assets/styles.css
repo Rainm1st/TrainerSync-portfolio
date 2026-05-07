@@ -566,6 +566,148 @@ img { max-width: 100%; height: auto; display: block; }
   gap: 12px;
   align-items: start;
 }
+/* Click-to-expand questionnaire blocks: screenshots in aligned flex tiles (last row centred) */
+.survey-accordion {
+  margin: 10px 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: visible;
+  background: rgba(8, 11, 18, 0.92);
+  scroll-margin-top: 5.5rem;
+  transition: box-shadow 0.35s ease, border-color 0.25s ease;
+}
+.survey-accordion[open] {
+  border-color: rgba(200, 245, 66, 0.2);
+  box-shadow:
+    0 0 0 1px rgba(200, 245, 66, 0.08),
+    0 16px 48px rgba(0, 0, 0, 0.42);
+}
+.survey-accordion__summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: #e2e8f0;
+  list-style: none;
+}
+.survey-accordion__summary::-webkit-details-marker {
+  display: none;
+}
+.survey-accordion__chev {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  stroke: var(--lime);
+  transition: transform 0.2s ease;
+}
+.survey-accordion[open] .survey-accordion__chev {
+  transform: rotate(90deg);
+}
+.survey-accordion__body {
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid var(--line);
+  background: linear-gradient(180deg, #0a0e16 0%, #070a10 40%, #060910 100%);
+}
+/* Screenshot grids: flex + wrap so the last row (e.g. 2 tiles) stays centred; each tile is a “card” for alignment */
+.survey-accordion__gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: flex-start;
+  gap: 14px;
+  width: 100%;
+  margin: 0;
+  padding: 16px 14px 32px;
+  box-sizing: border-box;
+}
+.survey-accordion__gallery img {
+  flex: 1 1 calc(33.333% - 12px);
+  min-width: 0;
+  width: auto;
+  max-width: calc((100% - 28px) / 3);
+  height: auto;
+  max-height: min(34vh, 300px);
+  display: block;
+  margin: 0;
+  padding: 10px 12px;
+  object-fit: contain;
+  object-position: center center;
+  background: linear-gradient(165deg, rgba(26, 34, 50, 0.92) 0%, rgba(12, 16, 26, 0.98) 100%);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 12px;
+  box-shadow:
+    0 2px 0 rgba(0, 0, 0, 0.2),
+    0 10px 28px rgba(0, 0, 0, 0.35);
+  transition:
+    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.28s ease,
+    border-color 0.22s ease;
+}
+.survey-accordion__gallery img:hover {
+  transform: translateY(-4px);
+  border-color: rgba(200, 245, 66, 0.32);
+  box-shadow:
+    0 4px 0 rgba(0, 0, 0, 0.15),
+    0 18px 40px rgba(0, 0, 0, 0.48),
+    0 0 24px rgba(200, 245, 66, 0.06);
+}
+@keyframes survey-tile-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+details.survey-accordion[open] .survey-accordion__gallery img {
+  animation: survey-tile-reveal 0.48s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+details.survey-accordion[open] .survey-accordion__gallery img:nth-child(1) {
+  animation-delay: 0.04s;
+}
+details.survey-accordion[open] .survey-accordion__gallery img:nth-child(2) {
+  animation-delay: 0.1s;
+}
+details.survey-accordion[open] .survey-accordion__gallery img:nth-child(3) {
+  animation-delay: 0.16s;
+}
+details.survey-accordion[open] .survey-accordion__gallery img:nth-child(4) {
+  animation-delay: 0.22s;
+}
+details.survey-accordion[open] .survey-accordion__gallery img:nth-child(5) {
+  animation-delay: 0.28s;
+}
+details.survey-accordion[open] .survey-accordion__gallery img:nth-child(6) {
+  animation-delay: 0.34s;
+}
+@media (prefers-reduced-motion: reduce) {
+  details.survey-accordion[open] .survey-accordion__gallery img {
+    animation: none;
+  }
+  .survey-accordion__gallery img:hover {
+    transform: none;
+  }
+}
+@media (max-width: 900px) {
+  .survey-accordion__gallery img {
+    flex: 1 1 calc(50% - 10px);
+    max-width: calc(50% - 10px);
+    max-height: min(32vh, 280px);
+  }
+}
+@media (max-width: 520px) {
+  .survey-accordion__gallery img {
+    flex: 1 1 100%;
+    max-width: 100%;
+    max-height: min(40vh, 340px);
+  }
+}
 .evolution-grid { grid-template-columns: 1fr 1fr 1.1fr; align-items: start; }
 .contribution-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .testing-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
