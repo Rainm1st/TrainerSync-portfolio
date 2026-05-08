@@ -1,4 +1,4 @@
-﻿# TrainerSync Process Portfolio
+# TrainerSync Process Portfolio
 
 This folder contains the standalone English process portfolio for the CPT208 TrainerSync project. It can be uploaded directly to GitHub Pages or committed as a static site.
 
