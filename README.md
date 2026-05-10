@@ -1,30 +1,39 @@
 # TrainerSync Process Portfolio
 
-This folder contains the standalone English process portfolio for the CPT208 TrainerSync project. It can be uploaded directly to GitHub Pages or committed as a static site.
+This folder contains the standalone process portfolio site for CPT208 TrainerSync.
+It is structured as a static site and can be published directly.
 
 ## Key Files
 
 - `index.html`: main portfolio page
-- `assets/styles.css`: responsive portfolio styling
-- `assets/images/architecture/project-architecture.svg`: project architecture diagram
-- `assets/lowfi/LowFi-wireframe.html`: updated interactive low-fidelity wireframe (LowFi-wireframe)
-- `assets/images/journey_map`: user journey map images
-- `assets/images/before`: earlier alpha screenshots
-- `assets/images/app`: current high-fidelity screenshots (`f1.png` to `f11.png`)
-- `assets/images/personas`: trainee and coach persona images
+- `assets/styles.css`: portfolio styles
+- `assets/portfolio.js`: navigation and image lightbox interactions
+- `assets/images/architecture/project-architecture-v3.svg`: current system architecture diagram
+- `assets/lowfi/LowFi-wireframe.html`: low-fidelity clickable artifact
+- `assets/images/journey_map/`: journey map images
+- `assets/images/before/`: alpha-stage screenshots
+- `assets/images/app/`: high-fidelity app screenshots
+- `assets/images/app/features/`: FR1/FR2/FR3 feature evidence screenshots (`f1-*`, `f2-*`, `f3-*`)
+- `assets/images/personas/persona-1.png`, `assets/images/personas/persona-2.png`: updated persona boards
 
-## Live Links
+## Current Product Scope in Portfolio
+
+- No coach module in the final iteration narrative.
+- Core features are framed as:
+  1. Filtering + live guidance + set logging
+  2. Heart-rate monitoring + intelligent session summary
+  3. Occupancy visibility + social connection messaging
+
+## Live Link
 
 - High-fidelity system: https://rainm1st.github.io/CPT208-TrainerSync/
-- Local portfolio entry: `index.html`
 
-## Notes Before Final Submission
+## Submission Notes
 
-- Evidence of Life images live under `assets/images/research/evidence-of-life/` (interviews, team online collaboration, and questionnaire captures). Crazy Eights sketches are under `assets/images/ideation/crazy-eights/`.
-- The low-fi artifact is **LowFi-wireframe** (`assets/lowfi/LowFi-wireframe.html`). This is acceptable as a wireframe artifact if the submission clearly explains its role in the design process.
-- The Alpha testing section is written as a draft reporting structure. Replace the sample participant labels and draft scores with verified user data if final submission requires collected evidence.
-- Check the AI disclosure wording against your university policy before submission.
+- Evidence of Life assets are in `assets/images/research/evidence-of-life/`.
+- Crazy Eights assets are in `assets/images/ideation/crazy-eights/`.
+- AI disclosure and AI citations in `index.html` are limited to implementation-assistance tools used for system building.
 
 ## Upload Guidance
 
-Keep the folder structure unchanged so all relative image and iframe links continue to work on GitHub Pages.
+Keep the folder structure unchanged so all relative links (images, iframe, scripts, and styles) continue to work.

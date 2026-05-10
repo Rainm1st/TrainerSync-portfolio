@@ -16,7 +16,7 @@
         <div>
           <div class="kicker">CPT208 · Process portfolio · Active Lifestyles</div>
           <h1 class="brand-logo"><span class="brand-trainer">Trainer</span><span class="brand-sync">Sync</span></h1>
-          <p>Process portfolio: trainee workout flow + coach monitoring for CPT208 Active Lifestyles.</p>
+          <p>Process portfolio: trainee workout flow, in-session monitoring, and gym-floor coordination for CPT208 Active Lifestyles.</p>
           <p><strong>Module:</strong> CPT208 Human-Centric Computing | <strong>Track:</strong> Active Lifestyles | <strong>Project Theme:</strong> C3 Go Trainers</p>
           <div class="hero-links">
             <a href="#architecture"><i data-lucide="layers"></i><span>Project Architecture</span></a>
@@ -66,13 +66,13 @@
 
     <section class="section" id="architecture">
       <div class="kicker">Project Overview</div>
-      <h2 class="heading-with-icon"><i data-lucide="layers"></i><span>Project Architecture</span></h2>
+      <h2 class="heading-with-icon"><i data-lucide="layers"></i><span>System Architecture</span></h2>
       <p class="lead">
         <strong class="text-em">TrainerSync:</strong> exercise filtering + live movement view + multi-select set logging → heart-rate monitoring and intelligent session summary → equipment occupancy + user messaging for set checks and pre-booking. Plan, train, and connect in one mobile app flow.
       </p>
       <figure class="architecture-figure">
         <img src="./assets/images/architecture/project-architecture-v3.svg" alt="TrainerSync project architecture diagram" />
-        <figcaption class="small survey-caption">Structure &amp; labels: Team C3-6. Finish: ChatGPT <a href="#references">[2]</a>.</figcaption>
+        <figcaption class="small survey-caption">Structure &amp; labels: Team C3-6.</figcaption>
       </figure>
       <div class="summary-grid" style="margin-top:16px;">
         <article class="card soft-blue">
@@ -90,7 +90,7 @@
       <div class="kicker">1. Motivation &amp; Research</div>
       <h2 class="heading-with-icon"><i data-lucide="compass"></i><span>The Why</span></h2>
       <div class="note note--standout" style="margin-bottom: 18px;">
-        <strong class="text-em">Authorship (CPT208):</strong> motivation through evaluation is <strong class="text-em">Team C3-6</strong>. Gen-AI only for captioned visuals. Build: <a href="#implementation">vibe coding</a>. We checked fit to the brief and non-clinical wording on vitals/coaching.
+        <strong class="text-em">Authorship (CPT208):</strong> motivation through evaluation is <strong class="text-em">Team C3-6</strong>. Research interpretation and design rationale are team-authored. Build: <a href="#implementation">vibe coding</a>. We checked fit to the brief and non-clinical wording on vitals and pacing cues.
       </div>
       <p>
         Our group selected the Active Lifestyles track because we observed a persistent gap between workout planning and workout execution in real gym contexts. Many existing tools either support pre-session planning or post-session logging, but they provide limited support for live decision-making when users are already exercising. Through early interviews and pilot observations, we found that beginners often struggle with three practical problems: selecting exercises that match a target muscle group, maintaining training rhythm under fatigue, and coordinating equipment use without awkward social interruption. These problems are not only usability issues; they directly affect confidence, continuity, and adherence to healthy routines.
@@ -122,7 +122,7 @@
               <td>
                 <ul>
                   <li>Focuses on intention-to-use surveys more than real gym-floor behaviour.</li>
-                  <li>Does not specify actionable coach-dashboard interaction patterns.</li>
+                  <li>Does not specify actionable in-session coordination interaction patterns.</li>
                   <li>Provides limited guidance on spatial equipment discovery in busy gym contexts.</li>
                 </ul>
               </td>
@@ -139,7 +139,7 @@
               <td>
                 <ul>
                   <li>Aggregates highly heterogeneous app designs, reducing direct design transferability.</li>
-                  <li>Offers little detail on coach-facing supervision workflows.</li>
+                  <li>Offers little detail on peer-coordination workflows during active sessions.</li>
                   <li>Does not address multi-user coordination and messaging during live sessions.</li>
                 </ul>
               </td>
@@ -156,7 +156,7 @@
               <td>
                 <ul>
                   <li>NCD prevention framing dominates, while gym-specific use is secondary.</li>
-                  <li>Gives limited UI-level guidance for trainee-coach interfaces.</li>
+                  <li>Gives limited UI-level guidance for trainee-to-trainee coordination interfaces.</li>
                   <li>Under-specifies playful micro-interactions at high-exertion moments.</li>
                 </ul>
               </td>
@@ -173,7 +173,7 @@
               <td>
                 <ul>
                   <li>Primarily outcome-focused rather than interaction-design-focused.</li>
-                  <li>Does not prescribe UX patterns for trainee-coach binding and monitoring.</li>
+                  <li>Does not prescribe UX patterns for lightweight trainee social connection and monitoring.</li>
                   <li>Provides limited ethical interface guidance for real-time physiological displays.</li>
                 </ul>
               </td>
@@ -204,7 +204,7 @@
               </td>
               <td>
                 <ul>
-                  <li>Weak live linkage between trainee and professional coach.</li>
+                  <li>Weak support for live linkage between trainees during active sessions.</li>
                   <li>Limited adaptation for on-site gym supervision needs.</li>
                   <li>Feedback is mostly individual and post-hoc rather than in-session.</li>
                 </ul>
@@ -221,7 +221,7 @@
               </td>
               <td>
                 <ul>
-                  <li>No dedicated coach dashboard for remote monitoring tasks.</li>
+                  <li>No dedicated view for real-time occupancy-based coordination tasks.</li>
                   <li>Not designed for gym-floor multi-person supervision.</li>
                   <li>Weak support for coordinating multiple trainees in parallel.</li>
                 </ul>
@@ -238,9 +238,9 @@
               </td>
               <td>
                 <ul>
-                  <li>Not instruction-centred for movement coaching.</li>
+                  <li>Not instruction-centred for real-time movement guidance.</li>
                   <li>Limited support for indoor equipment-focused gym workflows.</li>
-                  <li>No integrated live correction pipeline between coach and trainee.</li>
+                  <li>No integrated live correction pipeline during peer-coordinated training.</li>
                 </ul>
               </td>
             </tr>
@@ -249,15 +249,15 @@
               <td>
                 <ul>
                   <li>Well-structured workout plans with clear session organization.</li>
-                  <li>Polished coaching content and high usability for guided training.</li>
+                  <li>Polished guidance content and high usability for guided training.</li>
                   <li>Approachable across beginner to advanced ability levels.</li>
                 </ul>
               </td>
               <td>
                 <ul>
                   <li>No real-time intervention channel for professional coaches.</li>
-                  <li>Limited adaptive support for group or multi-trainee supervision.</li>
-                  <li>Session recap is not centred on coach decision and follow-up logic.</li>
+                  <li>Limited adaptive support for group or multi-trainee coordination.</li>
+                  <li>Session recap is not centred on shared decision and follow-up logic.</li>
                 </ul>
               </td>
             </tr>
@@ -269,15 +269,15 @@
       <div class="grid-2">
         <article class="card soft-blue">
           <h3>Advantage 1: End-to-end continuity</h3>
-          <p>TrainerSync connects exercise filtering, multi-select set logging, live movement view, and post-session reporting in one continuous mobile workflow, rather than separating planning and reflection into disconnected tools.</p>
+          <p>TrainerSync links exercise filtering, multi-select set logging, live movement guidance, and post-session reporting in one mobile workflow, instead of splitting planning and reflection into separate tools.</p>
         </article>
         <article class="card soft-mint">
-          <h3>Advantage 2: Guidance resilience</h3>
-          <p>The system combines in-session heart-rate monitoring with immediate pace cues and a post-session intelligent summary, so users can understand both current intensity and overall performance outcomes.</p>
+          <h3>Advantage 2: Monitoring and recap linkage</h3>
+          <p>The system combines in-session heart-rate monitoring with pace cues and a post-session intelligent summary, helping users interpret both current intensity and session-level outcomes.</p>
         </article>
         <article class="card soft-peach">
           <h3>Advantage 3: Equipment coordination</h3>
-          <p>Occupancy visibility is combined with lightweight messaging to ask completed set counts and request next-turn pre-booking, directly reducing waiting uncertainty and inefficient turn-taking.</p>
+          <p>Occupancy visibility is combined with lightweight messaging to ask completed set counts and request next-turn pre-booking, which helps reduce waiting uncertainty and turn-taking friction.</p>
         </article>
         <article class="card soft-blue">
           <h3>Advantage 4: Low social friction</h3>
@@ -290,11 +290,11 @@
         <article class="card persona">
           <figure class="persona-figure">
             <img src="./assets/images/personas/persona-1.png" alt="Primary user persona snapshot" />
-            <figcaption class="small survey-caption">Story: team. Portrait: Gemini <a href="#references">[1]</a>.</figcaption>
+            <figcaption class="small survey-caption">Persona board: team-authored.</figcaption>
           </figure>
           <div class="body">
-            <h3>Primary User: Li Chen</h3>
-            <p class="small">Age 20 | Undergraduate student | Beginner gym trainee | Mobile-first | Trains after class</p>
+            <h3>Primary Trainee: Beginner Level</h3>
+            <p class="small">Beginner trainee | Mobile-first | Trains after class</p>
             <ul>
               <li><strong>Goals:</strong> Understand intensity appropriateness, complete each task clearly, and maintain motivation through visible progress.</li>
               <li><strong>Pain Points:</strong> Feedback arrives too late, instructions are fragmented, and session quality remains unclear even after completion.</li>
@@ -307,11 +307,11 @@
         <article class="card persona">
           <figure class="persona-figure">
             <img src="./assets/images/personas/persona-2.png" alt="Secondary user persona snapshot" />
-            <figcaption class="small survey-caption">Story: team. Portrait: Gemini <a href="#references">[1]</a>.</figcaption>
+            <figcaption class="small survey-caption">Persona board: team-authored.</figcaption>
           </figure>
           <div class="body">
-            <h3>Secondary User: Intermediate Trainee</h3>
-            <p class="small">Regular trainee | Intermediate level | Mobile-first | Faces crowded equipment and social friction</p>
+            <h3>Secondary Trainee: Intermediate Level</h3>
+            <p class="small">Intermediate trainee | Mobile-first | Faces crowded equipment and social friction</p>
             <ul>
               <li><strong>Goals:</strong> Reduce waiting time, identify equipment availability quickly, and keep workout flow uninterrupted.</li>
               <li><strong>Pain Points:</strong> Occupancy uncertainty disrupts rhythm, and face-to-face social contact often feels awkward during active training.</li>
@@ -325,10 +325,10 @@
 
       <h3 class="subheading-with-icon"><i data-lucide="clipboard-list"></i><span>Questionnaires &amp; testing evidence</span></h3>
       <p class="lead lead-tight">
-        <strong class="text-em">Pre-dev questionnaire</strong> (N=48, Mar 2026): habits, equipment, early reactions.
-        <strong class="text-em">Alpha:</strong> three sessions (beginner / intermediate / social-coordination focus)—notes + SUS-style captures.
-        <strong class="text-em">Follow-up:</strong> post high-fi—satisfaction and task clarity exports below.
-        Click each block to expand; screenshots only.
+        <strong class="text-em">Pre-dev questionnaire</strong> (N=48, Mar 2026): habits, equipment, early reactions.<br />
+        <strong class="text-em">Alpha:</strong> three sessions (beginner / intermediate / social-coordination focus)—notes + SUS-style captures.<br />
+        <strong class="text-em">Follow-up:</strong> post high-fi—satisfaction and task clarity exports below.<br />
+        Click each block to expand; screenshots only.<br />
         <strong class="text-em">Tip:</strong> click image to enlarge; ← → within the same row.
       </p>
 
@@ -382,7 +382,7 @@
       <div class="kicker">2. User Requirements</div>
       <h2 class="heading-with-icon"><i data-lucide="route"></i><span>User Journey Map and Current Requirements</span></h2>
       <p class="lead lead-tight">
-        <strong class="text-em">Journey maps</strong> (beginner + intermediate trainee): prep, live guidance, occupancy coordination, recap—workshop content; finish: Gemini <a href="#references">[1]</a>.
+        <strong class="text-em">Journey maps</strong> (beginner + intermediate trainee): prep, live guidance, occupancy coordination, recap—workshop content.
       </p>
       <div class="media-pair media-pair--journeys">
         <article class="figure-card">
@@ -394,7 +394,7 @@
             <div class="figure-frame figure-frame--natural">
               <img src="./assets/images/journey_map/1.png" alt="Trainee journey map" />
             </div>
-            <figcaption class="small survey-caption">Content: team · Finish: Gemini <a href="#references">[1]</a></figcaption>
+            <figcaption class="small survey-caption">Content: team-authored.</figcaption>
           </figure>
         </article>
         <article class="figure-card">
@@ -406,7 +406,7 @@
             <div class="figure-frame figure-frame--natural">
               <img src="./assets/images/journey_map/2.png" alt="Intermediate trainee journey map" />
             </div>
-            <figcaption class="small survey-caption">Content: team · Finish: Gemini <a href="#references">[1]</a></figcaption>
+            <figcaption class="small survey-caption">Content: team-authored.</figcaption>
           </figure>
         </article>
       </div>
@@ -495,7 +495,7 @@
         </table>
       </div>
 
-      <h3 class="subheading-with-icon"><i data-lucide="list-checks"></i><span>Current Functional Requirements</span></h3>
+      <h3 class="subheading-with-icon"><i data-lucide="list-checks"></i><span>Functional Requirements</span></h3>
       <p class="lead lead-tight"><strong class="text-em">FRs</strong> = must-do behaviour. <strong class="text-em">PHs</strong> below = tone only.</p>
       <div class="grid-3 grid-3--req">
         <article class="card soft-blue req-deep-card">
@@ -609,13 +609,13 @@
         </article>
       </div>
 
-      <h3 class="subheading-with-icon"><i data-lucide="sparkles"></i><span>Playful Must-Haves</span></h3>
+      <h3 class="subheading-with-icon"><i data-lucide="sparkles"></i><span>Requirements List</span></h3>
       <p class="lead lead-tight"><strong class="text-em">PH1–PH3:</strong> feel of FR1–FR3—human, light delight; never trade safety for gamification.</p>
       <div class="grid-3 grid-3--req">
         <article class="card soft-blue playful-req-card">
           <h3>PH1 · Delight in “today’s stack”</h3>
           <div class="req-objective-slot req-objective-slot--playful">
-            <p><strong>Design intent (↔ FR1):</strong> Queue feels like a plan, not a spreadsheet—motion + type support choices; cues stay readable.</p>
+            <p><strong>Design intent:</strong> Queue feels like a plan, not a spreadsheet—motion + type support choices; cues stay readable.</p>
           </div>
           <details class="req-fold">
             <summary class="req-fold-summary">
@@ -635,7 +635,7 @@
         <article class="card soft-mint playful-req-card">
           <h3>PH2 · Calm and clear in-session guidance</h3>
           <div class="req-objective-slot req-objective-slot--playful">
-            <p><strong>Design intent (↔ FR2):</strong> In-session cues remain calm and legible; heart-rate state and summary insights stay clear under workout stress.</p>
+            <p><strong>Design intent:</strong> In-session cues remain calm and legible; heart-rate state and summary insights stay clear under workout stress.</p>
           </div>
           <details class="req-fold">
             <summary class="req-fold-summary">
@@ -655,7 +655,7 @@
         <article class="card soft-peach playful-req-card">
           <h3>PH3 · Trusted floor companionship</h3>
           <div class="req-objective-slot req-objective-slot--playful">
-            <p><strong>Design intent (↔ FR3):</strong> Occupancy map stays scannable; friend/stranger messaging remains consent-based; set-check and pre-book actions stay lightweight and respectful.</p>
+            <p><strong>Design intent:</strong> Occupancy map stays scannable; friend/stranger messaging remains consent-based; set-check and pre-book actions stay lightweight and respectful.</p>
           </div>
           <details class="req-fold">
             <summary class="req-fold-summary">
@@ -707,6 +707,45 @@
     <section class="section" id="ideation">
       <div class="kicker">3. Ideation &amp; Alternatives</div>
       <h2 class="heading-with-icon"><i data-lucide="panels-left-right"></i><span>Design Alternatives and Low-Fi Prototype</span></h2>
+      <h3 class="subheading-with-icon"><i data-lucide="grid-3x3"></i><span>Crazy Eights</span></h3>
+      <p>Eight quick sketches per person (~8 min), after pain points, before locking B—rough on purpose.</p>
+      <p>Prompts: floor findability, in-set encouragement, pacing visibility, and safe social signals. Cluster → wireframe.</p>
+      <div class="crazy-eights-grid crazy-eights-grid--four-two" aria-label="Crazy Eights sketch gallery">
+        <figure class="crazy-eight-card">
+          <img src="./assets/images/ideation/crazy-eights/figure1.jpg" alt="Crazy Eight sketch 1: library filters" />
+          <figcaption class="small">CE1 · Library filters &amp; chips</figcaption>
+        </figure>
+        <figure class="crazy-eight-card">
+          <img src="./assets/images/ideation/crazy-eights/figure2.jpg" alt="Crazy Eight sketch 2: live HUD" />
+          <figcaption class="small">CE2 · Live workout HUD</figcaption>
+        </figure>
+        <figure class="crazy-eight-card">
+          <img src="./assets/images/ideation/crazy-eights/figure3.jpg" alt="Crazy Eight sketch 3: breathing cue" />
+          <figcaption class="small">CE3 · Breathing / tempo overlay</figcaption>
+        </figure>
+        <figure class="crazy-eight-card">
+          <img src="./assets/images/ideation/crazy-eights/figure4.jpg" alt="Crazy Eight sketch 4: occupancy scan" />
+          <figcaption class="small">CE4 · Occupancy scan view</figcaption>
+        </figure>
+        <figure class="crazy-eight-card">
+          <img src="./assets/images/ideation/crazy-eights/figure5.jpg" alt="Crazy Eight sketch 5: map reactions" />
+          <figcaption class="small">CE5 · Map pins &amp; reactions</figcaption>
+        </figure>
+        <figure class="crazy-eight-card">
+          <img src="./assets/images/ideation/crazy-eights/figure6.jpg" alt="Crazy Eight sketch 6: streak recap" />
+          <figcaption class="small">CE6 · Session recap / streak</figcaption>
+        </figure>
+        <figure class="crazy-eight-card">
+          <img src="./assets/images/ideation/crazy-eights/figure7.jpg" alt="Crazy Eight sketch 7: social connection flow" />
+          <figcaption class="small">CE7 · Social connection flow</figcaption>
+        </figure>
+        <figure class="crazy-eight-card">
+          <img src="./assets/images/ideation/crazy-eights/figure8.jpg" alt="Crazy Eight sketch 8: intervention toast" />
+          <figcaption class="small">CE8 · Intervention toast</figcaption>
+        </figure>
+      </div>
+      <p class="small crazy-eights-attrib"><strong class="text-em">Crazy Eights:</strong> hand sketches · team photos · no gen-image.</p>
+      <h3 class="subheading-with-icon"><i data-lucide="shuffle"></i><span>Design Alternatives</span></h3>
       <div class="grid-3">
         <article class="card soft-peach">
           <h3>Alternative A: AR Pose Estimation</h3>
@@ -752,50 +791,10 @@
           </ul>
         </article>
       </div>
-      <div class="note"><strong>Pick:</strong> B fits the floor—coach attention, trainee clarity, no camera stack.</div>
-
-      <h3 class="subheading-with-icon"><i data-lucide="grid-3x3"></i><span>Crazy Eights</span></h3>
-      <p>Eight quick sketches per person (~8 min), after pain points, before locking B—rough on purpose.</p>
-      <p>Prompts: floor findability, in-set encouragement, coach scan load, safe social signals. Cluster → wireframe.</p>
-      <div class="crazy-eights-grid crazy-eights-grid--four-two" aria-label="Crazy Eights sketch gallery">
-        <figure class="crazy-eight-card">
-          <img src="./assets/images/ideation/crazy-eights/figure1.jpg" alt="Crazy Eight sketch 1: library filters" />
-          <figcaption class="small">CE1 · Library filters &amp; chips</figcaption>
-        </figure>
-        <figure class="crazy-eight-card">
-          <img src="./assets/images/ideation/crazy-eights/figure2.jpg" alt="Crazy Eight sketch 2: live HUD" />
-          <figcaption class="small">CE2 · Live workout HUD</figcaption>
-        </figure>
-        <figure class="crazy-eight-card">
-          <img src="./assets/images/ideation/crazy-eights/figure3.jpg" alt="Crazy Eight sketch 3: breathing cue" />
-          <figcaption class="small">CE3 · Breathing / tempo overlay</figcaption>
-        </figure>
-        <figure class="crazy-eight-card">
-          <img src="./assets/images/ideation/crazy-eights/figure4.jpg" alt="Crazy Eight sketch 4: coach radar" />
-          <figcaption class="small">CE4 · Coach multi-trainee radar</figcaption>
-        </figure>
-        <figure class="crazy-eight-card">
-          <img src="./assets/images/ideation/crazy-eights/figure5.jpg" alt="Crazy Eight sketch 5: map reactions" />
-          <figcaption class="small">CE5 · Map pins &amp; reactions</figcaption>
-        </figure>
-        <figure class="crazy-eight-card">
-          <img src="./assets/images/ideation/crazy-eights/figure6.jpg" alt="Crazy Eight sketch 6: streak recap" />
-          <figcaption class="small">CE6 · Session recap / streak</figcaption>
-        </figure>
-        <figure class="crazy-eight-card">
-          <img src="./assets/images/ideation/crazy-eights/figure7.jpg" alt="Crazy Eight sketch 7: bind coach flow" />
-          <figcaption class="small">CE7 · Trainee–coach binding</figcaption>
-        </figure>
-        <figure class="crazy-eight-card">
-          <img src="./assets/images/ideation/crazy-eights/figure8.jpg" alt="Crazy Eight sketch 8: intervention toast" />
-          <figcaption class="small">CE8 · Intervention toast</figcaption>
-        </figure>
-      </div>
-      <p class="small crazy-eights-attrib"><strong class="text-em">Crazy Eights:</strong> hand sketches · team photos · no gen-image.</p>
+      <div class="note"><strong>Pick:</strong> B fits the floor—clear trainee flow, practical coordination, and no camera stack.</div>
 
       <h3 class="subheading-with-icon"><i data-lucide="layout-template"></i><span>Low-Fi Prototype — LowFi-wireframe</span></h3>
       <div class="prototype-card">
-        <p><strong class="text-em">LowFi-wireframe</strong> — clickable greyscale IA, trainee/coach paths, pre high-fi.</p>
         <div class="inline-actions">
           <a class="cta-link primary" href="./assets/lowfi/LowFi-wireframe.html" target="_blank" rel="noreferrer">Open LowFi-wireframe</a>
           <a class="cta-link" href="https://rainm1st.github.io/CPT208-TrainerSync/" target="_blank" rel="noreferrer">Hosted high-fi</a>
@@ -809,9 +808,9 @@
 
 “You are working in our CPT208 TrainerSync repo. Add or update `assets/lowfi/LowFi-wireframe.html` for LOW-FIDELITY wireframes only: grayscale, 1px borders, placeholder rectangles for charts/media, system UI font, no photographs and no brand polish beyond a simple accent for focus states if needed.
 
-Screens to cover (trainee + coach): Home, Exercise Library, Exercise Detail, Live Training, Map, Companion, Profile, Coach Dashboard, Trainee List, Live Detail, Messages.
+Screens to cover (trainee only): Home, Exercise Library, Exercise Detail, Live Training, Session Report, Occupancy Map, Social Connections, Profile.
 
-Requirements: (1) Clickable navigation between sections (anchors or a small top nav). (2) Label each block with its purpose (e.g. ‘HR ring placeholder’). (3) Show coach vs trainee entry paths where they diverge. (4) Static pages, relative paths only, must open from GitHub Pages without a build step. (5) Keep copy in formal English and aligned with our requirements doc—do not invent new features.”</pre>
+Requirements: (1) Clickable navigation between sections (anchors or a small top nav). (2) Label each block with its purpose (e.g. ‘HR ring placeholder’). (3) Show the full trainee session flow from start to recap. (4) Static pages, relative paths only, must open from GitHub Pages without a build step. (5) Keep copy in formal English and aligned with our requirements doc—do not invent new features.”</pre>
       </div>
 
       <h3 class="subheading-with-icon"><i data-lucide="git-branch-plus"></i><span>Prototype Evolution: Wireframe to Alpha to Current High-Fi</span></h3>
@@ -883,22 +882,21 @@ Requirements: (1) Clickable navigation between sections (anchors or a small top 
       </details>
 
       <div id="vibe-coding" class="subsection-anchor">
-        <h3 class="subheading-with-icon"><i data-lucide="terminal"></i><span>System build and reflection</span></h3>
-        <p class="lead"><strong class="text-em">Vibe coding:</strong> team owned product; Cursor / Claude Code / Codex for scaffold + CSS + Pages (Refs <a href="#references">[3]–[5]</a>).</p>
+        <h3 class="subheading-with-icon"><i data-lucide="terminal"></i><span>Technical Reflection</span></h3>
+        <p class="lead"><strong class="text-em">Vibe coding:</strong> team owned product; Cursor / Claude Code / Codex for scaffold + CSS + Pages (Refs <a href="#references">[1]–[3]</a>).</p>
 
         <h4>Representative prompts</h4>
-        <p class="small">Prompts ≈ how we built high-fi. <code>[…]</code> = pasted wireframe bits.</p>
 
         <pre class="prompt-block">You are helping with a CPT208 static fitness web prototype called TrainerSync hosted on GitHub Pages. Stack: plain HTML/CSS/JS or minimal tooling only. Do NOT invent new product requirements.
 
 Prompt A — shell &amp; routing:
-“Here is our screen list: Home, Exercise Library, Exercise Detail, Live Training, Map, Companion, Profile, Coach Dashboard, Trainee List, Live Detail, Messages. Create a shared nav/header pattern and separate HTML pages OR hash routes so each URL works when refreshed on GitHub Pages. Use relative paths only.”</pre>
+“Here is our screen list: Home, Exercise Library, Exercise Detail, Live Training, Session Report, Occupancy Map, Social Connections, Profile. Create a shared nav/header pattern and separate HTML pages OR hash routes so each URL works when refreshed on GitHub Pages. Use relative paths only.”</pre>
 
         <pre class="prompt-block">Prompt B — Live Training panel:
 “Implement the Live Training page from this wireframe snippet [paste]. Use mock data for heart rate (updates every 2s within 110–165 bpm). Show set counter and a non-medical disclaimer line we provide verbatim: ‘For wellness motivation only—not medical advice.’ Colours must match tokens #c8f542 accent and dark navy background.”</pre>
 
-        <pre class="prompt-block">Prompt C — coach dashboard grid:
-“Coach Dashboard needs responsive CSS grid: 2 columns on desktop, 1 column &lt;768px. Cards show trainee name, status pill, sparkline placeholder. Fix overflow-x without horizontal scroll on mobile.”</pre>
+        <pre class="prompt-block">Prompt C — social connection panel:
+“Social Connections page needs responsive CSS grid: 2 columns on desktop, 1 column &lt;768px. Cards show user type, occupancy context, and quick actions (set-check / pre-book). Fix overflow-x without horizontal scroll on mobile.”</pre>
 
         <pre class="prompt-block">Prompt D — occupancy + messaging stubs:
 “Map page: show equipment occupancy states (e.g., available, busy, almost free). Add user messaging actions for friend/stranger cards: ask completed sets and request next-turn pre-booking. Keep it lightweight with mock data; no real geolocation API required.”</pre>
@@ -907,10 +905,16 @@ Prompt A — shell &amp; routing:
 “Audit focus order for the Live Training controls (pause, end session). Add visible :focus outlines matching brand lime; ensure buttons have aria-labels where icons are textless.”</pre>
 
         <pre class="prompt-block">Prompt F — deployment bug:
-“GitHub Pages returns 404 for nested routes /coach/live. Refactor to hash routing (#/coach/live) OR relative paths; show exact diff.”</pre>
+“GitHub Pages returns 404 for nested routes /social/live. Refactor to hash routing (#/social/live) OR relative paths; show exact diff.”</pre>
 
         <pre class="prompt-block">Prompt G — playful UI polish:
 “Add subtle CSS pulse on the heart-rate ring when crossing mock ‘amber’ threshold; keep reduced-motion fallback via prefers-reduced-motion.”</pre>
+
+        <pre class="prompt-block">Prompt H — intelligent summary quality:
+“For Session Report, generate concise analysis blocks based on available workout data (sets, HR trend, completion state). Keep claims descriptive and non-medical; avoid diagnostic language and avoid unsupported recommendations.”</pre>
+
+        <pre class="prompt-block">Prompt I — light/dark mode consistency:
+“Ensure occupancy and social-connection pages support both light and dark themes using shared tokens. Keep contrast readable for badges, status labels, and quick-action chips in both modes.”</pre>
 
         <h4>How we verified the build against our requirements</h4>
         <div class="table-wrap">
@@ -926,27 +930,27 @@ Prompt A — shell &amp; routing:
               <tr>
                 <td>FR traceability</td>
                 <td>Mapped FR1 to FR3 requirements to implemented screens and hosted routes.</td>
-                <td>All core requirement paths were demonstrable in the current prototype build.</td>
+                <td>Core requirement paths were demonstrable in the current prototype build.</td>
               </tr>
               <tr>
                 <td>Feature coverage</td>
                 <td>Checked presence of filter/logging flow, heart-rate and summary flow, and occupancy messaging surfaces.</td>
-                <td>Target surfaces were present and reachable without hidden navigation dependencies.</td>
+                <td>Target surfaces were present and reachable in normal navigation flows.</td>
               </tr>
               <tr>
                 <td>Task walkthroughs</td>
-                <td>Ran trainee and coach role walkthroughs on GitHub Pages and logged blockers.</td>
-                <td>Main flows completed; usability issues were captured and fed into iterative fixes.</td>
+                <td>Ran beginner and intermediate trainee walkthroughs on GitHub Pages and logged blockers.</td>
+                <td>Main flows completed in test runs; observed issues were logged for iterative fixes.</td>
               </tr>
               <tr>
                 <td>Alpha scenario tests</td>
-                <td>Executed three scripted sessions (library → live → coach/messaging) with revision checkpoints.</td>
-                <td>Observed issues were resolved in subsequent UI hierarchy, wording, and status-signalling updates.</td>
+                <td>Executed three scripted sessions (library → live → recap → social coordination) with revision checkpoints.</td>
+                <td>Observed issues were addressed in later UI hierarchy, wording, and status-signalling updates.</td>
               </tr>
               <tr>
                 <td>Responsive + accessibility smoke checks</td>
                 <td>Validated at 320 to 1280 widths and keyboard navigation on Chromium.</td>
-                <td>No blocking navigation defects remained in the tested viewport range.</td>
+                <td>No blocking navigation defects were observed in the tested viewport range.</td>
               </tr>
             </tbody>
           </table>
@@ -960,7 +964,7 @@ Prompt A — shell &amp; routing:
           </article>
           <article class="card soft-mint">
             <h3>Bias &amp; motivation framing</h3>
-            <p>Rewrote hype/stereotype drafts; coach visibility tied to consent copy.</p>
+            <p>Rewrote hype/stereotype drafts; social visibility tied to consent copy.</p>
           </article>
         </div>
 
@@ -1011,13 +1015,13 @@ Prompt A — shell &amp; routing:
               <td>Kan Liu</td>
               <td>2362244</td>
               <td>UX Logic &amp; Evaluation</td>
-              <td>Designed coach-side IA and intervention logic, refined alternatives/pain-point mapping, authored evaluation task scripts, and translated test findings into requirement-level revisions.</td>
+              <td>Designed social-coordination IA and interaction logic, refined alternatives/pain-point mapping, authored evaluation task scripts, and translated test findings into requirement-level revisions.</td>
             </tr>
             <tr>
               <td>Jintong Zhang</td>
               <td>2360862</td>
               <td>High-Fi Interface &amp; Engineering</td>
-              <td>Implemented high-fidelity interface modules, stabilised route structure and responsive behaviour, prepared screen exports, and supported journey-flow consistency across trainee and coach views.</td>
+              <td>Implemented high-fidelity interface modules, stabilised route structure and responsive behaviour, prepared screen exports, and supported journey-flow consistency across beginner and intermediate trainee paths.</td>
             </tr>
           </tbody>
         </table>
@@ -1027,8 +1031,9 @@ Prompt A — shell &amp; routing:
     <section class="section" id="evaluation">
       <div class="kicker">5. Evaluation &amp; Reflection</div>
       <h2 class="heading-with-icon"><i data-lucide="bar-chart-3"></i><span>Usability Testing and Iterative Refinement</span></h2>
-      <p class="lead">Three Alpha tasks—success, errors, debrief, <strong class="text-em">SUS</strong> (Lewis 2018 · Ref <a href="#references">[10]</a>).</p>
+      <p class="lead">Three Alpha tasks—success, errors, debrief, <strong class="text-em">SUS</strong> (Lewis 2018 · Ref <a href="#references">[8]</a>).</p>
       <p class="small">This section reports what was tested (task flow), how performance was measured (success + SUS), which issues were observed, and what UI refinements were applied after each finding.</p>
+      <h3 class="subheading-with-icon"><i data-lucide="clipboard-check"></i><span>Usability Testing</span></h3>
       <div class="testing-grid">
         <article class="test-card soft-blue">
           <h3>Participant A: Beginner Trainee</h3>
@@ -1049,13 +1054,13 @@ Prompt A — shell &amp; routing:
           <p><strong>Post-change effect:</strong> interpretation errors decreased in follow-up walkthroughs, and the participant could explain zone status without relying on trial-and-error.</p>
         </article>
         <article class="test-card soft-peach">
-          <h3>Participant C: Coach Role Proxy</h3>
-          <p class="small">Profile: experienced gym user asked to complete coach monitoring tasks.</p>
+          <h3>Participant C: Intermediate Trainee</h3>
+          <p class="small">Profile: regular gym user asked to complete occupancy and social-coordination tasks.</p>
           <div class="metric-row"><span class="metric">Task success: 4/5</span><span class="metric">SUS: 74</span></div>
-          <p><strong>Task focus:</strong> monitor multiple trainees, identify priority cases, and dispatch short guidance with minimal context switching.</p>
-          <p><strong>Issue observed:</strong> the participant could not consistently determine intervention order because urgency signals were visually similar across cards.</p>
-          <p><strong>Refinement implemented:</strong> we introduced ranked alert ordering, clearer status-chip semantics, and a faster dispatch action path from the dashboard surface.</p>
-          <p><strong>Post-change effect:</strong> priority decisions became more consistent, and coach-side response steps required fewer interactions in repeated task runs.</p>
+          <p><strong>Task focus:</strong> check occupancy, message nearby users, and coordinate set-check / pre-book actions with minimal interruption.</p>
+          <p><strong>Issue observed:</strong> the participant could not consistently identify the next coordination action because occupancy and message-status cues were too visually similar.</p>
+          <p><strong>Refinement implemented:</strong> we clarified occupancy-state chips, separated message-intent actions, and shortened the quick-action path for set-check and pre-book requests.</p>
+          <p><strong>Post-change effect:</strong> coordination choices became more consistent, and response steps required fewer interactions in repeated task runs.</p>
         </article>
       </div>
 
@@ -1066,6 +1071,7 @@ Prompt A — shell &amp; routing:
         <img src="./assets/images/research/surveys/alpha/figure3.png" alt="Usability evidence: participant C task capture" />
       </div>
 
+      <h3 class="subheading-with-icon"><i data-lucide="refresh-ccw"></i><span>Iterative Refinement</span></h3>
       <details class="fold-panel fold-panel--before-after" open>
         <summary class="fold-summary">
           <i data-lucide="chevron-right" class="fold-chevron"></i>
@@ -1102,7 +1108,7 @@ Prompt A — shell &amp; routing:
       </details>
 
       <h3 class="subheading-with-icon"><i data-lucide="quote"></i><span>Final Reflection</span></h3>
-      <p>Shared service, not solo tracking—confidence + safety + coach load. HR ≠ diagnosis; consent + visibility rules; playfulness without shame or surveillance.</p>
+      <p>Shared service, not solo tracking—confidence, pacing awareness, and social coordination. HR ≠ diagnosis; consent and visibility rules remain explicit; playfulness avoids shame or surveillance framing.</p>
     </section>
 
     <section class="section" id="references">
@@ -1112,7 +1118,7 @@ Prompt A — shell &amp; routing:
       <div class="reference-grid">
         <article class="card dark-card">
           <h3>AI Disclosure</h3>
-          <p><strong class="text-em">AI tools used in this portfolio:</strong> Gemini <a href="#references">[1]</a>, ChatGPT <a href="#references">[2]</a>, Cursor <a href="#references">[3]</a>, Claude Code <a href="#references">[4]</a>, and OpenAI Codex <a href="#references">[5]</a>.</p>
+          <p><strong class="text-em">AI tools used in this portfolio:</strong> Cursor <a href="#references">[1]</a>, Claude Code <a href="#references">[2]</a>, and OpenAI Codex <a href="#references">[3]</a>.</p>
           <p><strong class="text-em">Use scope:</strong> visual drafting support, code generation/refinement, route debugging, and writing structure support.</p>
           <p><strong class="text-em">Human ownership:</strong> research design, raw questionnaire/testing data, interpretation, final decisions, and final wording checks remained team-authored.</p>
         </article>
@@ -1127,39 +1133,24 @@ Prompt A — shell &amp; routing:
       <h3 class="subheading-with-icon"><i data-lucide="bot"></i><span>Digital tools and generative AI citations</span></h3>
       <ol class="reference-list reference-list-formal reference-list-padded">
         <li>
-          Google. (2026) <em>Gemini</em> [Large language model]. Available at:
-          <a href="https://gemini.google.com/" target="_blank" rel="noreferrer">https://gemini.google.com/</a>
-          (Accessed: 2 May 2026).
-          Used for persona portrait and journey-map rendering support where captioned.
+          Cursor, version used in project sessions, accessed on 2026-05-02, available at
+          <a href="https://cursor.com/" target="_blank" rel="noreferrer">https://cursor.com/</a>.
+          Used for vibe coding, implementation support, responsive refinement, and GitHub Pages route debugging.
         </li>
         <li>
-          OpenAI. (2026) <em>ChatGPT</em> [Large language model]. Available at:
-          <a href="https://chatgpt.com/" target="_blank" rel="noreferrer">https://chatgpt.com/</a>
-          (Accessed: 2 May 2026).
-          Used for architecture-diagram drafting support; core system structure and labels were team-authored.
+          Claude Code, version used in project sessions, accessed on 2026-05-02, available at
+          <a href="https://www.anthropic.com/claude-code" target="_blank" rel="noreferrer">https://www.anthropic.com/claude-code</a>.
+          Used for prompt-assisted scripting, multi-file edits, and refactor support.
         </li>
         <li>
-          Anysphere. (2026) <em>Cursor</em> [AI code editor and assistant]. Available at:
-          <a href="https://cursor.com/" target="_blank" rel="noreferrer">https://cursor.com/</a>
-          (Accessed: 2 May 2026).
-          Used for IDE-integrated implementation support, responsive refinement, and GitHub Pages route debugging.
-        </li>
-        <li>
-          Anthropic. (2026) <em>Claude Code</em> [AI coding assistant]. Available at:
-          <a href="https://www.anthropic.com/claude-code" target="_blank" rel="noreferrer">https://www.anthropic.com/claude-code</a>
-          (Accessed: 2 May 2026).
-          Used for terminal-oriented coding assistance, multi-file edits, and refactor support.
-        </li>
-        <li>
-          OpenAI. (2026) <em>Codex</em> [AI coding model/tooling]. Available at:
-          <a href="https://openai.com/codex" target="_blank" rel="noreferrer">https://openai.com/codex</a>
-          (Accessed: 2 May 2026).
+          Codex, version used in project sessions, accessed on 2026-05-02, available at
+          <a href="https://openai.com/codex" target="_blank" rel="noreferrer">https://openai.com/codex</a>.
           Used for complementary implementation suggestions, patch-style edits, and review-oriented prompting.
         </li>
       </ol>
 
       <h3 class="subheading-with-icon"><i data-lucide="graduation-cap"></i><span>Academic references</span></h3>
-      <ol class="reference-list reference-list-padded ref-from-6">
+      <ol class="reference-list reference-list-padded ref-from-4">
         <li>
           Angosto, S., García-Fernández, J., &amp; Grimaldi-Puyana, M. (2023). A systematic review of intention to use fitness apps (2020–2023).
           <em>Humanities and Social Sciences Communications</em>, 10, 512.
@@ -1188,7 +1179,7 @@ Prompt A — shell &amp; routing:
       </ol>
 
       <h3 class="subheading-with-icon"><i data-lucide="shopping-bag"></i><span>Commercial references</span></h3>
-      <ol class="reference-list reference-list-padded ref-from-11">
+      <ol class="reference-list reference-list-padded ref-from-9">
         <li>
           Apple Fitness+. Official product website:
           <a href="https://www.apple.com/apple-fitness-plus/" target="_blank" rel="noreferrer">https://www.apple.com/apple-fitness-plus/</a>

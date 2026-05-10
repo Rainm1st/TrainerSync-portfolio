@@ -1773,11 +1773,11 @@ ol.reference-list-padded > li::before {
   font-weight: 700;
   color: var(--lime);
 }
-ol.reference-list-padded.ref-from-6 {
-  counter-reset: ref-counter 5;
+ol.reference-list-padded.ref-from-4 {
+  counter-reset: ref-counter 3;
 }
-ol.reference-list-padded.ref-from-11 {
-  counter-reset: ref-counter 10;
+ol.reference-list-padded.ref-from-9 {
+  counter-reset: ref-counter 8;
 }
 ol.reference-list-padded > li a {
   color: var(--lime);
