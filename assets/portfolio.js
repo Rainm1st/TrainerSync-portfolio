@@ -89,8 +89,45 @@
   var lastFocus = null;
   var slides = [];
   var slideIndex = 0;
+  var GALLERY_SELECTORS = [
+    ".survey-accordion__gallery",
+    ".app-gallery",
+    ".playful-evidence-grid",
+    ".evidence-gallery",
+    ".crazy-eights-grid",
+    ".stage-media",
+    ".media-pair",
+    ".architecture-figure",
+    ".journey-map-figure",
+    ".persona-figure",
+    ".prototype-card",
+    ".figure-card"
+  ];
 
-  Array.prototype.forEach.call(document.querySelectorAll(".survey-accordion__gallery img"), function (thumb) {
+  function isContentImage(el) {
+    if (!el || el.tagName !== "IMG") return false;
+    if (root.contains(el)) return false;
+    if (!el.getAttribute("src")) return false;
+    return true;
+  }
+
+  function getGalleryContainer(thumb) {
+    if (!thumb || !thumb.closest) return null;
+    for (var i = 0; i < GALLERY_SELECTORS.length; i += 1) {
+      var match = thumb.closest(GALLERY_SELECTORS[i]);
+      if (match) return match;
+    }
+    return thumb.parentElement;
+  }
+
+  function getGalleryImages(container) {
+    if (!container) return [];
+    return Array.prototype.filter.call(container.querySelectorAll("img"), isContentImage);
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll("img"), function (thumb) {
+    if (!isContentImage(thumb)) return;
+    thumb.classList.add("zoomable-image");
     thumb.tabIndex = 0;
     thumb.setAttribute("role", "button");
     thumb.setAttribute("aria-label", (thumb.getAttribute("alt") || "Figure") + " — enlarge");
@@ -131,10 +168,10 @@
 
   function openFromThumb(thumb) {
     if (!thumb || thumb.tagName !== "IMG") return;
-    var gallery = thumb.closest(".survey-accordion__gallery");
+    var gallery = getGalleryContainer(thumb);
     if (!gallery) return;
 
-    var imgs = gallery.querySelectorAll("img");
+    var imgs = getGalleryImages(gallery);
     slides = Array.prototype.map.call(imgs, function (el) {
       return {
         src: el.currentSrc || el.getAttribute("src") || "",
@@ -187,8 +224,7 @@
     function (e) {
       var t = e.target;
       if (!t || !t.closest) return;
-      var gallery = t.closest(".survey-accordion__gallery");
-      if (!gallery || t.tagName !== "IMG") return;
+      if (!isContentImage(t)) return;
       e.preventDefault();
       openFromThumb(t);
     },
@@ -202,9 +238,7 @@
       if (
         (e.key === "Enter" || e.key === " ") &&
         t &&
-        t.tagName === "IMG" &&
-        t.closest &&
-        t.closest(".survey-accordion__gallery")
+        isContentImage(t)
       ) {
         e.preventDefault();
         openFromThumb(t);

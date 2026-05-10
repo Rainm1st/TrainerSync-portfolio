@@ -1,6 +1,6 @@
 ﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1150" role="img" aria-labelledby="title desc">
-  <title id="title">TrainerSync Project Architecture v3</title>
-  <desc id="desc">TrainerSync architecture with non-overlapping labels and separated feature modules.</desc>
+  <title id="title">TrainerSync Mobile App Architecture v4</title>
+  <desc id="desc">TrainerSync mobile app architecture aligned with latest FR1 to FR3 features and trainer connection workflow.</desc>
   <defs>
     <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
       <stop offset="0" stop-color="#0f224d"/>
@@ -31,37 +31,37 @@
   <circle cx="150" cy="1010" r="300" fill="#fff" opacity="0.055"/>
 
   <text x="90" y="112" class="title">TrainerSync Project Architecture</text>
-  <text x="92" y="158" class="subtitle">Exercise discovery, live intervention, location interaction, and remote coach oversight in one web app.</text>
+  <text x="92" y="158" class="subtitle">Exercise filtering + set logging, heart-rate monitoring + summary, and occupancy messaging in one mobile app.</text>
 
   <g filter="url(#shadow)">
     <rect x="85" y="230" width="440" height="280" rx="34" fill="#ffffff"/>
     <text x="130" y="282" class="tag">TRAINEE SIDE</text>
     <text x="130" y="330" class="head">Mobile Training App</text>
-    <text x="130" y="376" class="body">Search exercises by muscle group.</text>
-    <text x="130" y="411" class="body">Filter by equipment type.</text>
-    <text x="130" y="446" class="body">View static images and GIF demos.</text>
-    <text x="130" y="481" class="body">Receive live breathing prompts.</text>
+    <text x="130" y="376" class="body">Filter and multi-select movements</text>
+    <text x="130" y="411" class="body">before session start.</text>
+    <text x="130" y="446" class="body">Watch live movement visuals and</text>
+    <text x="130" y="481" class="body">record sets per selected exercise.</text>
   </g>
 
   <g filter="url(#shadow)">
     <rect x="680" y="205" width="440" height="330" rx="34" fill="#ffffff"/>
     <text x="725" y="257" class="tag">HOSTED SYSTEM</text>
-    <text x="725" y="305" class="head">GitHub Pages Web App</text>
-    <text x="725" y="353" class="body">Client-side pages and app state.</text>
-    <text x="725" y="388" class="body">Exercise filtering and demo assets.</text>
-    <text x="725" y="423" class="body">Heart-rate, set, and progress panel.</text>
-    <text x="725" y="458" class="body">Map, emoji, and coach binding flow.</text>
-    <text x="725" y="493" class="body">Shared trainee-coach session view.</text>
+    <text x="725" y="305" class="head">Mobile App Runtime Layer</text>
+    <text x="725" y="353" class="body">Mobile-first UI state and routing</text>
+    <text x="725" y="388" class="body">(prototype hosted on GitHub Pages).</text>
+    <text x="725" y="423" class="body">Set logging, heart-rate monitoring,</text>
+    <text x="725" y="458" class="body">and intelligent report generation.</text>
+    <text x="725" y="493" class="body">Shared trainee-coach status context.</text>
   </g>
 
   <g filter="url(#shadow)">
     <rect x="1275" y="230" width="440" height="280" rx="34" fill="#ffffff"/>
     <text x="1320" y="282" class="tag">COACH SIDE</text>
-    <text x="1320" y="330" class="head">Remote Dashboard</text>
-    <text x="1320" y="376" class="body">Read bound trainee status.</text>
-    <text x="1320" y="411" class="body">Monitor heart rate and progress.</text>
-    <text x="1320" y="446" class="body">Identify who needs guidance.</text>
-    <text x="1320" y="481" class="body">Support beyond physical distance.</text>
+    <text x="1320" y="330" class="head">Coach Dashboard (App)</text>
+    <text x="1320" y="376" class="body">Check occupancy and user activity.</text>
+    <text x="1320" y="411" class="body">Message friends or strangers to ask</text>
+    <text x="1320" y="446" class="body">set counts and coordinate next turns.</text>
+    <text x="1320" y="481" class="body">Support pre-booking and quick replies.</text>
   </g>
 
   <path d="M530 370 C590 330, 620 325, 672 345" class="line"/>
@@ -71,35 +71,35 @@
   <g filter="url(#shadow)">
     <rect x="95" y="655" width="500" height="250" rx="34" fill="#f2f6ff"/>
     <text x="140" y="708" class="tag">FEATURE 1</text>
-    <text x="140" y="752" class="featureHead">Smart Exercise Filtering</text>
-    <text x="140" y="795" class="featureBody">Trainees combine conditions such as</text>
-    <text x="140" y="827" class="featureBody">chest muscles and cable equipment.</text>
-    <text x="140" y="859" class="featureBody">The result is a targeted exercise list</text>
-    <text x="140" y="891" class="featureBody">with image or GIF movement demos.</text>
+    <text x="140" y="752" class="featureHead">FR1: Filter, Live Guidance, Set Log</text>
+    <text x="140" y="795" class="featureBody">Filter exercises and multi-select plan.</text>
+    <text x="140" y="827" class="featureBody">Show live movement visuals in-session.</text>
+    <text x="140" y="859" class="featureBody">Record set counts per movement and</text>
+    <text x="140" y="891" class="featureBody">adjust action order during session.</text>
   </g>
 
   <g filter="url(#shadow)">
     <rect x="650" y="655" width="500" height="250" rx="34" fill="#ecfaf7"/>
     <text x="695" y="708" class="tag">FEATURE 2</text>
-    <text x="695" y="752" class="featureHead">Real-Time Monitoring</text>
-    <text x="695" y="795" class="featureBody">The live panel tracks heart rate,</text>
-    <text x="695" y="827" class="featureBody">current sets, and overall progress.</text>
-    <text x="695" y="859" class="featureBody">At key exertion stages, it displays</text>
-    <text x="695" y="891" class="featureBody">specific breathing guidance.</text>
+    <text x="695" y="752" class="featureHead">FR2: Heart-Rate Monitor + Summary</text>
+    <text x="695" y="795" class="featureBody">During exercise, monitor heart rate</text>
+    <text x="695" y="827" class="featureBody">and adjust pace with breathing cues.</text>
+    <text x="695" y="859" class="featureBody">After session, generate intelligent</text>
+    <text x="695" y="891" class="featureBody">summary with data and analysis.</text>
   </g>
 
   <g filter="url(#shadow)">
     <rect x="1205" y="655" width="500" height="250" rx="34" fill="#fff3eb"/>
     <text x="1250" y="708" class="tag">FEATURE 3</text>
-    <text x="1250" y="752" class="featureHead">Location and Coach Oversight</text>
-    <text x="1250" y="795" class="featureBody">The map shows nearby coaches</text>
-    <text x="1250" y="827" class="featureBody">and workout buddies.</text>
-    <text x="1250" y="859" class="featureBody">After binding, coaches can remotely</text>
-    <text x="1250" y="891" class="featureBody">monitor trainee status and progress.</text>
+    <text x="1250" y="752" class="featureHead">FR3: Occupancy + Messaging + Pre-book</text>
+    <text x="1250" y="795" class="featureBody">View equipment occupancy on map.</text>
+    <text x="1250" y="827" class="featureBody">Message friends/strangers to ask</text>
+    <text x="1250" y="859" class="featureBody">how many sets are completed, and</text>
+    <text x="1250" y="891" class="featureBody">request a next-turn reservation.</text>
   </g>
 
   <g filter="url(#shadow)">
     <rect x="420" y="970" width="960" height="76" rx="38" fill="#ffffff" opacity="0.96"/>
-    <text x="475" y="1018" class="featureBody">Feedback loop: trainee activity data supports timely coach guidance and safer training rhythm.</text>
+    <text x="475" y="1018" class="featureBody">Feedback loop: filtered plans, live guidance, and occupancy messaging reduce waiting and improve workout continuity.</text>
   </g>
 </svg>
