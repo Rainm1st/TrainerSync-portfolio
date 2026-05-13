@@ -68,16 +68,21 @@
       <div class="kicker">Project Overview</div>
       <h2 class="heading-with-icon"><i data-lucide="layers"></i><span>System Architecture</span></h2>
       <p class="lead">
-        <strong class="text-em">TrainerSync:</strong> exercise filtering + live movement view + multi-select set logging → heart-rate monitoring and intelligent session summary → equipment occupancy + user messaging for set checks and pre-booking. Plan, train, and connect in one mobile app flow.
+        <strong class="text-em">TrainerSync</strong> guides a gym trainee through three phases in one mobile app: before training you <strong class="text-em">Plan</strong> — browse and queue exercises by muscle group; during training you <strong class="text-em">Monitor</strong> — track live heart rate with pacing cues and log completed sets; between equipment you <strong class="text-em">Connect</strong> — check a live gym floor map and message peers to ask about availability or pre-book a turn.
       </p>
       <figure class="architecture-figure">
-        <img src="./assets/images/architecture/project-architecture-v3.svg" alt="TrainerSync project architecture diagram" />
-        <figcaption class="small survey-caption">Structure &amp; labels: Team C3-6.</figcaption>
+        <iframe
+          src="./assets/images/architecture/architecture-v3.html"
+          title="TrainerSync system architecture diagram"
+          style="width:100%;height:980px;border:none;border-radius:16px;display:block;"
+          scrolling="auto"
+        ></iframe>
+        <figcaption class="small survey-caption">Four-layer stack: User Browser → GitHub Pages → Vite React SPA → Supabase · Plan / Monitor / Connect feature modules. Structure &amp; labels: Team C3-6.</figcaption>
       </figure>
       <div class="summary-grid" style="margin-top:16px;">
         <article class="card soft-blue">
           <h3>Why this architecture matters</h3>
-          <p>Filter, train, message, and recap in one mobile workout flow.</p>
+          <p>Plan workouts, Monitor live sessions, and Connect with gym peers — all in one mobile flow backed by a single Supabase real-time layer.</p>
         </article>
         <article class="card soft-mint">
           <h3>Hosted system link</h3>
@@ -499,7 +504,7 @@
       <p class="lead lead-tight"><strong class="text-em">FRs</strong> = must-do behaviour. <strong class="text-em">PHs</strong> below = tone only.</p>
       <div class="grid-3 grid-3--req">
         <article class="card soft-blue req-deep-card">
-          <h3>FR1 · Exercise filtering, live movement guidance, and set logging</h3>
+          <h3>FR1 · Plan — Exercise Filtering, Live Guidance &amp; Set Logging</h3>
           <div class="req-objective-slot">
             <p>
               <strong>Objective:</strong> <strong>Pre:</strong> users filter and multi-select exercises to build a session queue. <strong>During:</strong> each selected movement shows live visual guidance, supports action reordering, and allows per-exercise set logging.
@@ -527,14 +532,14 @@
               </ul>
               <h4 class="req-fold-h">Feature evidence screenshots</h4>
               <div class="stage-media two req-feature-gallery">
-                <img src="./assets/images/app/features/f1-1.png" alt="FR1 library filtering and multi-select view" />
-                <img src="./assets/images/app/features/f1-2.png" alt="FR1 selected exercise flow and set logging entry" />
+                <figure style="margin:0;"><img src="./assets/images/app/features/f1-1.png" alt="FR1 library filtering and multi-select view" /><figcaption class="small survey-caption" style="text-align:center;margin-top:5px;">Exercise Library — filter chips by muscle group, numbered queue building</figcaption></figure>
+                <figure style="margin:0;"><img src="./assets/images/app/features/f1-2.png" alt="FR1 selected exercise flow and set logging entry" /><figcaption class="small survey-caption" style="text-align:center;margin-top:5px;">Live Session — exercise demo panel with set counter and reorder controls</figcaption></figure>
               </div>
             </div>
           </details>
         </article>
         <article class="card soft-mint req-deep-card">
-          <h3>FR2 · Heart-rate monitoring and intelligent session summary</h3>
+          <h3>FR2 · Monitor — Heart-Rate Monitoring &amp; Session Summary</h3>
           <div class="req-objective-slot">
             <p>
               <strong>Objective:</strong> <strong>During session:</strong> monitor heart rate continuously and adjust pacing using breathing-light intensity cues. <strong>After session:</strong> generate an intelligent summary including recorded data and analysis highlights.
@@ -561,16 +566,16 @@
               </ul>
               <h4 class="req-fold-h">Feature evidence screenshots</h4>
               <div class="stage-media two req-feature-gallery">
-                <img src="./assets/images/app/features/f2-1.png" alt="FR2 in-session heart-rate monitoring view" />
-                <img src="./assets/images/app/features/f2-2.png" alt="FR2 pace guidance and set progress continuation" />
-                <img src="./assets/images/app/features/f2-3.png" alt="FR2 live intensity cues and monitoring state" />
-                <img src="./assets/images/app/f4.png" alt="FR2 intelligent session summary report" />
+                <figure style="margin:0;"><img src="./assets/images/app/features/f2-1.png" alt="FR2 in-session heart-rate monitoring view" /><figcaption class="small survey-caption" style="text-align:center;margin-top:5px;">In-Session Monitor — live HR ring with current bpm readout</figcaption></figure>
+                <figure style="margin:0;"><img src="./assets/images/app/features/f2-2.png" alt="FR2 pace guidance and set progress continuation" /><figcaption class="small survey-caption" style="text-align:center;margin-top:5px;">Pace Guidance — breathing-light overlay responds to HR zone</figcaption></figure>
+                <figure style="margin:0;"><img src="./assets/images/app/features/f2-3.png" alt="FR2 live intensity cues and monitoring state" /><figcaption class="small survey-caption" style="text-align:center;margin-top:5px;">HR Zones — blue (rest) · green (target 120–150) · red (high intensity)</figcaption></figure>
+                <figure style="margin:0;"><img src="./assets/images/app/f4.png" alt="FR2 intelligent session summary report" /><figcaption class="small survey-caption" style="text-align:center;margin-top:5px;">Session Summary — HR timeline, sets completed, AI analysis text</figcaption></figure>
               </div>
             </div>
           </details>
         </article>
         <article class="card soft-peach req-deep-card">
-          <h3>FR3 · Equipment occupancy and user messaging</h3>
+          <h3>FR3 · Connect — Equipment Occupancy &amp; Peer Messaging</h3>
           <div class="req-objective-slot">
             <p>
               <strong>Objective:</strong> Users can check equipment occupancy in real time, then message other users (friends or strangers) to ask completed set counts and request advance booking/turn coordination.
@@ -598,11 +603,11 @@
               </ul>
               <h4 class="req-fold-h">Feature evidence screenshots</h4>
               <div class="stage-media three req-feature-gallery">
-                <img src="./assets/images/app/features/f3-1.png" alt="FR3 equipment occupancy overview" />
-                <img src="./assets/images/app/features/f3-2.png" alt="FR3 message panel for coordination" />
-                <img src="./assets/images/app/features/f3-3.png" alt="FR3 asking completed set counts" />
-                <img src="./assets/images/app/features/f3-4.png" alt="FR3 next-turn pre-booking request" />
-                <img src="./assets/images/app/features/f3-5.png" alt="FR3 messaging response and booking status" />
+                <figure style="margin:0;"><img src="./assets/images/app/features/f3-1.png" alt="FR3 equipment occupancy overview" /><figcaption class="small survey-caption" style="text-align:center;margin-top:5px;">Gym Floor Map — live zone occupancy counts and peer positions</figcaption></figure>
+                <figure style="margin:0;"><img src="./assets/images/app/features/f3-2.png" alt="FR3 message panel for coordination" /><figcaption class="small survey-caption" style="text-align:center;margin-top:5px;">Buddy Chat — conversation panel with gym peer</figcaption></figure>
+                <figure style="margin:0;"><img src="./assets/images/app/features/f3-3.png" alt="FR3 asking completed set counts" /><figcaption class="small survey-caption" style="text-align:center;margin-top:5px;">Set-Check — pre-canned message asking how many sets remain</figcaption></figure>
+                <figure style="margin:0;"><img src="./assets/images/app/features/f3-4.png" alt="FR3 next-turn pre-booking request" /><figcaption class="small survey-caption" style="text-align:center;margin-top:5px;">Pre-Book — request next turn at the current equipment</figcaption></figure>
+                <figure style="margin:0;"><img src="./assets/images/app/features/f3-5.png" alt="FR3 messaging response and booking status" /><figcaption class="small survey-caption" style="text-align:center;margin-top:5px;">Confirmed — booking status reply and message thread</figcaption></figure>
               </div>
             </div>
           </details>
@@ -830,9 +835,9 @@ Requirements: (1) Clickable navigation between sections (anchors or a small top 
             <span>Early UI grabs</span>
           </div>
           <div class="stage-media three">
-            <img src="./assets/images/before/figure1.png" alt="Before alpha screen 1" />
-            <img src="./assets/images/before/figure2.png" alt="Before alpha screen 2" />
-            <img src="./assets/images/before/figure3.png" alt="Before alpha screen 3" />
+            <figure style="margin:0;"><img src="./assets/images/before/figure1.png" alt="Before alpha screen 1" /><figcaption class="small survey-caption" style="text-align:center;margin-top:5px;">Alpha: Home — basic layout, no stats card</figcaption></figure>
+            <figure style="margin:0;"><img src="./assets/images/before/figure2.png" alt="Before alpha screen 2" /><figcaption class="small survey-caption" style="text-align:center;margin-top:5px;">Alpha: Exercise Library — flat list, no filter chips</figcaption></figure>
+            <figure style="margin:0;"><img src="./assets/images/before/figure3.png" alt="Before alpha screen 3" /><figcaption class="small survey-caption" style="text-align:center;margin-top:5px;">Alpha: Live Training — minimal HR display, no zone colour</figcaption></figure>
           </div>
         </article>
         <article class="stage-card">
@@ -841,9 +846,9 @@ Requirements: (1) Clickable navigation between sections (anchors or a small top 
             <span>Current high-fi</span>
           </div>
           <div class="stage-media three">
-            <img src="./assets/images/app/f1.png" alt="After high-fidelity home screen" />
-            <img src="./assets/images/app/f4.png" alt="After high-fidelity live training screen" />
-            <img src="./assets/images/app/f5.png" alt="After high-fidelity occupancy and messaging screen" />
+            <figure style="margin:0;"><img src="./assets/images/app/f1.png" alt="After high-fidelity home screen" /><figcaption class="small survey-caption" style="text-align:center;margin-top:5px;">Current: Home — weekly stats, session launch, AI tips panel</figcaption></figure>
+            <figure style="margin:0;"><img src="./assets/images/app/f4.png" alt="After high-fidelity live training screen" /><figcaption class="small survey-caption" style="text-align:center;margin-top:5px;">Current: Session Report — HR timeline chart, AI analysis summary</figcaption></figure>
+            <figure style="margin:0;"><img src="./assets/images/app/f5.png" alt="After high-fidelity occupancy and messaging screen" /><figcaption class="small survey-caption" style="text-align:center;margin-top:5px;">Current: Gym Map — live zone occupancy with buddy messaging panel</figcaption></figure>
           </div>
         </article>
       </div>
@@ -874,9 +879,9 @@ Requirements: (1) Clickable navigation between sections (anchors or a small top 
             <figure class="app-shot"><img src="./assets/images/app/f3.png" alt="Live training guidance screen" /><figcaption>Live Guidance</figcaption></figure>
             <figure class="app-shot"><img src="./assets/images/app/f4.png" alt="Session report screen" /><figcaption>Session Report</figcaption></figure>
             <figure class="app-shot"><img src="./assets/images/app/f5.png" alt="Occupancy map and social coordination screen" /><figcaption>Occupancy + Social</figcaption></figure>
-            <figure class="app-shot"><img src="./assets/images/app/features/f2-3.png" alt="Heart-rate and pace monitoring detail" /><figcaption>FR2 Detail</figcaption></figure>
-            <figure class="app-shot"><img src="./assets/images/app/features/f3-2.png" alt="Messaging panel for set-check coordination" /><figcaption>Messaging</figcaption></figure>
-            <figure class="app-shot"><img src="./assets/images/app/features/f3-4.png" alt="Pre-booking request interaction screen" /><figcaption>Pre-booking</figcaption></figure>
+            <figure class="app-shot"><img src="./assets/images/app/features/f2-3.png" alt="Heart-rate and pace monitoring detail" /><figcaption>HR Zone Detail</figcaption></figure>
+            <figure class="app-shot"><img src="./assets/images/app/features/f3-2.png" alt="Messaging panel for set-check coordination" /><figcaption>Set-Check Chat</figcaption></figure>
+            <figure class="app-shot"><img src="./assets/images/app/features/f3-4.png" alt="Pre-booking request interaction screen" /><figcaption>Pre-Book Request</figcaption></figure>
           </div>
         </div>
       </details>
@@ -887,13 +892,13 @@ Requirements: (1) Clickable navigation between sections (anchors or a small top 
 
         <h4>Representative prompts</h4>
 
-        <pre class="prompt-block">You are helping with a CPT208 static fitness web prototype called TrainerSync hosted on GitHub Pages. Stack: plain HTML/CSS/JS or minimal tooling only. Do NOT invent new product requirements.
+        <pre class=”prompt-block”>You are helping with a CPT208 fitness web app called TrainerSync. Stack: React 18 + TypeScript, Vite 5, Tailwind CSS v4, React Router v6, Zustand v5, Supabase JS SDK v2, React Leaflet, vite-plugin-pwa. Deployed to GitHub Pages via GitHub Actions. Do NOT invent new product requirements.
 
 Prompt A — shell &amp; routing:
-“Here is our screen list: Home, Exercise Library, Exercise Detail, Live Training, Session Report, Occupancy Map, Social Connections, Profile. Create a shared nav/header pattern and separate HTML pages OR hash routes so each URL works when refreshed on GitHub Pages. Use relative paths only.”</pre>
+“Here is our screen list: Home, Exercise Library, Live Training, Session Report, Gym Map / Buddies, Friends, Profile. Set up React Router v6 SPA routes so each path works when deployed to GitHub Pages at base path /CPT208-TrainerSync/. Configure vite.config.ts base accordingly and handle 404 redirects for client-side routing.”</pre>
 
-        <pre class="prompt-block">Prompt B — Live Training panel:
-“Implement the Live Training page from this wireframe snippet [paste]. Use mock data for heart rate (updates every 2s within 110–165 bpm). Show set counter and a non-medical disclaimer line we provide verbatim: ‘For wellness motivation only—not medical advice.’ Colours must match tokens #c8f542 accent and dark navy background.”</pre>
+        <pre class=”prompt-block”>Prompt B — Live Training panel:
+“Implement the Live Training page as a React component. Use a Zustand sessionStore to record sets and a mock HR that updates every 2 s within 110–165 bpm. Show set counter, HR ring with zone colour (#0ea5e9 &lt;120 / #84cc16 120–150 / #ef4444 &gt;150), breathing-light pulse animation, and a non-medical disclaimer we provide verbatim: ‘For wellness motivation only — not medical advice.’ Accent colour token: #c8f03c.”</pre>
 
         <pre class="prompt-block">Prompt C — social connection panel:
 “Social Connections page needs responsive CSS grid: 2 columns on desktop, 1 column &lt;768px. Cards show user type, occupancy context, and quick actions (set-check / pre-book). Fix overflow-x without horizontal scroll on mobile.”</pre>
@@ -1066,9 +1071,9 @@ Prompt A — shell &amp; routing:
 
       <h3 class="subheading-with-icon"><i data-lucide="images"></i><span>Usability task evidence snapshots</span></h3>
       <div class="stage-media three">
-        <img src="./assets/images/research/surveys/alpha/figure1.png" alt="Usability evidence: participant A task capture" />
-        <img src="./assets/images/research/surveys/alpha/figure2.png" alt="Usability evidence: participant B task capture" />
-        <img src="./assets/images/research/surveys/alpha/figure3.png" alt="Usability evidence: participant C task capture" />
+        <figure style="margin:0;"><img src="./assets/images/research/surveys/alpha/figure1.png" alt="Usability evidence: participant A task capture" /><figcaption class="small survey-caption" style="text-align:center;margin-top:5px;">Participant A — task capture: workout planning flow</figcaption></figure>
+        <figure style="margin:0;"><img src="./assets/images/research/surveys/alpha/figure2.png" alt="Usability evidence: participant B task capture" /><figcaption class="small survey-caption" style="text-align:center;margin-top:5px;">Participant B — task capture: live HR monitoring flow</figcaption></figure>
+        <figure style="margin:0;"><img src="./assets/images/research/surveys/alpha/figure3.png" alt="Usability evidence: participant C task capture" /><figcaption class="small survey-caption" style="text-align:center;margin-top:5px;">Participant C — task capture: occupancy and coordination flow</figcaption></figure>
       </div>
 
       <h3 class="subheading-with-icon"><i data-lucide="refresh-ccw"></i><span>Iterative Refinement</span></h3>
@@ -1087,9 +1092,9 @@ Prompt A — shell &amp; routing:
             <p class="small">Alpha-era UI.</p>
           </div>
           <div class="stage-media three">
-            <img src="./assets/images/before/figure1.png" alt="Before alpha screenshot 1" />
-            <img src="./assets/images/before/figure2.png" alt="Before alpha screenshot 2" />
-            <img src="./assets/images/before/figure3.png" alt="Before alpha screenshot 3" />
+            <figure style="margin:0;"><img src="./assets/images/before/figure1.png" alt="Before alpha screenshot 1" /><figcaption class="small survey-caption" style="text-align:center;margin-top:5px;">Before — Home: low CTA salience, no intensity preview line</figcaption></figure>
+            <figure style="margin:0;"><img src="./assets/images/before/figure2.png" alt="Before alpha screenshot 2" /><figcaption class="small survey-caption" style="text-align:center;margin-top:5px;">Before — Session: ambiguous amber/red zone colour semantics</figcaption></figure>
+            <figure style="margin:0;"><img src="./assets/images/before/figure3.png" alt="Before alpha screenshot 3" /><figcaption class="small survey-caption" style="text-align:center;margin-top:5px;">Before — Gym Map: occupancy and message-status cues visually similar</figcaption></figure>
           </div>
         </article>
         <article class="figure-card">
@@ -1098,9 +1103,9 @@ Prompt A — shell &amp; routing:
             <p class="small">Shipped UI.</p>
           </div>
           <div class="stage-media three">
-            <img src="./assets/images/app/f1.png" alt="After home screenshot" />
-            <img src="./assets/images/app/f4.png" alt="After live training screenshot" />
-            <img src="./assets/images/app/f5.png" alt="After occupancy and messaging screenshot" />
+            <figure style="margin:0;"><img src="./assets/images/app/f1.png" alt="After home screenshot" /><figcaption class="small survey-caption" style="text-align:center;margin-top:5px;">After — Home: strengthened CTA, intensity preview, weekly stats</figcaption></figure>
+            <figure style="margin:0;"><img src="./assets/images/app/f4.png" alt="After live training screenshot" /><figcaption class="small survey-caption" style="text-align:center;margin-top:5px;">After — Session Report: zone microcopy added, contrast improved</figcaption></figure>
+            <figure style="margin:0;"><img src="./assets/images/app/f5.png" alt="After occupancy and messaging screenshot" /><figcaption class="small survey-caption" style="text-align:center;margin-top:5px;">After — Gym Map: occupancy chips and message actions visually separated</figcaption></figure>
           </div>
         </article>
       </div>
@@ -1108,7 +1113,18 @@ Prompt A — shell &amp; routing:
       </details>
 
       <h3 class="subheading-with-icon"><i data-lucide="quote"></i><span>Final Reflection</span></h3>
-      <p>Shared service, not solo tracking—confidence, pacing awareness, and social coordination. HR ≠ diagnosis; consent and visibility rules remain explicit; playfulness avoids shame or surveillance framing.</p>
+      <p>
+        TrainerSync succeeded in demonstrating that the three pain points identified in research — broken training continuity, unreliable in-session guidance, and equipment coordination friction — can be addressed within a single coherent mobile workflow. The Plan → Monitor → Connect flow proved evaluable end-to-end: participants could complete meaningful tasks in each feature, and observed issues were traceable back to specific design decisions rather than arbitrary implementation choices. The Supabase real-time presence layer in particular worked reliably across all test sessions, enabling the gym floor map to reflect live occupancy without requiring manual refresh.
+      </p>
+      <p>
+        The most significant limitation was the use of simulated heart-rate data. Because the prototype generates mock HR values rather than reading from a wearable, the Monitor feature could only be evaluated for interaction design quality — not for physiological accuracy or real-time responsiveness under actual exertion. Similarly, the gym floor map relies on a static SVG overlay and manually positioned presence data rather than real GPS or Bluetooth indoor positioning, which means occupancy counts in the Connect feature are representative but not live in a true deployment sense.
+      </p>
+      <p>
+        If we were to continue development, the highest-value next step would be integrating a BLE heart-rate sensor via the Web Bluetooth API to replace mock HR with real data. This would make the breathing-light pacing cue and zone-display genuinely responsive to the trainee's physiological state rather than a visual simulation. A secondary priority would be replacing the static floor plan with a real indoor positioning layer — either BLE beacon triangulation or Wi-Fi RSSI — so that the gym map reflects actual equipment zone density in real time.
+      </p>
+      <p>
+        On the design process side, the iteration from alpha to current high-fidelity confirmed that vibe-coded scaffolding is productive for early UI exploration, but requires deliberate human review at each stage to catch misalignments between generated code and stated requirements. In our case, the most important review moments were wording checks on HR-related copy (to avoid clinical framing), contrast and accessibility passes on zone colour coding, and consent-flow verification for the friend/stranger messaging path. These were team-authored decisions that the AI tools could not make independently, and they represent the core of what makes the interaction design human-centric rather than merely functional.
+      </p>
     </section>
 
     <section class="section" id="references">

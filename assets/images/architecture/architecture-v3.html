@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TrainerSync Architecture v3</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { background: transparent; overflow: hidden; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; padding: 0; }
+
+    .diagram {
+      background: linear-gradient(145deg, #0f2044 0%, #0d1a38 50%, #0a1628 100%);
+      border: 1px solid #1e3a5f;
+      border-radius: 20px;
+      padding: 40px 44px 36px;
+      position: relative; overflow: hidden;
+      margin: 12px;
+    }
+    .diagram::before {
+      content: ''; position: absolute; top: -80px; left: -80px;
+      width: 360px; height: 360px;
+      background: radial-gradient(circle, rgba(132,204,22,.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .diagram::after {
+      content: ''; position: absolute; bottom: -100px; right: -80px;
+      width: 460px; height: 460px;
+      background: radial-gradient(circle, rgba(14,165,233,.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .diagram-title { font-size: 2rem; font-weight: 900; color: #fff; margin-bottom: 4px; letter-spacing: -.5px; }
+    .diagram-subtitle { font-size: .88rem; color: #64748b; margin-bottom: 36px; }
+
+    .arch-row {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1.35fr auto 1fr;
+      gap: 0 10px;
+      align-items: center;
+    }
+    .arrow-col { display:flex; flex-direction:column; align-items:center; gap:5px; min-width:62px; }
+    .arrow-col .arrow-label { font-size:.56rem; font-weight:700; letter-spacing:.8px; text-transform:uppercase; color:#64748b; text-align:center; margin-top:3px; max-width:60px; }
+    .a-line { display:flex; align-items:center; width:100%; }
+    .a-line.rev { flex-direction:row-reverse; }
+    .a-line .seg-solid { flex:1; height:2px; }
+    .a-line .seg-dash  { flex:1; height:2px; border-top:2px dashed; }
+    .a-tip-r { width:0;height:0; border-top:6px solid transparent; border-bottom:6px solid transparent; }
+    .a-tip-l { width:0;height:0; border-top:6px solid transparent; border-bottom:6px solid transparent; }
+    .c-green  { background:#84cc16; }
+    .c-blue   { background:#0ea5e9; }
+    .c-orange { background:#f97316; }
+    .c-green-dash  { border-top-color:#84cc16 !important; }
+    .c-blue-dash   { border-top-color:#0ea5e9 !important; }
+    .c-orange-dash { border-top-color:#f97316 !important; }
+    .c-purple-dash { border-top-color:#8b5cf6 !important; }
+    .tip-r-green  { border-left:10px solid #84cc16; }
+    .tip-r-blue   { border-left:10px solid #0ea5e9; }
+    .tip-r-orange { border-left:10px solid #f97316; }
+    .tip-l-blue   { border-right:10px solid #0ea5e9; }
+    .tip-l-purple { border-right:10px solid #8b5cf6; }
+
+    .card {
+      background: #fff; border-radius: 14px;
+      padding: 22px 22px 18px; border: 1px solid #e2e8f0;
+      box-shadow: 0 6px 20px rgba(0,0,0,.22); align-self: stretch;
+    }
+    .card .card-layer { font-size:.6rem; font-weight:800; letter-spacing:2px; text-transform:uppercase; margin-bottom:5px; }
+    .card h3 { font-size:1.25rem; font-weight:800; color:#0f172a; margin-bottom:10px; line-height:1.2; }
+    .card ul { padding-left:15px; }
+    .card li { font-size:.78rem; color:#1e293b; line-height:1.65; margin-bottom:2px; }
+    .card p  { font-size:.78rem; color:#1e293b; line-height:1.65; }
+    code { font-size:.75rem; background:#f1f5f9; padding:1px 4px; border-radius:3px; color:#475569; }
+
+    .card-browser  { border-top:5px solid #84cc16; }
+    .card-browser  .card-layer { color:#3f6212; } .card-browser h3 { color:#1a2e05; }
+    .card-github   { border-top:5px solid #0ea5e9; }
+    .card-github   .card-layer { color:#0c4a6e; } .card-github h3 { color:#082f49; }
+    .card-vite     { border-top:5px solid #f97316; }
+    .card-vite     .card-layer { color:#7c2d12; } .card-vite h3 { color:#431407; }
+    .card-supabase { border-top:5px solid #8b5cf6; }
+    .card-supabase .card-layer { color:#4c1d95; } .card-supabase h3 { color:#2e1065; }
+
+    .card-f1 { border-top:5px solid #84cc16; background:#f4fce3; }
+    .card-f1 .card-layer { color:#3f6212; } .card-f1 h3 { color:#1a2e05; }
+    .card-f2 { border-top:5px solid #0ea5e9; background:#e0f7ff; }
+    .card-f2 .card-layer { color:#0c4a6e; } .card-f2 h3 { color:#082f49; }
+    .card-f3 { border-top:5px solid #f97316; background:#fff4e6; }
+    .card-f3 .card-layer { color:#7c2d12; } .card-f3 h3 { color:#431407; }
+
+    .tech-badges { display:flex; flex-wrap:wrap; gap:5px; margin-top:11px; }
+    .badge { font-size:.62rem; font-weight:700; padding:3px 8px; border-radius:20px; }
+    .badge-blue   { background:#e0f2fe; color:#0369a1; border:1px solid #7dd3fc; }
+    .badge-lime   { background:#ecfccb; color:#3f6212; border:1px solid #bef264; }
+    .badge-orange { background:#fff7ed; color:#9a3412; border:1px solid #fdba74; }
+    .badge-purple { background:#f5f3ff; color:#4c1d95; border:1px solid #c4b5fd; }
+
+    .connector-section { position:relative; height:40px; }
+    .bridge { position:absolute; top:14px; left:calc(100%/8); right:calc(100%/8); height:2px; background:linear-gradient(90deg,#84cc16,#0ea5e9 50%,#f97316); border-radius:2px; }
+    .drop { position:absolute; top:14px; width:2px; height:26px; }
+    .drop::after { content:''; position:absolute; bottom:-4px; left:50%; transform:translateX(-50%); width:6px; height:6px; border-radius:50%; }
+    .drop-1 { left:calc(100%/6); background:linear-gradient(to bottom,#84cc16,#1e3a5f); }
+    .drop-1::after { background:#84cc16; }
+    .drop-2 { left:50%; transform:translateX(-50%); background:linear-gradient(to bottom,#0ea5e9,#1e3a5f); }
+    .drop-2::after { background:#0ea5e9; }
+    .drop-3 { right:calc(100%/6); background:linear-gradient(to bottom,#f97316,#1e3a5f); }
+    .drop-3::after { background:#f97316; }
+
+    .feat-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px; }
+    .hl-g { color:#3f6212; font-weight:700; }
+    .hl-b { color:#0369a1; font-weight:700; }
+    .hl-r { color:#b91c1c; font-weight:700; }
+
+    .feedback-bar {
+      margin-top:28px;
+      background:rgba(132,204,22,.10); border:1.5px solid rgba(132,204,22,.35);
+      border-radius:10px; padding:14px 22px;
+      text-align:center; font-size:.84rem; color:#cbd5e1;
+    }
+    .feedback-bar strong { color:#a3e635; font-weight:800; }
+  </style>
+</head>
+<body>
+  <div class="diagram">
+    <div class="diagram-title">TrainerSync Project Architecture</div>
+    <div class="diagram-subtitle">
+      Four-layer stack: User Browser → GitHub Pages → Vite React SPA → Supabase · three trainee-facing feature modules.
+    </div>
+
+    <div class="arch-row">
+
+      <div class="card card-browser">
+        <div class="card-layer">User Layer</div>
+        <h3>User Browser / PWA</h3>
+        <ul>
+          <li>Mobile browser or installed PWA (iOS / Android)</li>
+          <li>Requests compiled bundle from GitHub Pages on first visit</li>
+          <li>React SPA runs fully client-side — no page reloads</li>
+          <li>Persistent WebSocket to Supabase real-time</li>
+          <li>Offline-capable via Workbox service worker</li>
+        </ul>
+      </div>
+
+      <div class="arrow-col">
+        <div class="a-line"><div class="seg-solid c-green"></div><div class="a-tip-r tip-r-green"></div></div>
+        <div class="a-line rev"><div class="seg-dash c-blue-dash"></div><div class="a-tip-l tip-l-blue"></div></div>
+        <div class="arrow-label">HTTPS · bundle fetch</div>
+      </div>
+
+      <div class="card card-github">
+        <div class="card-layer">Hosting Layer</div>
+        <h3>GitHub Pages (Static CDN)</h3>
+        <ul>
+          <li>Serves Vite-compiled output: <code>index.html</code> + hashed JS/CSS</li>
+          <li>No server-side rendering — purely static delivery</li>
+          <li>Base path: <code>/CPT208-TrainerSync/</code></li>
+          <li>Deployed via GitHub Actions on push to <code>main</code></li>
+          <li>Assets via <code>vite-plugin-static-copy</code></li>
+        </ul>
+      </div>
+
+      <div class="arrow-col">
+        <div class="a-line"><div class="seg-solid c-orange"></div><div class="a-tip-r tip-r-orange"></div></div>
+        <div class="arrow-label">loads into browser</div>
+      </div>
+
+      <div class="card card-vite">
+        <div class="card-layer">Application Layer</div>
+        <h3>Vite 5 + React 18 SPA</h3>
+        <ul>
+          <li>React 18.3 + TypeScript 5.7 · React Router v6</li>
+          <li>Tailwind CSS v4 · React Leaflet (gym floor map)</li>
+          <li>Zustand v5: <em>auth · session · presence · social · chat</em></li>
+          <li>Exercise library: 30+ exercises, static JSON</li>
+          <li>vite-plugin-pwa + Workbox: installable, offline</li>
+          <li>Light / dark theme via <code>localStorage</code></li>
+        </ul>
+        <div class="tech-badges">
+          <span class="badge badge-orange">React 18 + TS</span>
+          <span class="badge badge-orange">Vite 5</span>
+          <span class="badge badge-lime">Tailwind v4</span>
+          <span class="badge badge-lime">Zustand v5</span>
+          <span class="badge badge-orange">React Router v6</span>
+        </div>
+      </div>
+
+      <div class="arrow-col">
+        <div class="a-line"><div class="seg-solid c-orange"></div><div class="a-tip-r tip-r-orange"></div></div>
+        <div class="a-line rev"><div class="seg-dash c-purple-dash"></div><div class="a-tip-l tip-l-purple"></div></div>
+        <div class="arrow-label">REST API + WebSocket</div>
+      </div>
+
+      <div class="card card-supabase">
+        <div class="card-layer">Backend Layer</div>
+        <h3>Supabase Backend</h3>
+        <ul>
+          <li><strong>PostgreSQL:</strong> profiles · sessions · hr_samples · session_presence · friendships · interactions · messages</li>
+          <li><strong>Auth:</strong> JWT, row-level security</li>
+          <li><strong>Real-time:</strong> WebSocket channels — presence &amp; messages</li>
+          <li>Supabase JS SDK v2 — called directly from browser</li>
+        </ul>
+        <div class="tech-badges">
+          <span class="badge badge-purple">PostgreSQL</span>
+          <span class="badge badge-purple">Auth (JWT)</span>
+          <span class="badge badge-purple">Real-time WS</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="connector-section">
+      <div class="bridge"></div>
+      <div class="drop drop-1"></div>
+      <div class="drop drop-2"></div>
+      <div class="drop drop-3"></div>
+    </div>
+
+    <div class="feat-row">
+      <div class="card card-f1">
+        <div class="card-layer">Feature 1 — Plan</div>
+        <h3>FR1: Workout Planning</h3>
+        <p>Filter 30+ exercises by muscle group or equipment. Build a numbered session queue with set/rep programming. Reorder live during training. One-tap session launch.</p>
+      </div>
+      <div class="card card-f2">
+        <div class="card-layer">Feature 2 — Monitor</div>
+        <h3>FR2: Live HR + Session Summary</h3>
+        <p>Heart rate tracked every 10 s with zone-aware display (<span class="hl-b">blue</span> · <span class="hl-g">green</span> · <span class="hl-r">red</span>) and breathing-cue overlay. After session: intelligent summary with HR timeline, sets done, and AI feedback.</p>
+      </div>
+      <div class="card card-f3">
+        <div class="card-layer">Feature 3 — Connect</div>
+        <h3>FR3: Buddy System + Gym Map</h3>
+        <p>Real-time gym floor map (React Leaflet) with live zone occupancy. Message friends and anonymous strangers. Send connection requests to unlock full chat. Pre-book sets with peers.</p>
+      </div>
+    </div>
+
+    <div class="feedback-bar">
+      <strong>Feedback loop:</strong>
+      planned sessions feed live monitoring →
+      post-session summaries improve future planning →
+      connect features reduce wait times and sustain consistency.
+    </div>
+  </div>
+</body>
+</html>
